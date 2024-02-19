@@ -2,8 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'NanumSquareRoundExtraBold';
+  src: url('/fonts/NanumSquareRoundEB.ttf') format('truetype');
+}
+
 html {
-  font-size: 62.5%;
+  font-family: 'NanumSquareRoundExtraBold';
 }
 
 body,
