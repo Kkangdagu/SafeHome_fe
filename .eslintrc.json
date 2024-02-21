@@ -29,18 +29,13 @@
     "import/no-cycle": "off",
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": "off",
+    "react/button-has-type": "off",
+    "react/jsx-props-no-spreading": "off",
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
     "unused-imports/no-unused-imports": "warn",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
-      }
-    ],
     "@typescript-eslint/no-explicit-any": "error"
   },
   "parserOptions": {
