@@ -7,8 +7,9 @@
   src: url('/fonts/NanumSquareRoundEB.ttf') format('truetype');
 }
 
-html {
+* {
   font-family: 'NanumSquareRoundExtraBold';
+  box-sizing: border-box;
 }
 
 body,
@@ -93,7 +94,6 @@ audio,
 video {
   margin: 0;
   padding: 0;
-  border: 0;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
