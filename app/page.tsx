@@ -1,3 +1,9 @@
+import { Header } from '@/components/Layout';
+
 export default function Home() {
-  return <div>ㅋㅋ</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
