@@ -1,30 +1,32 @@
-import { CSSProperties, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-interface ButtonProps {
+type ButtonVariants = 'primary' | 'small';
+
+interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  type: 'button' | 'submit';
-  backgroundColor?: string;
-  color?: string;
-  onClick?: () => void;
+  variant?: ButtonVariants;
 }
+
+const variants = {
+  primary:
+    'w-[168px] h-[48px] flex justify-center items-center rounded-3xl bg-blue-0 text-white-0 disabled:bg-gray-0 disabled:text-gray-1',
+  small:
+    'w-[124px] h-[48px] flex justify-center items-center rounded-3xl bg-gray-0 text-gray-1',
+};
 
 export default function Button({
   children,
   type,
-  backgroundColor,
-  color,
+  variant = 'primary',
+  className,
+  disabled,
   onClick,
-}: ButtonProps) {
-  const buttonStyle: CSSProperties = {
-    backgroundColor,
-    color,
-  };
-
+}: IButton) {
   return (
     <button
       type={type}
-      style={buttonStyle}
-      className="w-[168px] h-[48px] flex justify-center items-center border rounded-3xl"
+      className={`${variants[variant]} ${className}`}
+      disabled={disabled}
       onClick={onClick}>
       {children}
     </button>
