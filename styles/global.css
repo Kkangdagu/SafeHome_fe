@@ -144,3 +144,42 @@ table {
 body {
   width: 100%;
 }
+
+.container_height {
+  height: calc(100vh - 50px);
+}
+
+.dot {
+  opacity: 1;
+}
+
+.dot1,
+.dot2,
+.dot3 {
+  opacity: 0;
+  animation: dotFade 1s infinite;
+}
+
+.dot1 {
+  animation-delay: 0s;
+}
+
+.dot2 {
+  animation-delay: 0.33s;
+}
+
+.dot3 {
+  animation-delay: 0.66s;
+}
+
+@keyframes dotFade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
