@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { ChangeEvent, FormEvent, useId, useState } from 'react';
 import { IoDownloadOutline } from 'react-icons/io5';
+import Resizer from 'react-image-file-resizer';
 
 import { requestWithBase64 } from '@/utils/base64';
 
@@ -20,20 +21,25 @@ export default function UploadForm() {
   const [base64Image, setBase64Image] = useState<string | null>(null);
   const [fileExtension, setFileExtension] = useState<string | null>(null);
 
-  const getBase64 = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        if (typeof reader.result === 'string') {
-          resolve(reader.result.split(',')[1]);
-        } else {
-          reject(new Error('Invalid image format'));
-        }
-      };
-      reader.onerror = (error) => reject(error);
+  const resizerFile = (file: File): Promise<string> =>
+    new Promise((res) => {
+      Resizer.imageFileResizer(
+        file,
+        1500,
+        1500,
+        'JPEG',
+        80,
+        0,
+        (uri) => {
+          if (typeof uri === 'string') {
+            res(uri);
+          } else {
+            throw new Error('이미지 형식이 올바르지 않습니다.');
+          }
+        },
+        'base64',
+      );
     });
-  };
 
   const imageUploadHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -45,8 +51,9 @@ export default function UploadForm() {
       const ex = file.name.split('.')[1];
       setFileExtension(ex);
 
-      const base64 = await getBase64(file);
-      setBase64Image(base64);
+      const base64 = await resizerFile(file);
+      const base64Str = base64.split(',')[1];
+      setBase64Image(base64Str);
     }
   };
 
