@@ -1,5 +1,5 @@
 import LoginDetail from '@/components/login/Login.container';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return <LoginDetail />;
 }

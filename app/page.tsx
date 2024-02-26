@@ -1,5 +1,5 @@
-import MainDetail from '@/components/login/Login.container';
+import LoginDetail from '@/components/login/Login.container';
 
 export default function Home() {
-  return <MainDetail />;
+  return <LoginDetail />;
 }

@@ -12,6 +12,7 @@ export default function RegisterDetail() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [veriCode, setVeriCode] = useState('');
 
   const [name, setName] = useState('');
   const [birth, setBirth] = useState('');
@@ -19,12 +20,14 @@ export default function RegisterDetail() {
 
   // 유효성 검사
   const [isEmail, setIsEmail] = useState(true);
-  const [isPassword, setIsPassword] = useState(false);
-  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+  const [isPassword, setIsPassword] = useState(true);
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(true);
+  const [isVeriCode, setIsVeriCode] = useState(true);
 
   const [isname, setIsName] = useState(false);
   const [isBirth, setIsBirth] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
+
   const setVisible = (next: boolean) => {
     setShow(next);
   };
@@ -37,10 +40,42 @@ export default function RegisterDetail() {
 
     if (!emailRegExp.test(currentEmail)) {
       setIsEmail(false);
-    } else if (currentEmail === '') {
-      setIsEmail(true);
     } else {
       setIsEmail(true);
+    }
+
+    if (!currentEmail) {
+      setIsEmail(true);
+    }
+  };
+
+  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    const currentPassword = e.target.value;
+    setPassword(currentPassword);
+    const passwordRegExp =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+    if (!passwordRegExp.test(currentPassword)) {
+      setIsPassword(false);
+    } else {
+      setIsPassword(true);
+    }
+
+    if (!currentPassword) {
+      setIsPassword(true);
+    }
+  };
+
+  const onChangePasswordConfirm = (e: ChangeEvent<HTMLInputElement>) => {
+    const currentPasswordConfirm = e.target.value;
+    setPasswordConfirm(currentPasswordConfirm);
+    if (password !== currentPasswordConfirm) {
+      setIsPasswordConfirm(false);
+    } else {
+      setIsPasswordConfirm(true);
+    }
+
+    if (!currentPasswordConfirm) {
+      setIsPassword(true);
     }
   };
 
@@ -52,7 +87,12 @@ export default function RegisterDetail() {
           show={show}
           setVisible={setVisible}
           onChangeEmail={onChangeEmail}
+          onChangePassword={onChangePassword}
+          onChangePasswordConfirm={onChangePasswordConfirm}
           isEmail={isEmail}
+          isPassword={isPassword}
+          isPasswordConfirm={isPasswordConfirm}
+          isVeriCode={isVeriCode}
         />
       ) : (
         <RegisterTwoUI />
