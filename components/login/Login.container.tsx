@@ -42,9 +42,9 @@ export default function LoginDetail() {
   return (
     <MainUI
       onClickMoveToRegister={onClickMoveToRegister}
+      onClickKakao={onClickKakao}
       isEmail={isEmail}
       isPassword={isPassword}
-      onClickKakao={onClickKakao}
     />
   );
 }

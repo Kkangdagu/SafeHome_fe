@@ -1,5 +1,9 @@
-import LoginDetail from '@/components/login/Login.container';
+import { Header } from '@/components/Layout';
 
 export default function Home() {
-  return <LoginDetail />;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
