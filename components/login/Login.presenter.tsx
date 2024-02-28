@@ -9,7 +9,7 @@ export default function LoginUI({
   onClickKakao,
 }: ILoginUIProps) {
   return (
-    <div className=" grid h-screen place-items-center bg-[#fffff] text-white">
+    <div className="grid h-screen place-items-center bg-[#fffff] text-white">
       <div className="w-[390px] h-screen bg-[#007dff] text-center">
         <div className="relative w-[300px] h-[150px] rounded-[86px] border-[9px] border-solid border-white bg-[#007dff] mx-auto my-0 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] my-20">
           <div className="text-[35px] font-semibold text-left text-white absolute top-[50%] left-[10%]">

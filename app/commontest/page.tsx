@@ -10,7 +10,7 @@ export default function CommonTestComponents() {
       <Button type="button" variant="primary" disabled>
         disabled-p
       </Button>
-      <Button type="submit" variant="small">
+      <Button type="submit" variant="secondary">
         samll
       </Button>
       <Input type="email" placeholder="이메일" className="border" />

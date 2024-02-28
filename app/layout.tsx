@@ -2,7 +2,7 @@ import '@/styles/global.css';
 
 import type { Metadata } from 'next';
 
-import { MainContainer } from '@/components/Layout';
+import Providers from './StoreProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,10 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="w-full h-full flex justify-center">
-        <MainContainer>{children}</MainContainer>
-      </body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body className="w-full h-full flex justify-center">
+          {children}
+          <div id="modal" />
+        </body>
+      </html>
+    </Providers>
   );
 }
