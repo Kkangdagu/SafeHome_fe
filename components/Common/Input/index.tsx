@@ -18,7 +18,7 @@ export default function Input({
       {label && <label htmlFor={id}>{label}</label>}
       <input
         type={type}
-        className={`rounded-3xl px-3 py-2 focus:outline-none ${className}`}
+        className={`rounded-md p-[2px_3px] focus:outline-none ${className}`}
         onChange={onChange}
         placeholder={placeholder}
         id={id}

@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type ButtonVariants = 'primary' | 'small';
+type ButtonVariants = 'primary' | 'secondary';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -9,9 +9,9 @@ interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants = {
   primary:
-    'w-[168px] h-[48px] flex justify-center items-center rounded-3xl bg-blue-0 text-white-0 disabled:bg-gray-0 disabled:text-gray-1',
-  small:
-    'w-[124px] h-[48px] flex justify-center items-center rounded-3xl bg-gray-0 text-gray-1',
+    'w-[356px] h-[49px] flex justify-center items-center rounded-md text-base bg-blue-0 text-white-0 disabled:bg-gray-0 disabled:text-gray-1',
+  secondary:
+    'w-[90px] h-[37px] flex justify-center items-center rounded-sm text-base bg-gray-0 text-gray-1',
 };
 
 export default function Button({
