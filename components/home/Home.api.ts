@@ -16,7 +16,7 @@ export const getPolicyLetter = async () => {
 
 export const getLatestPolicy = async () => {
   const response = await fetch(
-    'http://43.200.250.18:8000/re/real-estate-latest-policy/selectPaging?page=1',
+    'http://43.200.250.18:8000/re/real-estate-latest-policy/selectPaging?page=0',
   );
   return response.json();
 };
