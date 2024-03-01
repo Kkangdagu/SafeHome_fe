@@ -13,7 +13,7 @@ interface IModal extends HTMLAttributes<HTMLDivElement> {
 }
 
 const variants = {
-  menu: 'w-[190px] h-[360px] p-4 flex flex-col gap-5 border absolute top-0 left-[50.3%] bg-[aliceblue]',
+  menu: 'w-[190px] h-[360px] p-4 flex flex-col gap-5 border absolute bg-[aliceblue]',
   analysis: '',
 };
 
@@ -33,7 +33,7 @@ export default function Modal({
   return createPortal(
     <>
       {isOverlay && (
-        <div className="z-999 fixed w-[100vw] h-screen top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.5)]" />
+        <div className="z-[999] fixed w-[100vw] h-screen top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.4)]" />
       )}
       <div
         role="button"
@@ -43,7 +43,6 @@ export default function Modal({
         onClick={onClick}>
         {children}
       </div>
-      ,
     </>,
     container,
   );

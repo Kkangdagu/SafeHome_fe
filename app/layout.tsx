@@ -17,10 +17,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body className="w-full h-full flex justify-center">
-          {children}
-          <div id="modal" />
-        </body>
+        <body className="w-full h-full flex justify-center">{children}</body>
       </html>
     </Providers>
   );
