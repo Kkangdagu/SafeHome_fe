@@ -4,6 +4,7 @@ import 'swiper/css';
 import './banner.styles.css';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -18,12 +19,14 @@ export default function Banner({ onBoarding }: IHomePresenter) {
       className="h-[160px] rounded-md my-12">
       {onBoarding.body.map((v) => (
         <SwiperSlide key={v.lastChngRegDttm}>
-          <Image
-            src={v.thumbnailImgUrl}
-            alt="정책 이미지"
-            width={358}
-            height={160}
-          />
+          <Link href="/onboarding">
+            <Image
+              src={v.thumbnailImgUrl}
+              alt="정책 이미지"
+              width={358}
+              height={160}
+            />
+          </Link>
         </SwiperSlide>
       ))}
     </Swiper>
