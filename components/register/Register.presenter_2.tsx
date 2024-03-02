@@ -3,16 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import arrow_down from '../../public/images/down_arrow.svg';
-import arrow_up from '../../public/images/up_arrow.svg';
-
 export default function RegisterTwoUI() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <div className="grid h-screen place-items-center">
       <div className="w-[390px] h-[100vh] bg-[#FAFAFA] text-center">

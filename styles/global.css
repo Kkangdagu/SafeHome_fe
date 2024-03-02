@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'NanumSquareRoundExtraBold';
-  src: url('/fonts/NanumSquareRoundEB.ttf') format('truetype');
+  font-family: 'NanumSquareRound';
+  src: url('/public/fonts/NanumSquareRoundR.ttf') format('truetype');
 }
 
 * {
-  font-family: 'NanumSquareRoundExtraBold';
+  font-family: 'NanumSquareRound';
   box-sizing: border-box;
 }
 

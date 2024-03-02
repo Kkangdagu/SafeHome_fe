@@ -3,5 +3,9 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="w-full max-w-[390px] h-screen">{children}</div>;
+  return (
+    <div className="w-full bg-[#FFFFFF] h-screen grid place-items-center">
+      {children}
+    </div>
+  );
 }

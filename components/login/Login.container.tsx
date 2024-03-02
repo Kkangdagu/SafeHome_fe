@@ -1,28 +1,42 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import axios from 'axios';
+import { ChangeEvent, useState } from 'react';
 
-import MainUI from './Login.presenter';
+import LoginUI from './Login.presenter';
 
 export default function LoginDetail() {
-  const router = useRouter();
-
   // 초기값
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // 검사
-  const [isEmail, setIsEmail] = useState(true);
-  const [isPassword, setIsPassword] = useState(true);
+  // 로그인 버튼 활성화
+  const [active, setActive] = useState(false);
 
-  const onClickMoveToRegister = () => {
-    router.push('/register');
+  const activeLoginBtn = () => {
+    if (!email) {
+      setActive(false);
+    }
+    if (email && password) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  };
+
+  const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    const currentEmail = e.target.value;
+    setEmail(currentEmail);
+  };
+
+  const handlePw = (e: ChangeEvent<HTMLInputElement>) => {
+    const currentPw = e.target.value;
+    setPassword(currentPw);
   };
 
   // 카카오 로그인
   const CLIENT_ID = `${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}`;
-  const REDIRECT_URI = `${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URL}`;
+  const REDIRECT_URI = `${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}`;
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const onClickKakao = () => {
@@ -39,12 +53,26 @@ export default function LoginDetail() {
 		&scope=email profile`;
   };
 
+  const onClickEmailLogin = () => {
+    const body = {
+      email,
+      password,
+    };
+
+    axios.post('http://43.200.250.18:8000/login', body).then((res) => {
+      console.log(res.data.head);
+    });
+  };
+
   return (
-    <MainUI
-      onClickMoveToRegister={onClickMoveToRegister}
+    <LoginUI
       onClickKakao={onClickKakao}
-      isEmail={isEmail}
-      isPassword={isPassword}
+      onClickEmailLogin={onClickEmailLogin}
+      onClickGoogle={onClickGoogle}
+      handleEmail={handleEmail}
+      handlePw={handlePw}
+      activeLoginBtn={activeLoginBtn}
+      active={active}
     />
   );
 }
