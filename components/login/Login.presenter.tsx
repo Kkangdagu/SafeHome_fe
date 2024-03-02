@@ -1,126 +1,110 @@
-import Image from 'next/image';
+'use client';
 
+import { useRouter } from 'next/navigation';
+
+import Image from 'next/image';
+import Input from '@/components/Common/Input';
+import Button from '../Common/Button';
 import { ILoginUIProps } from './Login.types';
 
 export default function LoginUI({
-  onClickMoveToRegister,
-  isEmail,
-  isPassword,
   onClickKakao,
+  onClickGoogle,
+  handleEmail,
+  handlePw,
+  activeLoginBtn,
+  onClickEmailLogin,
+  active,
 }: ILoginUIProps) {
+  const router = useRouter();
+
   return (
-    <div className="grid h-screen place-items-center bg-[#fffff] text-white">
-      <div className="w-[390px] h-screen bg-[#007dff] text-center">
-        <div className="relative w-[300px] h-[150px] rounded-[86px] border-[9px] border-solid border-white bg-[#007dff] mx-auto my-0 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] my-20">
-          <div className="text-[35px] font-semibold text-left text-white absolute top-[50%] left-[10%]">
-            세로운 집
-          </div>
-          <Image
-            className="absolute top-[22%] left-[60%]"
-            src="/images/home_logo_white.svg"
-            alt=""
-            width={95}
-            height={122.75}
-          />
-        </div>
-        <div>
-          <div>
-            <input
-              className="w-[358px] h-[55px] text-[20px] rounded-[25px] bg-white border border-white outline-none text-black p-5 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-              placeholder="이메일"
-            />
-            <div
-              className={`relative mb-[8px] text-left ml-[70px] ${isEmail ? 'visible' : 'block'}`}>
-              <Image
-                src="/images/alert.svg"
-                alt=""
-                width={13}
-                height={13}
-                className="inline-block absolute top-[35%]"
-              />
-              <div className="text-[13px] inline-block ml-[18px]">
-                이메일이 올바르지 않습니다
-              </div>
-            </div>
-          </div>
-          <div className="mb-8 ">
-            <input
-              type="password"
-              className="w-[358px] h-[55px] text-[20px] rounded-[25px] text-black bg-white border border-white outline-none p-5 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-              placeholder="비밀번호"
-            />
-            <div
-              className={`relative mb-[5px] text-left ml-[70px] ${isPassword ? 'visible' : 'block'}`}>
-              <Image
-                src="/images/alert.svg"
-                alt=""
-                width={13}
-                height={13}
-                className="inline-block absolute top-[35%]"
-              />
-              <div className="text-[13px] inline-block ml-[18px]">
-                비밀번호가 올바르지 않습니다
-              </div>
-            </div>
-          </div>
-          <button
-            type="button"
-            className="w-[300px] h-[55px] text-[20px] rounded-[25px] bg-[#1B35BB] text-2xl shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mb-4">
-            로그인
+    <div className="w-[390px] h-screen bg-[#F2F3F6]">
+      <Image
+        src="/images/login_logo.svg"
+        alt=""
+        width={200}
+        height={120}
+        className="mx-auto mb-[127px] mt-[171px]"
+      />
+      <Input
+        type="email"
+        placeholder="이메일"
+        id="input_email"
+        className="border-0 w-[356px] h-[50px] text-[15px] rounded-[6px] mx-auto my-0 mb-[16px] focus:border focus:border-[#2551F4]"
+        onChange={handleEmail}
+        onKeyDown={activeLoginBtn}
+      />
+      <Input
+        type="password"
+        placeholder="비밀번호"
+        id="input_password"
+        className="border-0 w-[356px] h-[50px] text-[15px] rounded-[6px] mx-auto my-0 mb-[27px] focus:border focus:border-[#2551F4]"
+        onKeyDown={activeLoginBtn}
+        onChange={handlePw}
+      />
+      <Button
+        type="button"
+        variant="primary"
+        id="login_btn"
+        className="mx-auto my-0 mb-[15px] bg-[#696E83]"
+        onClick={onClickEmailLogin}
+        disabled={!active}>
+        로그인
+      </Button>
+      <div className="text-[13px] flex flex-row justify-center mb-[50px] text-[#B7B7B7]">
+        <div className="relative">
+          <button type="button" className="inline-block">
+            비밀번호 찾기
           </button>
-          <div className="text-[13px] flex flex-row justify-center mb-16">
-            <div className="relative">
-              <Image
-                src="/images/lock.svg"
-                alt=""
-                width={10}
-                height={20}
-                className="inline-block absolute left-[-15%] top-[-18%]"
-              />
-              <button type="button" className="inline-block">
-                이메일 / 비밀번호 찾기
-              </button>
-            </div>
-            <div className="mx-8">|</div>
-            <button type="button" onClick={onClickMoveToRegister}>
-              회원가입
-            </button>
-          </div>
-          <div>
-            <div
-              className="flex items-center basis-full text-white text-[15px] mb-12
-            before:content-[''] before:grow before:h-px before:bg-[#ffffff] before:ml-12 before:mr-8
-            after:content-[''] after:grow after:h-px after:bg-[#ffffff] after:mr-12 after:ml-8">
-              간편 로그인
-            </div>
-            <div className="flex flex-row justify-center">
-              <button
-                type="button"
-                className="relative w-[55px] h-[55px] rounded-[10px] bg-[#FEE500] mr-[20px] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-                onClick={onClickKakao}>
-                <Image
-                  className="absolute top-[24%] left-[21%]"
-                  src="/images/kakao_logo.svg"
-                  width={33}
-                  height={35}
-                  alt=""
-                />
-              </button>
-              <button
-                type="button"
-                className="relative w-[55px] h-[55px] rounded-[10px] bg-white ml-[20px] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-                <Image
-                  className="absolute top-[20%] left-[20%]"
-                  src="/images/google_logo.svg"
-                  width={35}
-                  height={35}
-                  alt=""
-                />
-              </button>
-            </div>
-          </div>
         </div>
+        <div className="mx-[45px]">|</div>
+        <button
+          type="button"
+          onClick={() => {
+            router.push('/register');
+          }}>
+          회원가입
+        </button>
       </div>
+      <div
+        className="flex items-center basis-full text-[#888888] text-[13px] mb-[32px]
+            before:content-[''] before:grow before:h-px before:bg-[#888888] before:ml-[10px] before:mr-[9px]
+            after:content-[''] after:grow after:h-px after:bg-[#888888] after:mr-[10px] after:ml-[9px]">
+        또는
+      </div>
+      <Button
+        type="button"
+        variant="kakao"
+        className="mx-auto my-0 text-[14px] font-semibold mb-[16px]"
+        onClick={onClickKakao}>
+        <div className="relative">
+          <Image
+            src="/images/login_kakao.svg"
+            alt=""
+            width={15}
+            height={15}
+            className="absolute top-[25%]"
+          />
+          <div className="ml-[23px]">카카오로 시작하기</div>
+        </div>
+      </Button>
+      <Button
+        type="button"
+        variant="google"
+        className="text-black mx-auto my-0 text-[14px] font-semibold"
+        onClick={onClickGoogle}>
+        <div className="relative">
+          <Image
+            src="/images/login_google.svg"
+            alt=""
+            width={15}
+            height={15}
+            className="absolute top-[25%]"
+          />
+          <div className="ml-[23px]">Google로 시작하기</div>
+        </div>
+      </Button>
     </div>
   );
 }
