@@ -108,7 +108,11 @@ export default function RegisterDetail() {
       email,
     };
     axios
-      .post('http://43.200.250.18:8000/emails/verification-requests', data)
+      .post('http://43.200.250.18:8000/emails/verification-requests', data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
       .then((res) => {
         console.log(res);
       })
