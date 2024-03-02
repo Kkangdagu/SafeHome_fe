@@ -98,8 +98,8 @@ export default function RegisterUI({
           <div className="float-left">
             <input
               type="password"
-              id="email"
-              name="email"
+              id="veriCode"
+              name="veriCode"
               className="w-[247px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
               onChange={onChangeVeriCode}
               onKeyUp={activePassedRegisterOne}
@@ -129,8 +129,8 @@ export default function RegisterUI({
           <div>
             <input
               type="password"
-              id="email"
-              name="email"
+              id="passwordConfirm"
+              name="passwordConfirm"
               className="w-[349px] h-[37px] text-[11px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
               onChange={onChangePassword}
               onKeyUp={activePassedRegisterOne}

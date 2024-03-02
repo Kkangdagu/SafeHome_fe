@@ -107,7 +107,14 @@ export default function RegisterDetail() {
     const data = {
       email,
     };
-    axios.post('http://43.200.250.18:8000/emails/verification-requests', data);
+    axios
+      .post('http://43.200.250.18:8000/emails/verification-requests', data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const nextRegister = () => {
