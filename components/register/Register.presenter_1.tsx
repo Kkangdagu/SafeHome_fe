@@ -1,12 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import Button from '../Common/Button';
-import { IRegisterUIProps } from './Register.types';
+import { IRegisterOneUIProps } from './RegisterOne.types';
 
-export default function RegisterUI({
+export default function RegisterOneUI({
   onChangeEmail,
   onChangePassword,
   onChangePasswordConfirm,
@@ -14,26 +14,22 @@ export default function RegisterUI({
   onReset,
   activePassedRegisterOne,
   onValidMail,
+  nextPage,
   activeOne,
   email,
   passwordConfirm,
   isEmail,
-  isPasswordConfirm,
   isVeriCode,
   errorEmail,
   errorPassword,
   errorPasswordConfirm,
-}: IRegisterUIProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [pageChange, setPageChange] = useState(false);
+}: IRegisterOneUIProps) {
+  const router = useRouter();
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
   return (
     <div className="w-[390px] h-screen bg-[#F2F3F6]">
       <div className="relative h-[106px] bg-white-0">
-        <button>
+        <button onClick={() => router.push('/')}>
           <Image
             src="/images/left_arrow.svg"
             width={14}
@@ -162,7 +158,7 @@ export default function RegisterUI({
           <div
             className={`relative h-[10px] text-left ${passwordConfirm ? 'block' : 'invisible'}`}>
             <div
-              className={`text-[11px] text-[#940000] inline-block ${errorPasswordConfirm ? 'text-[#940000]:' : 'text-[#007AFF]'}`}>
+              className={`text-[11px] inline-block ${errorPasswordConfirm ? 'text-[#940000]' : 'text-[#007AFF]'}`}>
               {errorPasswordConfirm
                 ? '* 비밀번호가 일치하지 않습니다.'
                 : '* 비밀번호가 일치합니다.'}
@@ -174,110 +170,8 @@ export default function RegisterUI({
             type="button"
             variant="register"
             id="login_btn"
-            disabled={!activeOne}>
-            다음
-          </Button>
-        </div>
-      </div>
-
-      <div className="mt-[70px]  hidden">
-        <div className="ml-[20px] mb-[90px]">
-          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
-            이름
-          </div>
-          <div>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="w-[349px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
-              placeholder="이름"
-            />
-          </div>
-        </div>
-        <div className="ml-[20px] mb-[95px]">
-          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
-            생년월일
-          </div>
-          <div className="float-left">
-            <input
-              type="date"
-              id="birthDate"
-              name="birthDate"
-              className="w-[349px] h-[37px] text-[14px] pr-[1px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
-              placeholder="0000-00-00"
-            />
-          </div>
-        </div>
-        <div className="ml-[20px] mb-[95px]">
-          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
-            전화번호
-          </div>
-          <div className="float-left">
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              className="w-[349px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
-              onChange={onChangePassword}
-              placeholder="000-0000-0000"
-            />
-          </div>
-        </div>
-        <div>
-          <div className="h-[45px] relative border-solid border-b-[1px] border-[#A6B3CD] mx-[20px]">
-            <input
-              type="checkbox"
-              className="w-[20px] h-[20px] accent-[#696E83] inline-block absolute left-[2%] top-[30%]"
-            />
-            <div className="text-black text-[18px] inline-block absolute left-[11%] top-[30%]">
-              약관에 모두 동의합니다
-            </div>
-            <button
-              type="button"
-              className="inline-block absolute top-[37%] right-[2%]">
-              {isOpen ? (
-                <Image
-                  src="/images/arrow_down.svg"
-                  height={16}
-                  width={16}
-                  alt=""
-                  onClick={handleToggle}
-                />
-              ) : (
-                <Image
-                  src="/images/arrow_up.svg"
-                  height={16}
-                  width={16}
-                  alt=""
-                  onClick={handleToggle}
-                />
-              )}
-            </button>
-          </div>
-          <div className={`mt-[12px] mb-[50px] ${isOpen ? 'block' : 'hidden'}`}>
-            <div className="h-[25px] relative">
-              <input
-                type="checkbox"
-                className="w-[20px] h-[20px] accent-[#696E83] inline-block absolute left-[7%]"
-              />
-              <div className="text-black text-[14px] inline-block absolute left-[15%] top-[9%]">
-                (필수) 개인정보 수집 및 이용 동의
-              </div>
-            </div>
-            <div className="relative h-[25px]">
-              <input
-                type="checkbox"
-                className="w-[20px] h-[20px] accent-[#696E83] inline-block absolute top-[10%] left-[7%]"
-              />
-              <div className="text-black text-[14px] inline-block absolute left-[15%] top-[16%]">
-                (필수) 서비스 이용약관 동의
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center mt-[65px]">
-          <Button type="button" variant="register" id="login_btn" disabled>
+            disabled={!activeOne}
+            onClick={nextPage}>
             다음
           </Button>
         </div>

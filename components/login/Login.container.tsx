@@ -40,7 +40,6 @@ export default function LoginDetail() {
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const onClickKakao = () => {
-    console.log(CLIENT_ID);
     window.location.replace(`${kakaoURL}`);
   };
 
@@ -59,8 +58,8 @@ export default function LoginDetail() {
       password,
     };
 
-    axios.post('http://43.200.250.18:8000/login', body).then((r) => {
-      console.log(r);
+    axios.post('http://43.200.250.18:8000/login', body).then((res) => {
+      return res;
     });
   };
 
