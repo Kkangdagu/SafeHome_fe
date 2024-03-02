@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-import axios from 'axios';
+// import { useEffect } from 'react';
+// import axios from 'axios';
 
 export default function KakaoLogin() {
   //   const code = new URL(window.location.href).searchParams.get('code');

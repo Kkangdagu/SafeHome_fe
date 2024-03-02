@@ -1,8 +1,8 @@
 'use client';
 
+import axios from 'axios';
 import { ChangeEvent, useState } from 'react';
 
-import axios from 'axios';
 import RegisterOneUI from './Register.presenter_1';
 
 export default function RegisterDetail() {
@@ -14,23 +14,23 @@ export default function RegisterDetail() {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [veriCode, setVeriCode] = useState('');
 
-  const [name, setName] = useState('');
-  const [birth, setBirth] = useState('');
-  const [phone, setPhone] = useState('');
+  // const [name, setName] = useState('');
+  // const [birth, setBirth] = useState('');
+  // const [phone, setPhone] = useState('');
 
   // 유효성 검사
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-  const [isVeriCode, setIsVeriCode] = useState(false);
+  // const [isVeriCode, setIsVeriCode] = useState(false);
 
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorPasswordConfirm, setErrorPasswordConfirm] = useState(false);
 
-  const [isname, setIsName] = useState(false);
-  const [isBirth, setIsBirth] = useState(false);
-  const [isPhone, setIsPhone] = useState(false);
+  // const [isname, setIsName] = useState(false);
+  // const [isBirth, setIsBirth] = useState(false);
+  // const [isPhone, setIsPhone] = useState(false);
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const currentEmail = e.target.value;
@@ -114,28 +114,30 @@ export default function RegisterDetail() {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+        return res;
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+        return err;
       });
   };
 
-  const nextRegister = () => {
-    const data = {
-      email,
-      code: veriCode,
-    };
-    axios
-      .post('http://43.200.250.18:8000/emails/verifications', data)
-      .then((res) => {
-        if (res.status === 200) {
-          setIsVeriCode(true);
-        }
-        if (res.status === 500) {
-        }
-      });
-  };
+  // const nextRegister = () => {
+  //   const data = {
+  //     email,
+  //     code: veriCode,
+  //   };
+  //   axios
+  //     .post('http://43.200.250.18:8000/emails/verifications', data)
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         setIsVeriCode(true);
+  //       }
+  //       if (res.status === 500) {
+  //       }
+  //     });
+  // };
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
@@ -152,7 +154,7 @@ export default function RegisterDetail() {
         isEmail={isEmail}
         isPassword={isPassword}
         isPasswordConfirm={isPasswordConfirm}
-        isVeriCode={isVeriCode}
+        // isVeriCode={isVeriCode}
         errorEmail={errorEmail}
         errorPassword={errorPassword}
         errorPasswordConfirm={errorPasswordConfirm}

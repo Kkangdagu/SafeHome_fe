@@ -1,9 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import Image from 'next/image';
 import Input from '@/components/Common/Input';
+
 import Button from '../Common/Button';
 import { ILoginUIProps } from './Login.types';
 

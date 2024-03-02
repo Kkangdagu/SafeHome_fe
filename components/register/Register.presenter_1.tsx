@@ -18,14 +18,14 @@ export default function RegisterUI({
   email,
   passwordConfirm,
   isEmail,
-  isPasswordConfirm,
+  // isPasswordConfirm,
   isVeriCode,
   errorEmail,
   errorPassword,
   errorPasswordConfirm,
 }: IRegisterUIProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [pageChange, setPageChange] = useState(false);
+  // const [pageChange, setPageChange] = useState(false);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
