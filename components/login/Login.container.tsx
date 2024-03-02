@@ -59,15 +59,9 @@ export default function LoginDetail() {
       password,
     };
 
-    axios
-      .post('http://43.200.250.18:8000/login', body)
-      .then((r) => {
-        console.log(r);
-      })
-      .catch((r) => {
-        console.log(err);
-        console.log(r.data);
-      });
+    axios.post('http://43.200.250.18:8000/login', body).then((r) => {
+      console.log(r);
+    });
   };
 
   return (
