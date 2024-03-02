@@ -3,6 +3,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 type ButtonVariants =
   | 'primary'
   | 'secondary'
+  | 'login'
   | 'kakao'
   | 'google'
   | 'veri'
@@ -18,6 +19,8 @@ const variants = {
     'w-[356px] h-[49px] flex justify-center items-center rounded-md text-base bg-blue-0 text-white-0 disabled:bg-gray-0 disabled:text-gray-1',
   secondary:
     'w-[90px] h-[37px] flex justify-center items-center rounded-sm text-base bg-gray-0 text-gray-1',
+  login:
+    'w-[356px] h-[49px] flex justify-center items-center rounded-md text-base bg-[#696E83] text-white-0 disabled:bg-gray-0 disabled:text-gray-1',
   kakao:
     'w-[356px] h-[49px] flex justify-center items-center rounded-md text-base bg-[#FEE500] text-black',
   google:

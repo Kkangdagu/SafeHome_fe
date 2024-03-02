@@ -45,9 +45,9 @@ export default function LoginUI({
       />
       <Button
         type="button"
-        variant="primary"
+        variant="login"
         id="login_btn"
-        className="mx-auto my-0 mb-[15px] bg-[#696E83]"
+        className="mx-auto my-0 mb-[15px]"
         onClick={onClickEmailLogin}
         disabled={!active}>
         로그인

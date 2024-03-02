@@ -136,6 +136,7 @@ export default function RegisterDetail() {
         onChangePassword={onChangePassword}
         onChangePasswordConfirm={onChangePasswordConfirm}
         onChangeVeriCode={onChangeVeriCode}
+        onValidMail={onValidMail}
         onReset={onReset}
         isEmail={isEmail}
         isPassword={isPassword}

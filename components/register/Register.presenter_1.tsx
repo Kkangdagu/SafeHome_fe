@@ -13,6 +13,7 @@ export default function RegisterUI({
   onChangeVeriCode,
   onReset,
   activePassedRegisterOne,
+  onValidMail,
   activeOne,
   email,
   passwordConfirm,
@@ -79,6 +80,7 @@ export default function RegisterUI({
             variant="veri"
             id="login_btn"
             className="float-left pt-[2px]"
+            onClick={onValidMail}
             disabled={!isEmail}>
             인증받기
           </Button>
