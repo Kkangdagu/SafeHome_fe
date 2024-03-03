@@ -1,163 +1,286 @@
-import Image from 'next/image';
+'use client';
 
-import alert_red from '../../public/images/alert_red.svg';
+import Image from 'next/image';
+import { useState } from 'react';
+
+import Button from '../Common/Button';
 import { IRegisterUIProps } from './Register.types';
 
-export default function RegisterOneUI({
-  setVisible,
+export default function RegisterUI({
   onChangeEmail,
   onChangePassword,
   onChangePasswordConfirm,
+  onChangeVeriCode,
+  onReset,
+  activePassedRegisterOne,
+  onValidMail,
+  activeOne,
+  email,
+  passwordConfirm,
   isEmail,
-  isPassword,
-  isPasswordConfirm,
+  // isPasswordConfirm,
   isVeriCode,
+  errorEmail,
+  errorPassword,
+  errorPasswordConfirm,
 }: IRegisterUIProps) {
-  const nextPage = () => {
-    setVisible(false);
+  const [isOpen, setIsOpen] = useState(false);
+  // const [pageChange, setPageChange] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
   };
   return (
-    <div className="grid h-screen place-items-center">
-      <div className="w-[390px] h-[100vh] bg-[#FAFAFA] text-center">
-        <div className="relative h-[40px]">
+    <div className="w-[390px] h-screen bg-[#F2F3F6]">
+      <div className="relative h-[106px] bg-white-0">
+        <button>
           <Image
-            src="/images/right_arrow.svg"
+            src="/images/left_arrow.svg"
             width={14}
-            height={27}
+            height={26}
             alt=""
-            className="absolute top-[90%] left-[10%]"
+            className="absolute top-[60%] left-[5%]"
           />
-          <div className="text-[#686868] text-[30px] text-left font-semibold absolute top-[88%] left-[18%]">
-            회원 가입
-          </div>
-          <Image
-            src="/images/home_logo_blue.svg"
-            width={50}
-            height={55}
-            alt=""
-            className="absolute left-[50%] top-[65%]"
-          />
+        </button>
+
+        <div className="text-black text-[26px] font-semibold absolute top-[58%] left-[37%]">
+          회원가입
         </div>
-        <div className="text-center mt-24">
-          <div className="relative">
-            <div className="absolute text-[#B7B7B7] text-[20px] left-[11%] top-[30%]">
-              이메일
-            </div>
+      </div>
+      <div className="border-b-[2px] border-[#A6B3CD]" />
+      <div className="mt-[70px]">
+        <div className="ml-[20px] mb-[90px]">
+          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
+            이메일
+          </div>
+          <div className="float-left relative">
             <input
               type="email"
               id="email"
               name="email"
-              className="w-[340px] h-[60px] pl-[80px] text-[15px] text-[#686868] outline-none rounded-[25px] border-[#b7b7b7] border-[1px] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] placeholder-gray-300"
+              value={email}
+              className="w-[247px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
               onChange={onChangeEmail}
+              onKeyUp={activePassedRegisterOne}
+              placeholder="이메일 주소"
             />
-            <button
-              type="button"
-              className="absolute top-[14%] left-[72%] left-5 w-[75px] height-[20px] rounded-[50px] bg-[#B7B7B7] text-[#ffffff] text-[12px] py-[12px] border-[#ffffff] border-[1px] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-              인증 받기
-            </button>
-            <div
-              className={`relative h-[10px] mb-[40px] text-left ml-[150px] ${isEmail ? 'invisible' : 'block'}`}>
+            <button>
               <Image
-                src={alert_red}
+                src="/images/delete_btn.svg"
+                width={18}
+                height={18}
                 alt=""
-                width={13}
-                height={13}
-                className="inline-block absolute top-[140%] left-[-40%]"
+                onClick={onReset}
+                className="absolute top-[29%] left-[87.5%]"
               />
-              <div className="text-[13px] text-[#940000] inline-block absolute top-[150%] left-[-33%]">
-                이메일 형식이 올바르지 않습니다
-              </div>
+            </button>
+          </div>
+          <Button
+            type="button"
+            variant="veri"
+            id="login_btn"
+            className="float-left pt-[2px]"
+            onClick={onValidMail}
+            disabled={!isEmail}>
+            인증받기
+          </Button>
+          <div
+            className={`relative h-[10px] mb-[40px] text-left ${errorEmail ? 'block' : 'invisible'}`}>
+            <div className="text-[11px] text-[#940000] inline-block">
+              * 이메일 형식이 올바르지 않습니다
             </div>
           </div>
-          <div className="relative text-left ml-[27px]">
-            <div className="absolute text-[#B7B7B7] text-[20px] left-[5%] top-[30%]">
-              인증번호
-            </div>
+        </div>
+        <div className="ml-[20px] mb-[90px]">
+          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
+            인증번호
+          </div>
+          <div className="float-left">
             <input
-              type="text"
+              type="password"
               id="veriCode"
               name="veriCode"
-              className="w-[300px] h-[60px] text-[15px] pl-[100px] pt-[1px] text-[#686868] placeholder-gray-300 outline-none rounded-[25px] border-solid border-[#b7b7b7] border-[1px] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-              placeholder="6자리"
+              className="w-[247px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
+              onChange={onChangeVeriCode}
+              onKeyUp={activePassedRegisterOne}
               maxLength={6}
+              placeholder="인증번호"
             />
+          </div>
+          <Button
+            type="button"
+            variant="veri"
+            id="login_btn"
+            className="float-left pt-[2px]"
+            disabled={!isVeriCode}>
+            재전송
+          </Button>
+          <div
+            className={`relative h-[10px] mb-[40px] text-left ${isVeriCode ? 'invisible' : 'block'}`}>
+            <div className="text-[11px] text-[#940000] inline-block">
+              * 인증번호가 일치하지 않습니다.
+            </div>
+          </div>
+        </div>
+        <div className="ml-[20px] mb-[90px]">
+          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
+            비밀번호
+          </div>
+          <div>
+            <input
+              type="password"
+              id="passwordConfirm"
+              name="passwordConfirm"
+              className="w-[349px] h-[37px] text-[11px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
+              onChange={onChangePassword}
+              onKeyUp={activePassedRegisterOne}
+              placeholder="비밀번호는 8~16자의 숫자, 영문, 특수문자가 포함되어야 합니다."
+            />
+          </div>
+          <div
+            className={`relative h-[10px] mb-[40px] text-left ${errorPassword ? 'block' : 'invisible'}`}>
+            <div className="text-[11px] text-[#940000] inline-block">
+              * 비밀번호는 8~16자의 숫자, 영문, 특수문자가 포함되어야 합니다.
+            </div>
+          </div>
+        </div>
+        <div className="ml-[20px] mb-[95px]">
+          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
+            비밀번호 확인
+          </div>
+          <div className="float-left">
+            <input
+              type="password"
+              id="passwordConfirm"
+              name="passswordConfirm"
+              className="w-[349px] h-[37px] text-[11px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
+              onChange={onChangePasswordConfirm}
+              onKeyUp={activePassedRegisterOne}
+              placeholder="비밀번호는 8~16자의 숫자, 영문, 특수문자가 포함되어야 합니다."
+            />
+          </div>
+          <div
+            className={`relative h-[10px] text-left ${passwordConfirm ? 'block' : 'invisible'}`}>
+            <div
+              className={`text-[11px] text-[#940000] inline-block ${errorPasswordConfirm ? 'text-[#940000]:' : 'text-[#007AFF]'}`}>
+              {errorPasswordConfirm
+                ? '* 비밀번호가 일치하지 않습니다.'
+                : '* 비밀번호가 일치합니다.'}
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <Button
+            type="button"
+            variant="register"
+            id="login_btn"
+            disabled={!activeOne}>
+            다음
+          </Button>
+        </div>
+      </div>
+
+      <div className="mt-[70px]  hidden">
+        <div className="ml-[20px] mb-[90px]">
+          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
+            이름
+          </div>
+          <div>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              className="w-[349px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
+              placeholder="이름"
+            />
+          </div>
+        </div>
+        <div className="ml-[20px] mb-[95px]">
+          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
+            생년월일
+          </div>
+          <div className="float-left">
+            <input
+              type="date"
+              id="birthDate"
+              name="birthDate"
+              className="w-[349px] h-[37px] text-[14px] pr-[1px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
+              placeholder="0000-00-00"
+            />
+          </div>
+        </div>
+        <div className="ml-[20px] mb-[95px]">
+          <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
+            전화번호
+          </div>
+          <div className="float-left">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              className="w-[349px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
+              onChange={onChangePassword}
+              placeholder="000-0000-0000"
+            />
+          </div>
+        </div>
+        <div>
+          <div className="h-[45px] relative border-solid border-b-[1px] border-[#A6B3CD] mx-[20px]">
+            <input
+              type="checkbox"
+              className="w-[20px] h-[20px] accent-[#696E83] inline-block absolute left-[2%] top-[30%]"
+            />
+            <div className="text-black text-[18px] inline-block absolute left-[11%] top-[30%]">
+              약관에 모두 동의합니다
+            </div>
             <button
               type="button"
-              className="absolute top-[15%] left-[59%] w-[75px] height-[20px] rounded-[50px] bg-[#B7B7B7] text-[#ffffff] text-[12px] py-[12px] border-[#ffffff] border-[1px] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-              재인증
+              className="inline-block absolute top-[37%] right-[2%]">
+              {isOpen ? (
+                <Image
+                  src="/images/arrow_down.svg"
+                  height={16}
+                  width={16}
+                  alt=""
+                  onClick={handleToggle}
+                />
+              ) : (
+                <Image
+                  src="/images/arrow_up.svg"
+                  height={16}
+                  width={16}
+                  alt=""
+                  onClick={handleToggle}
+                />
+              )}
             </button>
-            <div
-              className={`relative h-[10px] mb-[40px] text-left ml-[150px] ${isVeriCode ? 'invisible' : 'block'}`}>
-              <Image
-                src={alert_red}
-                alt=""
-                width={13}
-                height={13}
-                className="inline-block absolute top-[140%] left-[-58%]"
+          </div>
+          <div className={`mt-[12px] mb-[50px] ${isOpen ? 'block' : 'hidden'}`}>
+            <div className="h-[25px] relative">
+              <input
+                type="checkbox"
+                className="w-[20px] h-[20px] accent-[#696E83] inline-block absolute left-[7%]"
               />
-              <div className="text-[13px] text-[#940000] inline-block absolute top-[150%] left-[-50%]">
-                인증번호가 일치하지 않습니다
+              <div className="text-black text-[14px] inline-block absolute left-[15%] top-[9%]">
+                (필수) 개인정보 수집 및 이용 동의
               </div>
             </div>
-          </div>
-          <div className="relative">
-            <div className="absolute text-[#B7B7B7] text-[20px] left-[12%] top-[30%] ">
-              비밀번호
-            </div>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="w-[340px] h-[60px] pl-[100px] text-[15px] text-[#686868] outline-none rounded-[25px] border-[#b7b7b7] border-[1px] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] placeholder-gray-300 placeholder-[10px]"
-              placeholder="8~16자의 숫자, 영문, 특수문자 포함"
-              maxLength={16}
-              onChange={onChangePassword}
-            />
-            <div
-              className={`relative h-[10px] mb-[40px] text-left ml-[150px] ${isPassword ? 'invisible' : 'block'}`}>
-              <Image
-                src="/images/alert_red.svg"
-                alt=""
-                width={13}
-                height={13}
-                className="inline-block absolute top-[140%] left-[-40%]"
+            <div className="relative h-[25px]">
+              <input
+                type="checkbox"
+                className="w-[20px] h-[20px] accent-[#696E83] inline-block absolute top-[10%] left-[7%]"
               />
-              <div className="text-[13px] text-[#940000] inline-block absolute top-[150%] left-[-33%] whitespace-pre-wrap">
-                비밀번호는 8~16자의 숫자, 영문, 특수문자가 <br />
-                포함되어야 합니다
-              </div>
-            </div>
-          </div>
-          <div className="relative mb-[50px]">
-            <div className="absolute text-[#B7B7B7] text-[20px] left-[12%] top-[31%] ">
-              비밀번호 확인
-            </div>
-            <input
-              type="password"
-              onChange={onChangePasswordConfirm}
-              className="w-[340px] h-[60px] pl-[140px] outline-none rounded-[25px] text-[#686868] text-[15px] border-solid border-[#b7b7b7] border-[1px] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
-            />
-            <div
-              className={`relative h-[10px] mb-[5px] text-left ml-[150px] ${isPasswordConfirm ? 'invisible' : 'block'}`}>
-              <Image
-                src="/images/alert_red.svg"
-                alt=""
-                width={13}
-                height={13}
-                className="inline-block absolute top-[140%] left-[-40%]"
-              />
-              <div className="text-[13px] text-[#940000] inline-block absolute top-[150%] left-[-32%]">
-                비밀번호가 일치하지 않습니다
+              <div className="text-black text-[14px] inline-block absolute left-[15%] top-[16%]">
+                (필수) 서비스 이용약관 동의
               </div>
             </div>
           </div>
         </div>
-        <button
-          type="button"
-          className="w-[180px] h-[60px] rounded-[25px] bg-[#1B35BB] text-[23px] text-[#ffffff] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] mt-[26px]"
-          onClick={nextPage}>
-          다음
-        </button>
+        <div className="flex justify-center mt-[65px]">
+          <Button type="button" variant="register" id="login_btn" disabled>
+            다음
+          </Button>
+        </div>
       </div>
     </div>
   );

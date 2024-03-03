@@ -30,6 +30,9 @@ export default function HomeUI({
       {isModal && (
         <Modal type="menu" isOverlay className="z-[999] right-0 top-0">
           <button onClick={closeModal}>닫기</button>
+          <Link href="/inquiry" onClick={closeModal}>
+            조회 및 열람
+          </Link>
         </Modal>
       )}
       <div className="flex">

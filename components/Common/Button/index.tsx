@@ -1,6 +1,13 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type ButtonVariants = 'primary' | 'secondary';
+type ButtonVariants =
+  | 'primary'
+  | 'secondary'
+  | 'login'
+  | 'kakao'
+  | 'google'
+  | 'veri'
+  | 'register';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -12,6 +19,15 @@ const variants = {
     'w-[356px] h-[49px] flex justify-center items-center rounded-md text-base bg-blue-0 text-white-0 disabled:bg-gray-0 disabled:text-gray-1',
   secondary:
     'w-[90px] h-[37px] flex justify-center items-center rounded-sm text-base bg-gray-0 text-gray-1',
+  login:
+    'w-[356px] h-[49px] flex justify-center items-center rounded-md text-base bg-[#696E83] text-white-0 disabled:bg-gray-0 disabled:text-gray-1',
+  kakao:
+    'w-[356px] h-[49px] flex justify-center items-center rounded-md text-base bg-[#FEE500] text-black',
+  google:
+    'w-[356px] h-[49px] flex justify-center items-center rounded-md text-base bg-white-0 text-black',
+  veri: 'w-[90px] h-[37px] flex justify-center items-center text-[15px] text-white-0 bg-[#8B99BB] disabled:bg-[#CAD1E1] ',
+  register:
+    'w-[355px] h-[58px] bg-[#696E83] flex justify-center items-center rounded-md text-base bg-blue-0 text-white-0 disabled:bg-[#A6B3CD]',
 };
 
 export default function Button({

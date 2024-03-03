@@ -10,6 +10,7 @@ export default function Input({
   type,
   className,
   onChange,
+  onKeyDown,
 }: IInput) {
   const id = useId();
 
@@ -18,8 +19,9 @@ export default function Input({
       {label && <label htmlFor={id}>{label}</label>}
       <input
         type={type}
-        className={`rounded-md p-[2px_3px] focus:outline-none ${className}`}
+        className={`rounded-md p-[2px_3px] pl-[18px] focus:outline-none ${className}`}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         placeholder={placeholder}
         id={id}
       />
