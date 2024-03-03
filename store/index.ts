@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import modalReducer from '@/store/modules/modalSlice';
+import paginationReducer from '@/store/modules/paginationSlice';
 
 const store = configureStore({
   reducer: {
     modal: modalReducer,
+    pagination: paginationReducer,
   },
 });
 
