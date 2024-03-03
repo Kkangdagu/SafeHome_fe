@@ -13,6 +13,7 @@ export default function HomeUI({
   isModal,
   openModal,
   closeModal,
+  modalRef,
 }: IHomePresenter) {
   return (
     <div className="w-[390px] h-screen bg-layout-primary p-4 relative">
@@ -28,7 +29,11 @@ export default function HomeUI({
       </header>
       <div id="modal" />
       {isModal && (
-        <Modal type="menu" isOverlay className="z-[999] right-0 top-0">
+        <Modal
+          type="menu"
+          isOverlay
+          className="z-[999] right-0 top-0"
+          ref={modalRef}>
           <button onClick={closeModal}>닫기</button>
           <Link href="/inquiry" onClick={closeModal}>
             조회 및 열람
@@ -56,7 +61,11 @@ export default function HomeUI({
             className="mt-1"
           />
         </section>
-        <span className="text-sm underline mt-2 text-slate-400">전체보기</span>
+        <Link
+          href="/policy-letter"
+          className="text-sm underline mt-2 text-slate-400">
+          전체보기
+        </Link>
       </div>
       <p className="text-sm font-bold m-[15px_0px_20px_0px]">
         유용한 부동산 정책을 알기 쉽게 전달해 드려요!
