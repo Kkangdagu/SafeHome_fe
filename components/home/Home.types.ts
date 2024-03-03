@@ -1,9 +1,12 @@
+import { RefObject } from 'react';
+
 export interface IHomePresenter {
   onBoarding: IOnBoarding;
   onLatestPolicy?: ILatestPolicy;
   isModal?: boolean;
   openModal?: () => void;
   closeModal?: () => void;
+  modalRef?: RefObject<HTMLDivElement>;
 }
 
 export interface IHomeContainerProps {
