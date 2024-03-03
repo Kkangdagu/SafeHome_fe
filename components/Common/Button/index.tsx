@@ -7,7 +7,8 @@ type ButtonVariants =
   | 'kakao'
   | 'google'
   | 'veri'
-  | 'register';
+  | 'register'
+  | 'pagination';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -28,6 +29,7 @@ const variants = {
   veri: 'w-[90px] h-[37px] flex justify-center items-center text-[15px] text-white-0 bg-[#8B99BB] disabled:bg-[#CAD1E1] ',
   register:
     'w-[355px] h-[58px] bg-[#696E83] flex justify-center items-center rounded-md text-base bg-blue-0 text-white-0 disabled:bg-[#A6B3CD]',
+  pagination: 'w-[26px] h-[26px] border border-slate-100',
 };
 
 export default function Button({

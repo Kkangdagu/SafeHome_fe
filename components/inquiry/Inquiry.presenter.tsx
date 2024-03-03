@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
+import Footer from '../Common/Footer';
+
 export default function InquiryUI() {
   return (
     <div className="w-[390px] h-screen bg-layout-primary p-4 flex flex-col min-h-screen relative">
@@ -54,11 +56,7 @@ export default function InquiryUI() {
           </p>
         </Link>
       </section>
-      <footer className="w-full h-[78px] -mx-4 absolute bottom-0 bg-[#6C9BF2] flex justify-center">
-        <span className="text-[13px] text-white-0 mt-5">
-          개인정보처리방침ㅣ이용약관ㅣ고객문의
-        </span>
-      </footer>
+      <Footer />
     </div>
   );
 }
