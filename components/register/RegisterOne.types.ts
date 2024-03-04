@@ -13,7 +13,6 @@ export interface IRegisterOneUIProps {
   passwordConfirm: string;
   isEmail: boolean;
   isPassword: boolean;
-  isPasswordConfirm: boolean;
   isVeriCode: boolean;
   errorEmail: boolean;
   errorPassword: boolean;

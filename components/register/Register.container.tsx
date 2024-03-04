@@ -29,7 +29,7 @@ export default function RegisterDetail() {
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-  // const [isVeriCode, setIsVeriCode] = useState(false);
+  const [isVeriCode, setIsVeriCode] = useState(false);
 
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
@@ -139,11 +139,11 @@ export default function RegisterDetail() {
 
   // 이메일 인증번호 보내기
   const onValidMail = () => {
-    const data = {
+    const body = {
       email,
     };
     axios
-      .post('http://43.200.250.18:8000/emails/verification-requests', data)
+      .post('http://43.200.250.18:8000/emails/verification-requests', body)
       .then((res) => {
         return res;
       })
@@ -171,7 +171,22 @@ export default function RegisterDetail() {
   // 회원가입 정보 보내기 및 완료
 
   const onClickRegsiter = () => {
-    router.push('/');
+    const body = {
+      email,
+      password,
+      name,
+      dateOfBirth: birth,
+      telNo: phone,
+    };
+    axios
+      .post('http://43.200.250.18:8000/signup', body)
+      .then((res) => {
+        router.push('/');
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
   };
 
   return (
@@ -195,8 +210,7 @@ export default function RegisterDetail() {
           errorPassword={errorPassword}
           errorPasswordConfirm={errorPasswordConfirm}
           activeOne={activeOne}
-          isPasswordConfirm={false}
-          isVeriCode={false}
+          isVeriCode={isVeriCode}
         />
       ) : (
         <RegisterTwoUI
