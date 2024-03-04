@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-export interface IRegisterUIProps {
+export interface IRegisterOneUIProps {
   onChangeEmail: (e: ChangeEvent<HTMLInputElement>) => void;
   onReset: () => void;
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -8,6 +8,7 @@ export interface IRegisterUIProps {
   onChangeVeriCode: (e: ChangeEvent<HTMLInputElement>) => void;
   activePassedRegisterOne: () => void;
   onValidMail: () => void;
+  nextPage: () => void;
   email: string;
   passwordConfirm: string;
   isEmail: boolean;
