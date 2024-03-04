@@ -1,11 +1,14 @@
 'use client';
 
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
 
 import LoginUI from './Login.presenter';
 
 export default function LoginDetail() {
+  const router = useRouter();
+
   // 초기값
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -40,7 +43,6 @@ export default function LoginDetail() {
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const onClickKakao = () => {
-    // console.log(CLIENT_ID);
     window.location.replace(`${kakaoURL}`);
   };
 
@@ -58,13 +60,21 @@ export default function LoginDetail() {
       email,
       password,
     };
-
-    axios.post('http://43.200.250.18:8000/login', body).then((r) => {
-      // console.log(r);
-      return r;
-    });
+    axios({
+      method: 'post',
+      url: 'http://43.200.250.18:8000/login',
+      data: body,
+    })
+      .then((res) => {
+        localStorage.setItem('refresh-token', res.data.body.refreshToken);
+        localStorage.setItem('access-token', res.data.body.accessToken);
+        router.push('/');
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
   };
-
   return (
     <LoginUI
       onClickKakao={onClickKakao}

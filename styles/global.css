@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'NanumSquareRound';
   src: url('/public/fonts/NanumSquareRoundR.ttf') format('truetype');
+  font-family: 'NanumSquareRound';
 }
 
 * {

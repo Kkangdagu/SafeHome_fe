@@ -1,12 +1,18 @@
 'use client';
 
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
 
 import RegisterOneUI from './Register.presenter_1';
+import RegisterTwoUI from './Register.presenter2';
 
 export default function RegisterDetail() {
-  const [activeOne, setActiveOne] = useState(false); // 컴포넌트 교체용
+  const router = useRouter();
+
+  const [activeOne, setActiveOne] = useState(false);
+  const [activeTwo, setActiveTwo] = useState(false);
+  const [visible, setVisible] = useState(true); // 컴포넌트 교체용
 
   // 초기값
   const [email, setEmail] = useState('');
@@ -14,9 +20,10 @@ export default function RegisterDetail() {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [veriCode, setVeriCode] = useState('');
 
-  // const [name, setName] = useState('');
-  // const [birth, setBirth] = useState('');
-  // const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
+  const [birth, setBirth] = useState('');
+  const [phone, setPhone] = useState('');
+  const [allAgreed, setAllAgreed] = useState(false);
 
   // 유효성 검사
   const [isEmail, setIsEmail] = useState(false);
@@ -27,10 +34,6 @@ export default function RegisterDetail() {
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorPasswordConfirm, setErrorPasswordConfirm] = useState(false);
-
-  // const [isname, setIsName] = useState(false);
-  // const [isBirth, setIsBirth] = useState(false);
-  // const [isPhone, setIsPhone] = useState(false);
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const currentEmail = e.target.value;
@@ -97,28 +100,54 @@ export default function RegisterDetail() {
     setEmail('');
   };
 
+  const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
+    const currentName = e.target.value;
+    setName(currentName);
+  };
+
+  const onChangeBirth = (e: ChangeEvent<HTMLInputElement>) => {
+    const currentBirth = e.target.value;
+    setBirth(currentBirth);
+  };
+
+  const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
+    const currentPhone = e.target.value;
+    setPhone(currentPhone);
+  };
+  // 다음 버튼 활성화 함수
   const activePassedRegisterOne = () => {
     return isEmail && isPassword && isPasswordConfirm && veriCode.length === 6
       ? setActiveOne(true)
       : setActiveOne(false);
   };
 
+  // 로그인 버튼 활성화 함수
+  const activePassedRegisterTwo = () => {
+    return name && birth && phone && allAgreed
+      ? setActiveTwo(true)
+      : setActiveTwo(false);
+  };
+  // 다음 회원가입페이지 이동
+  const nextPage = () => {
+    setVisible(false);
+  };
+
+  // 이전 회원가입 페이지 이동
+  const beforePage = () => {
+    setVisible(true);
+  };
+
+  // 이메일 인증번호 보내기
   const onValidMail = () => {
     const data = {
       email,
     };
     axios
-      .post('http://43.200.250.18:8000/emails/verification-requests', data, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      })
+      .post('http://43.200.250.18:8000/emails/verification-requests', data)
       .then((res) => {
-        // console.log(res);
         return res;
       })
       .catch((err) => {
-        // console.log(err);
         return err;
       });
   };
@@ -138,28 +167,51 @@ export default function RegisterDetail() {
   //       }
   //     });
   // };
+
+  // 회원가입 정보 보내기 및 완료
+
+  const onClickRegsiter = () => {
+    router.push('/');
+  };
+
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      <RegisterOneUI
-        email={email}
-        passwordConfirm={passwordConfirm}
-        activePassedRegisterOne={activePassedRegisterOne}
-        onChangeEmail={onChangeEmail}
-        onChangePassword={onChangePassword}
-        onChangePasswordConfirm={onChangePasswordConfirm}
-        onChangeVeriCode={onChangeVeriCode}
-        onValidMail={onValidMail}
-        onReset={onReset}
-        isEmail={isEmail}
-        isPassword={isPassword}
-        isPasswordConfirm={isPasswordConfirm}
-        // isVeriCode={isVeriCode}
-        errorEmail={errorEmail}
-        errorPassword={errorPassword}
-        errorPasswordConfirm={errorPasswordConfirm}
-        activeOne={activeOne}
-      />
+      {visible ? (
+        <RegisterOneUI
+          email={email}
+          passwordConfirm={passwordConfirm}
+          activePassedRegisterOne={activePassedRegisterOne}
+          onChangeEmail={onChangeEmail}
+          onChangePassword={onChangePassword}
+          onChangePasswordConfirm={onChangePasswordConfirm}
+          onChangeVeriCode={onChangeVeriCode}
+          onValidMail={onValidMail}
+          nextPage={nextPage}
+          onReset={onReset}
+          isEmail={isEmail}
+          isPassword={isPassword}
+          errorEmail={errorEmail}
+          errorPassword={errorPassword}
+          errorPasswordConfirm={errorPasswordConfirm}
+          activeOne={activeOne}
+          isPasswordConfirm={false}
+          isVeriCode={false}
+        />
+      ) : (
+        <RegisterTwoUI
+          onChangeBirth={onChangeBirth}
+          onChangeName={onChangeName}
+          onChangePhone={onChangePhone}
+          onClickRegister={onClickRegsiter}
+          activeTwo={activeTwo}
+          activePassedRegisterTwo={activePassedRegisterTwo}
+          name={name}
+          beforePage={beforePage}
+          allAgreed={allAgreed}
+          setAllAgreed={setAllAgreed}
+        />
+      )}
     </>
   );
 }
