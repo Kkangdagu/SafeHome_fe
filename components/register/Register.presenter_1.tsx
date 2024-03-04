@@ -39,7 +39,7 @@ export default function RegisterOneUI({
           />
         </button>
 
-        <div className="text-black text-[26px] font-semibold absolute top-[58%] left-[37%]">
+        <div className="text-black text-[24px] font-semibold absolute top-[58%] left-[37%]">
           회원가입
         </div>
       </div>
@@ -125,8 +125,8 @@ export default function RegisterOneUI({
           <div>
             <input
               type="password"
-              id="passwordConfirm"
-              name="passwordConfirm"
+              id="password"
+              name="password"
               className="w-[349px] h-[37px] text-[11px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
               onChange={onChangePassword}
               onKeyUp={activePassedRegisterOne}

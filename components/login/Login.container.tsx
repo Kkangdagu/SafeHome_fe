@@ -1,11 +1,14 @@
 'use client';
 
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
 
 import LoginUI from './Login.presenter';
 
 export default function LoginDetail() {
+  const router = useRouter();
+
   // 초기값
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,12 +60,21 @@ export default function LoginDetail() {
       email,
       password,
     };
-
-    axios.post('http://43.200.250.18:8000/login', body).then((res) => {
-      return res;
-    });
+    axios({
+      method: 'post',
+      url: 'http://43.200.250.18:8000/login',
+      data: body,
+    })
+      .then((res) => {
+        localStorage.setItem('refresh-token', res.data.body.refreshToken);
+        localStorage.setItem('access-token', res.data.body.accessToken);
+        router.push('/');
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
   };
-
   return (
     <LoginUI
       onClickKakao={onClickKakao}
