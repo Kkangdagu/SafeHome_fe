@@ -7,8 +7,8 @@ import Footer from '../Common/Footer';
 export default function MyPageUI() {
   const router = useRouter();
   return (
-    <div className="w-[390px] h-[100%] bg-[#F2F3F6]">
-      <div className="relative h-[106px] bg-white-0">
+    <div className="w-[390px] p-4 h-screen bg-[#F2F3F6] flex flex-col min-h-screen">
+      <div className="relative w-[390px] h-[106px] bg-white-0">
         <button onClick={() => router.push('/')}>
           <Image
             src="/images/left_arrow.svg"
@@ -89,6 +89,7 @@ export default function MyPageUI() {
           계약서 업로드 내역이 없습니다.
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
