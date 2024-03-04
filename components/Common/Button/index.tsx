@@ -28,7 +28,7 @@ const variants = {
     'w-[356px] h-[49px] flex justify-center items-center rounded-md text-base bg-white-0 text-black',
   veri: 'w-[90px] h-[37px] flex justify-center items-center text-[15px] text-white-0 bg-[#8B99BB] disabled:bg-[#CAD1E1] ',
   register:
-    'w-[355px] h-[58px] bg-[#696E83] flex justify-center items-center rounded-md text-base bg-blue-0 text-white-0 disabled:bg-[#A6B3CD]',
+    'w-[355px] h-[58px] bg-[#696E83] flex justify-center items-center rounded-md text-base text-white-0 disabled:bg-[#A6B3CD]',
   pagination: 'w-[26px] h-[26px] border border-slate-100',
 };
 

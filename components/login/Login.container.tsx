@@ -68,6 +68,7 @@ export default function LoginDetail() {
       .then((res) => {
         localStorage.setItem('refresh-token', res.data.body.refreshToken);
         localStorage.setItem('access-token', res.data.body.accessToken);
+        localStorage.setItem('userId', email);
         router.push('/');
         return res;
       })

@@ -55,7 +55,12 @@ export default function LoginUI({
       </Button>
       <div className="text-[13px] flex flex-row justify-center mb-[50px] text-[#B7B7B7]">
         <div className="relative">
-          <button type="button" className="inline-block">
+          <button
+            onClick={() => {
+              router.push('/reset-pw');
+            }}
+            type="button"
+            className="inline-block">
             비밀번호 찾기
           </button>
         </div>
