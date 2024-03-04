@@ -13,6 +13,7 @@ export default function HomeUI({
   isModal,
   openModal,
   closeModal,
+  modalRef,
 }: IHomePresenter) {
   return (
     <div className="w-[390px] h-screen bg-layout-primary p-4 relative">
@@ -28,14 +29,18 @@ export default function HomeUI({
       </header>
       <div id="modal" />
       {isModal && (
-        <Modal type="menu" isOverlay className="z-[999] right-0 top-0">
+        <Modal
+          type="menu"
+          isOverlay
+          className="z-[999] right-0 top-0"
+          ref={modalRef}>
           <button onClick={closeModal}>닫기</button>
           <Link href="/inquiry" onClick={closeModal}>
             조회 및 열람
           </Link>
         </Modal>
       )}
-      <div className="flex">
+      <div className="flex mt-4">
         <Image
           src="/images/logo_slogan.svg"
           alt="메인화면 로고 및 슬로건"
@@ -45,7 +50,7 @@ export default function HomeUI({
         <p className="text-sm ml-1 mt-8">세이프하게 집 구하는 방법, 세집!</p>
       </div>
       <Banner onBoarding={onBoarding} />
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-5">
         <section className="flex gap-2">
           <p className="text-2xl font-semibold">부동산 정책 레터</p>
           <Image
@@ -56,13 +61,17 @@ export default function HomeUI({
             className="mt-1"
           />
         </section>
-        <span className="text-sm underline mt-2 text-slate-400">전체보기</span>
+        <Link
+          href="/policy-letter"
+          className="text-sm underline mt-2 text-slate-400">
+          전체보기
+        </Link>
       </div>
-      <p className="text-sm font-bold m-[10px_0px_20px_0px]">
+      <p className="text-sm font-bold m-[15px_0px_20px_0px]">
         유용한 부동산 정책을 알기 쉽게 전달해 드려요!
       </p>
       <div className="h-[140px] border">데이터</div>
-      <div className="flex justify-between my-3">
+      <div className="flex justify-between m-[50px_0px_20px_0px]">
         <p className="text-2xl font-extrabold">최신 부동산 정책</p>
         <Link
           href="/latest-policy"

@@ -1,7 +1,9 @@
 'use client';
 
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import useClickAway from '@/hooks/useClickAway';
 import { RootState } from '@/store';
 import { close, open } from '@/store/modules/modalSlice';
 
@@ -14,6 +16,7 @@ export default function HomeContainer({
 }: IHomeContainerProps) {
   const dispatch = useDispatch();
   const isModal = useSelector((state: RootState) => state.modal.isOpen);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const openModal = () => {
     dispatch(open());
@@ -23,6 +26,8 @@ export default function HomeContainer({
     dispatch(close());
   };
 
+  useClickAway(modalRef, closeModal);
+
   return (
     <HomeUI
       onBoarding={onBoarding}
@@ -30,6 +35,7 @@ export default function HomeContainer({
       isModal={isModal}
       openModal={openModal}
       closeModal={closeModal}
+      modalRef={modalRef}
     />
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { HTMLAttributes, ReactNode } from 'react';
+import { forwardRef, HTMLAttributes, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 type ModalType = 'menu' | 'analysis';
@@ -17,33 +17,36 @@ const variants = {
   analysis: '',
 };
 
-export default function Modal({
-  children,
-  type = 'menu',
-  isOverlay = false,
-  className,
-  onClick,
-}: IModal) {
-  const container = document.getElementById('modal');
+const Modal = forwardRef<HTMLDivElement, IModal>(
+  (
+    { children, type = 'menu', isOverlay = false, className, onClick }: IModal,
+    ref,
+  ) => {
+    const container = document.getElementById('modal');
 
-  if (!container) {
-    return null;
-  }
+    if (!container) {
+      return null;
+    }
 
-  return createPortal(
-    <>
-      {isOverlay && (
-        <div className="z-[999] fixed w-[100vw] h-screen top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.4)]" />
-      )}
-      <div
-        role="button"
-        tabIndex={-1}
-        onKeyDown={() => {}}
-        className={`${variants[type]} ${className}`}
-        onClick={onClick}>
-        {children}
-      </div>
-    </>,
-    container,
-  );
-}
+    return createPortal(
+      <>
+        {isOverlay && (
+          <div className="z-[999] fixed w-[100vw] h-screen top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.4)]" />
+        )}
+        <div
+          role="button"
+          tabIndex={-1}
+          onKeyDown={() => {}}
+          className={`${variants[type]} ${className}`}
+          onClick={onClick}
+          ref={ref}>
+          {children}
+        </div>
+      </>,
+      container,
+    );
+  },
+);
+Modal.displayName = 'Modal';
+
+export default Modal;

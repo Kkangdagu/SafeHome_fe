@@ -24,11 +24,12 @@ export default function RegisterDetail() {
   const [birth, setBirth] = useState('');
   const [phone, setPhone] = useState('');
   const [allAgreed, setAllAgreed] = useState(false);
+
   // 유효성 검사
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-  const [isVeriCode, setIsVeriCode] = useState(false);
+  // const [isVeriCode, setIsVeriCode] = useState(false);
 
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
@@ -144,7 +145,6 @@ export default function RegisterDetail() {
     axios
       .post('http://43.200.250.18:8000/emails/verification-requests', data)
       .then((res) => {
-        setIsVeriCode(true);
         return res;
       })
       .catch((err) => {
@@ -191,11 +191,12 @@ export default function RegisterDetail() {
           onReset={onReset}
           isEmail={isEmail}
           isPassword={isPassword}
-          isVeriCode={isVeriCode}
           errorEmail={errorEmail}
           errorPassword={errorPassword}
           errorPasswordConfirm={errorPasswordConfirm}
           activeOne={activeOne}
+          isPasswordConfirm={false}
+          isVeriCode={false}
         />
       ) : (
         <RegisterTwoUI
