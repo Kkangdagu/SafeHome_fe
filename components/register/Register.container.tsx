@@ -29,7 +29,7 @@ export default function RegisterDetail() {
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-  // const [isVeriCode, setIsVeriCode] = useState(false);
+  const [isVeriCode, setIsVeriCode] = useState(false);
 
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
@@ -128,9 +128,6 @@ export default function RegisterDetail() {
       : setActiveTwo(false);
   };
   // 다음 회원가입페이지 이동
-  const nextPage = () => {
-    setVisible(false);
-  };
 
   // 이전 회원가입 페이지 이동
   const beforePage = () => {
@@ -139,11 +136,13 @@ export default function RegisterDetail() {
 
   // 이메일 인증번호 보내기
   const onValidMail = () => {
-    const data = {
-      email,
-    };
     axios
-      .post('http://43.200.250.18:8000/emails/verification-requests', data)
+      .post(
+        'http://43.200.250.18:8000/emails/verification-requests',
+        new URLSearchParams({
+          email,
+        }),
+      )
       .then((res) => {
         return res;
       })
@@ -152,26 +151,41 @@ export default function RegisterDetail() {
       });
   };
 
-  // const nextRegister = () => {
-  //   const data = {
-  //     email,
-  //     code: veriCode,
-  //   };
-  //   axios
-  //     .post('http://43.200.250.18:8000/emails/verifications', data)
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         setIsVeriCode(true);
-  //       }
-  //       if (res.status === 500) {
-  //       }
-  //     });
-  // };
+  const nextRegister = () => {
+    axios
+      .get('http://43.200.250.18:8000/emails/verifications', {
+        params: { email, code: veriCode },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          setIsVeriCode(true);
+          setVisible(false);
+        }
+        if (res.status === 500) {
+          setIsVeriCode(false);
+        }
+      });
+  };
 
   // 회원가입 정보 보내기 및 완료
 
-  const onClickRegsiter = () => {
-    router.push('/');
+  const onClickRegister = () => {
+    const body = {
+      email,
+      password,
+      name,
+      dateOfBirth: birth,
+      telNo: phone,
+    };
+    axios
+      .post('http://43.200.250.18:8000/signup', body)
+      .then((res) => {
+        router.push('/');
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
   };
 
   return (
@@ -187,23 +201,22 @@ export default function RegisterDetail() {
           onChangePasswordConfirm={onChangePasswordConfirm}
           onChangeVeriCode={onChangeVeriCode}
           onValidMail={onValidMail}
-          nextPage={nextPage}
           onReset={onReset}
+          nextRegister={nextRegister}
           isEmail={isEmail}
           isPassword={isPassword}
           errorEmail={errorEmail}
           errorPassword={errorPassword}
           errorPasswordConfirm={errorPasswordConfirm}
           activeOne={activeOne}
-          isPasswordConfirm={false}
-          isVeriCode={false}
+          isVeriCode={isVeriCode}
         />
       ) : (
         <RegisterTwoUI
           onChangeBirth={onChangeBirth}
           onChangeName={onChangeName}
           onChangePhone={onChangePhone}
-          onClickRegister={onClickRegsiter}
+          onClickRegister={onClickRegister}
           activeTwo={activeTwo}
           activePassedRegisterTwo={activePassedRegisterTwo}
           name={name}

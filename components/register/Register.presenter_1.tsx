@@ -14,7 +14,7 @@ export default function RegisterOneUI({
   onReset,
   activePassedRegisterOne,
   onValidMail,
-  nextPage,
+  nextRegister,
   activeOne,
   email,
   passwordConfirm,
@@ -171,7 +171,7 @@ export default function RegisterOneUI({
             variant="register"
             id="login_btn"
             disabled={!activeOne}
-            onClick={nextPage}>
+            onClick={nextRegister}>
             다음
           </Button>
         </div>
