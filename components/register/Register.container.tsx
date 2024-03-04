@@ -128,9 +128,6 @@ export default function RegisterDetail() {
       : setActiveTwo(false);
   };
   // 다음 회원가입페이지 이동
-  const nextPage = () => {
-    setVisible(false);
-  };
 
   // 이전 회원가입 페이지 이동
   const beforePage = () => {
@@ -139,11 +136,13 @@ export default function RegisterDetail() {
 
   // 이메일 인증번호 보내기
   const onValidMail = () => {
-    const body = {
-      email,
-    };
     axios
-      .post('http://43.200.250.18:8000/emails/verification-requests', body)
+      .post(
+        'http://43.200.250.18:8000/emails/verification-requests',
+        new URLSearchParams({
+          email,
+        }),
+      )
       .then((res) => {
         return res;
       })
@@ -152,25 +151,25 @@ export default function RegisterDetail() {
       });
   };
 
-  // const nextRegister = () => {
-  //   const data = {
-  //     email,
-  //     code: veriCode,
-  //   };
-  //   axios
-  //     .post('http://43.200.250.18:8000/emails/verifications', data)
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         setIsVeriCode(true);
-  //       }
-  //       if (res.status === 500) {
-  //       }
-  //     });
-  // };
+  const nextRegister = () => {
+    axios
+      .get('http://43.200.250.18:8000/emails/verifications', {
+        params: { email, code: veriCode },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          setIsVeriCode(true);
+          setVisible(false);
+        }
+        if (res.status === 500) {
+          setIsVeriCode(false);
+        }
+      });
+  };
 
   // 회원가입 정보 보내기 및 완료
 
-  const onClickRegsiter = () => {
+  const onClickRegister = () => {
     const body = {
       email,
       password,
@@ -202,8 +201,8 @@ export default function RegisterDetail() {
           onChangePasswordConfirm={onChangePasswordConfirm}
           onChangeVeriCode={onChangeVeriCode}
           onValidMail={onValidMail}
-          nextPage={nextPage}
           onReset={onReset}
+          nextRegister={nextRegister}
           isEmail={isEmail}
           isPassword={isPassword}
           errorEmail={errorEmail}
@@ -217,7 +216,7 @@ export default function RegisterDetail() {
           onChangeBirth={onChangeBirth}
           onChangeName={onChangeName}
           onChangePhone={onChangePhone}
-          onClickRegister={onClickRegsiter}
+          onClickRegister={onClickRegister}
           activeTwo={activeTwo}
           activePassedRegisterTwo={activePassedRegisterTwo}
           name={name}

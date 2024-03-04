@@ -8,7 +8,7 @@ export interface IRegisterOneUIProps {
   onChangeVeriCode: (e: ChangeEvent<HTMLInputElement>) => void;
   activePassedRegisterOne: () => void;
   onValidMail: () => void;
-  nextPage: () => void;
+  nextRegister: () => void;
   email: string;
   passwordConfirm: string;
   isEmail: boolean;
