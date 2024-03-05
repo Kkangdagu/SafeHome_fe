@@ -1,19 +1,19 @@
 'use client';
 
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { ChangeEvent } from 'react';
 
 import ResetPasswordUI from './ResetPassword.presenter';
+import ResetPasswordSuccessUI from './ResetPasswordSuccess.presenter';
 
 export default function ResetPasswordContainer() {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [phone, setPhone] = useState('');
   const [activeBtn, setActiveBtn] = useState(false);
+  const [successVisible, setSuccessVisible] = useState(false);
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const currentEmail = e.target.value;
@@ -51,7 +51,7 @@ export default function ResetPasswordContainer() {
       data: body,
     })
       .then((res) => {
-        router.push('/');
+        setSuccessVisible(true);
         return res;
       })
       .catch((err) => {
@@ -59,14 +59,21 @@ export default function ResetPasswordContainer() {
       });
   };
   return (
-    <ResetPasswordUI
-      onChangeEmail={onChangeEmail}
-      onChangeName={onChangeName}
-      onChangeBirthDate={onChangeBirthDate}
-      onChangePhone={onChangePhone}
-      activeFindBtn={activeFindBtn}
-      findPwd={findPwd}
-      activeBtn={activeBtn}
-    />
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
+      {successVisible ? (
+        <ResetPasswordSuccessUI />
+      ) : (
+        <ResetPasswordUI
+          onChangeEmail={onChangeEmail}
+          onChangeName={onChangeName}
+          onChangeBirthDate={onChangeBirthDate}
+          onChangePhone={onChangePhone}
+          activeFindBtn={activeFindBtn}
+          findPwd={findPwd}
+          activeBtn={activeBtn}
+        />
+      )}
+    </>
   );
 }
