@@ -32,11 +32,14 @@ export default function HomeUI({
         <Modal
           type="menu"
           isOverlay
-          className="z-[999] right-0 top-0"
+          className="z-[999] right-0 top-0 text-base"
           ref={modalRef}>
           <button onClick={closeModal}>닫기</button>
           <Link href="/inquiry" onClick={closeModal}>
             조회 및 열람
+          </Link>
+          <Link href="/analysis" onClick={closeModal}>
+            계약서 업로드
           </Link>
         </Modal>
       )}
