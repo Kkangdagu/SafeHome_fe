@@ -13,7 +13,7 @@ interface IModal extends HTMLAttributes<HTMLDivElement> {
 }
 
 const variants = {
-  menu: 'w-[190px] h-[360px] p-4 flex flex-col gap-5 border absolute bg-[aliceblue]',
+  menu: 'w-[190px] h-[360px] p-4 flex flex-col gap-5 border absolute bg-white-0',
   analysis: '',
 };
 

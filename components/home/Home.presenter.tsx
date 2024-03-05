@@ -32,15 +32,57 @@ export default function HomeUI({
         <Modal
           type="menu"
           isOverlay
-          className="z-[999] right-0 top-0 text-base"
+          className="z-[999] right-0 top-0 text-base text-[18px]"
           ref={modalRef}>
           <button onClick={closeModal}>닫기</button>
-          <Link href="/inquiry" onClick={closeModal}>
-            조회 및 열람
-          </Link>
-          <Link href="/analysis" onClick={closeModal}>
-            계약서 업로드
-          </Link>
+          <div className="h-[30px] relative">
+            <Link href="/" onClick={closeModal}>
+              <Image
+                src="/images/modal/calculator.svg"
+                width={14}
+                height={20}
+                alt=""
+                className="inline-block absolute top-[10%]"
+              />
+              <div className="absolute left-[15%]">중개수수료 계산기</div>
+            </Link>
+          </div>
+          <div className="h-[30px] relative">
+            <Link href="/inquiry" onClick={closeModal}>
+              <Image
+                src="/images/modal/search_icon.svg"
+                width={20}
+                height={18}
+                alt=""
+                className="inline-block absolute top-[10%]"
+              />
+              <div className="absolute left-[15%]">조회 및 열람</div>
+            </Link>
+          </div>
+          <div className="h-[30px] relative">
+            <Link href="/analysis" onClick={closeModal}>
+              <Image
+                src="/images/modal/upload_icon.svg"
+                width={15}
+                height={18}
+                alt=""
+                className="inline-block absolute top-[10%]"
+              />
+              <div className="absolute left-[15%]">계약서 업로드</div>
+            </Link>
+          </div>
+          <div className="h-[30px] relative">
+            <Link href="/myPage" onClick={closeModal}>
+              <Image
+                src="/images/modal/myPage_icon.svg"
+                width={16}
+                height={18}
+                alt=""
+                className="inline-block absolute top-[10%]"
+              />
+              <div className="absolute left-[15%]">마이페이지</div>
+            </Link>
+          </div>
         </Modal>
       )}
       <div className="flex mt-4">
