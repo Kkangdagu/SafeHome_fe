@@ -14,7 +14,7 @@ export default function RegisterOneUI({
   onReset,
   activePassedRegisterOne,
   onValidMail,
-  nextPage,
+  nextRegister,
   activeOne,
   email,
   passwordConfirm,
@@ -38,7 +38,6 @@ export default function RegisterOneUI({
             className="absolute top-[60%] left-[5%]"
           />
         </button>
-
         <div className="text-black text-[24px] font-semibold absolute top-[58%] left-[37%]">
           회원가입
         </div>
@@ -108,7 +107,7 @@ export default function RegisterOneUI({
             variant="veri"
             id="login_btn"
             className="float-left pt-[2px]"
-            disabled={!isVeriCode}>
+            disabled={isVeriCode}>
             재전송
           </Button>
           <div
@@ -171,7 +170,7 @@ export default function RegisterOneUI({
             variant="register"
             id="login_btn"
             disabled={!activeOne}
-            onClick={nextPage}>
+            onClick={nextRegister}>
             다음
           </Button>
         </div>
