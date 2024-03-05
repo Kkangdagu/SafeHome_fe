@@ -29,7 +29,7 @@ export default function RegisterDetail() {
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-  const [isVeriCode, setIsVeriCode] = useState(false);
+  const [isVeriCode, setIsVeriCode] = useState(true);
 
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
@@ -127,7 +127,6 @@ export default function RegisterDetail() {
       ? setActiveTwo(true)
       : setActiveTwo(false);
   };
-  // 다음 회원가입페이지 이동
 
   // 이전 회원가입 페이지 이동
   const beforePage = () => {
@@ -137,12 +136,9 @@ export default function RegisterDetail() {
   // 이메일 인증번호 보내기
   const onValidMail = () => {
     axios
-      .post(
-        'http://43.200.250.18:8000/emails/verification-requests',
-        new URLSearchParams({
-          email,
-        }),
-      )
+      .post('http://43.200.250.18:8000/emails/verification-requests', {
+        params: { email },
+      })
       .then((res) => {
         return res;
       })
@@ -161,9 +157,10 @@ export default function RegisterDetail() {
           setIsVeriCode(true);
           setVisible(false);
         }
-        if (res.status === 500) {
-          setIsVeriCode(false);
-        }
+      })
+      .catch((err) => {
+        setIsVeriCode(false);
+        return err;
       });
   };
 
