@@ -14,7 +14,7 @@ export default function KakaoLogin() {
         params: { code },
       })
       .then((res) => {
-        router.push('/');
+        console.log('fffff');
         return res;
       })
       .catch((err) => {
