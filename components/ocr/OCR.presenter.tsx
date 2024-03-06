@@ -31,10 +31,10 @@ export default function OCRUI({
             <div className="flex flex-col gap-10">
               <Image src={img} width={321} height={486} alt="미리보기" />
               <div className="w-full flex justify-around">
-                <Button variant="ocr_reset" onClick={onRestImg}>
+                <Button variant="reset" onClick={onRestImg}>
                   초기화
                 </Button>
-                <Button variant="ocr_analyze">분석하기</Button>
+                <Button variant="result">분석하기</Button>
               </div>
             </div>
           )}
