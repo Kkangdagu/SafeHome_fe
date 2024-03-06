@@ -41,7 +41,7 @@ export default function HomeUI({
           ref={modalRef}>
           <button onClick={closeModal}>닫기</button>
           <div className="h-[30px] relative">
-            <Link href="/" onClick={closeModal}>
+            <Link href="/commission" onClick={closeModal}>
               <Image
                 src="/images/modal/calculator.svg"
                 width={14}
