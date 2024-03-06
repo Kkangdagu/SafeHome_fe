@@ -1,26 +1,29 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IPageNumber {
-  page: number;
+  currentPage: number;
 }
 
 const initialState: IPageNumber = {
-  page: 0,
+  currentPage: 1,
 };
 
 const paginationSlice = createSlice({
   name: 'pagination',
   initialState,
   reducers: {
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+    },
     prev: (state) => {
-      state.page = Math.max(state.page - 1, 0);
+      state.currentPage = Math.max(state.currentPage - 1, 1);
     },
     next: (state) => {
-      state.page += 1;
+      state.currentPage += 1;
     },
   },
 });
 
-export const { prev, next } = paginationSlice.actions;
+export const { setCurrentPage, prev, next } = paginationSlice.actions;
 export default paginationSlice.reducer;

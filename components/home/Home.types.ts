@@ -1,17 +1,19 @@
 import { RefObject } from 'react';
 
 export interface IHomePresenter {
-  onBoarding: IOnBoarding;
-  onLatestPolicy?: ILatestPolicy;
+  onBoarding?: () => Promise<void>;
+  latestPolicy?: ILatestPolicy;
+  currentPage?: number;
+  startPage?: number;
+  endPage?: number;
   isModal?: boolean;
   openModal?: () => void;
   closeModal?: () => void;
   modalRef?: RefObject<HTMLDivElement>;
-}
-
-export interface IHomeContainerProps {
-  onBoarding: IOnBoarding;
-  onLatestPolicy: ILatestPolicy;
+  date?: string;
+  prevBtn?: () => void;
+  nextBtn?: () => void;
+  onPageClick?: (pageNumber: number) => void;
 }
 
 export interface IOnBoarding {
@@ -25,7 +27,7 @@ interface IOnBoardingItem {
   lastChngRegDttm?: string;
 }
 
-interface ILatestPolicy {
+export interface ILatestPolicy {
   body: {
     list: ILatestPolicyItem[];
   };
@@ -34,4 +36,5 @@ interface ILatestPolicy {
 interface ILatestPolicyItem {
   enterTitle: string;
   enterUrl: string;
+  regDate: string;
 }
