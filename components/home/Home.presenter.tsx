@@ -1,22 +1,27 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 import Banner from '../Common/Banner';
 import Modal from '../Common/Modal';
 import { IHomePresenter } from './Home.types';
 
 export default function HomeUI({
-  onBoarding,
-  onLatestPolicy,
+  latestPolicy,
+  currentPage,
+  startPage,
+  endPage,
+  prevBtn,
+  nextBtn,
   isModal,
   openModal,
   closeModal,
   modalRef,
+  date,
+  onPageClick,
 }: IHomePresenter) {
   return (
-    <div className="w-[390px] h-screen bg-layout-primary p-4 relative">
+    <div className="w-[390px] h-full bg-layout-primary p-4 relative">
       <header className="w-full flex justify-end mt-4">
         <Image
           src="/images/menu_icon.svg"
@@ -52,7 +57,7 @@ export default function HomeUI({
         />
         <p className="text-sm ml-1 mt-8">세이프하게 집 구하는 방법, 세집!</p>
       </div>
-      <Banner onBoarding={onBoarding} />
+      <Banner />
       <div className="flex justify-between mt-5">
         <section className="flex gap-2">
           <p className="text-2xl font-semibold">부동산 정책 레터</p>
@@ -76,29 +81,29 @@ export default function HomeUI({
       <div className="h-[140px] border">데이터</div>
       <div className="flex justify-between m-[50px_0px_20px_0px]">
         <p className="text-2xl font-extrabold">최신 부동산 정책</p>
-        <Link
-          href="/latest-policy"
-          className="text-sm underline text-slate-400 mt-2">
-          전체보기
-        </Link>
       </div>
-      <div className="h-[180px] border-t-2 border-b-2 border-slate-400">
-        {onLatestPolicy?.body.list.slice(0, 2).map((v, idx) => (
+      <div className="h-full border-t-2 border-b-2 border-slate-400">
+        {latestPolicy?.body.list.map((v, idx) => (
           <Link
             href={v.enterUrl}
             target="_blank"
             key={v.enterTitle}
-            className={`w-full bg-[#EEF2FF] h-1/2 p-[8px_3px] flex ${idx === 0 ? 'border-b-[1px] border-slate-300' : ''}`}>
-            <p className="w-[90%] text-base font-bold pr-5">
-              {v.enterTitle}
-              <Image
-                src="/images/new_icon.svg"
-                alt="뉴 아이콘"
-                width={16}
-                height={16}
-                className="inline ml-2"
-              />
-            </p>
+            className={`w-full bg-[#EEF2FF] h-[120px] p-[8px_3px] flex ${idx !== 4 ? 'border-b-[1px] border-slate-300' : ''}`}>
+            <div className="w-[90%] text-base font-bold pr-5">
+              <p>
+                {v.enterTitle}
+                {date === v.regDate && (
+                  <Image
+                    src="/images/new_icon.svg"
+                    alt="뉴 아이콘"
+                    width={16}
+                    height={16}
+                    className="inline align-middle ml-1"
+                  />
+                )}
+              </p>
+              <p className="mt-2">{v.regDate}</p>
+            </div>
             <div className="mt-2">
               <Image
                 src="/images/right_arrow_icon.svg"
@@ -109,6 +114,35 @@ export default function HomeUI({
             </div>
           </Link>
         ))}
+      </div>
+      <div className="mt-2 flex justify-between items-center text-[16px]">
+        <button
+          onClick={prevBtn}
+          disabled={currentPage === 1}
+          className="flex justify-center items-center">
+          <IoChevronBack />
+        </button>
+        {startPage &&
+          endPage &&
+          currentPage &&
+          Array.from(
+            { length: Math.min(5, endPage - startPage + 1) },
+            (_, i) =>
+              Math.max(startPage, Math.min(endPage - 4, currentPage - 2)) + i,
+          ).map((pageNumber) => (
+            <button
+              key={pageNumber}
+              className={`${currentPage === pageNumber ? 'font-bold text-blue-500' : null}`}
+              onClick={() => onPageClick && onPageClick(pageNumber)}>
+              {pageNumber}
+            </button>
+          ))}
+        <button
+          onClick={nextBtn}
+          disabled={currentPage === endPage}
+          className="flex justify-center items-center">
+          <IoChevronForward />
+        </button>
       </div>
     </div>
   );
