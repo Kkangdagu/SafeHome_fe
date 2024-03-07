@@ -62,7 +62,7 @@ export default function LoginDetail() {
     };
     axios({
       method: 'post',
-      url: 'http://43.200.250.18:8000/login',
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
       data: body,
     })
       .then((res) => {

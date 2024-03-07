@@ -27,7 +27,11 @@ export default function MyPageUI() {
         <div className="inline-block">
           <div className="mx-auto">
             <div className="inline-block text-[28px] font-semibold">홍길동</div>
-            <button className="ml-[10px]">
+            <button
+              className="ml-[10px]"
+              onClick={() => {
+                router.push('/myPage/edit');
+              }}>
               <Image
                 src="/images/edit_icon.svg"
                 width={22.5}

@@ -10,11 +10,17 @@ export default function KakaoLogin() {
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get('code');
     axios
-      .get('http://43.200.250.18:8000/login/oauth2/code/kakao', {
-        params: { code },
-      })
+      .get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/login/oauth2/code/kakao/request`,
+        {
+          params: { code },
+        },
+      )
       .then((res) => {
-        console.log('fffff');
+        localStorage.setItem('refresh-token', res.data.token.refreshToken);
+        localStorage.setItem('access-token', res.data.token.accessToken);
+        localStorage.setItem('userId', res.data.email);
+        router.push('/');
         return res;
       })
       .catch((err) => {
