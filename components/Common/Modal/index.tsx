@@ -14,7 +14,8 @@ interface IModal extends HTMLAttributes<HTMLDivElement> {
 
 const variants = {
   menu: 'w-[190px] h-[360px] p-4 flex flex-col gap-5 border absolute bg-white-0',
-  analysis: '',
+  analysis:
+    'w-[266px] h-[135px] rounded-md bg-[#4E5262] absolute flex items-center justify-center gap-2',
 };
 
 const Modal = forwardRef<HTMLDivElement, IModal>(
