@@ -7,8 +7,9 @@ import { useEffect } from 'react';
 export default function KakaoLogin() {
   const router = useRouter();
 
+  const code = new URL(window.location.href).searchParams.get('code');
+
   useEffect(() => {
-    const code = new URL(window.location.href).searchParams.get('code');
     axios
       .get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/login/oauth2/code/kakao/request`,
@@ -17,16 +18,17 @@ export default function KakaoLogin() {
         },
       )
       .then((res) => {
-        localStorage.setItem('refresh-token', res.data.token.refreshToken);
-        localStorage.setItem('access-token', res.data.token.accessToken);
-        localStorage.setItem('userId', res.data.email);
-        router.push('/');
-        return res;
-      })
-      .catch((err) => {
-        return err;
+        if (res.status === 200) {
+          localStorage.setItem(
+            'refresh-token',
+            res.data.body.token.refreshToken,
+          );
+          localStorage.setItem('access-token', res.data.body.token.accessToken);
+          localStorage.setItem('userId', res.data.body.email);
+          router.push('/');
+        }
       });
-  }, [router]);
+  }, [router, code]);
 
   return <div>카카오 로그인</div>;
 }
