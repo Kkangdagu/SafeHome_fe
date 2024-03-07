@@ -1,14 +1,21 @@
 'use client';
 
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
+
+import { isLogin } from '@/utils/isLogin';
 
 import RegisterOneUI from './Register.presenter_1';
 import RegisterTwoUI from './Register.presenter2';
 
 export default function RegisterDetail() {
   const router = useRouter();
+
+  // 로그인 확인
+  if (isLogin()) {
+    redirect('/');
+  }
 
   const [activeOne, setActiveOne] = useState(false);
   const [activeTwo, setActiveTwo] = useState(false);
