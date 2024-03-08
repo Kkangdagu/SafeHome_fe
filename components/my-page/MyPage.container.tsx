@@ -12,7 +12,7 @@ export default function MyPageContainer() {
   // 로그인 확인
   useEffect(() => {
     if (!isLogin()) {
-      redirect('/');
+      redirect('/login');
     }
     setEmail(localStorage.getItem('userId')!);
   }, []);

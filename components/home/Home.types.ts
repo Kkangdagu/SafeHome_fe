@@ -38,3 +38,15 @@ interface ILatestPolicyItem {
   enterUrl: string;
   regDate: string;
 }
+
+export interface IPolicyLetter {
+  body: {
+    list: IPolicyLetterItem[];
+  };
+}
+
+interface IPolicyLetterItem {
+  enterTitle: string;
+  enterUrl: string;
+  regDate: string;
+}
