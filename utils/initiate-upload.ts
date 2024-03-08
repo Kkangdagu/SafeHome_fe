@@ -2,23 +2,18 @@
 
 import axios from 'axios';
 
-export default async function initiateUpload(
-  fileName: string,
-  fileExtension: string,
-) {
+export default async function initiateUpload(fileName: string) {
   try {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/initiate-upload`,
       {
         originalFileName: fileName,
-        fileType: fileExtension,
+        fileType: fileName,
         fileSize: 5,
       },
     );
-    console.log(response.data);
-    return response.data;
+    return response.data.body;
   } catch (err) {
-    console.error(err);
     return err;
   }
 }

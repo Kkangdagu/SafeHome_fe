@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
 import Footer from '../Common/Footer';
 
 export default function MyPageUI() {
@@ -41,7 +42,7 @@ export default function MyPageUI() {
             </button>
           </div>
           <div className="mt-[20px] text-[15px] text-[#696E83]">
-            XXXX12345@XXXX.XXX
+            {localStorage.getItem('userId')}
           </div>
         </div>
         <div className="w-[75px] h-[75px] rounded-[70%] overflow-hidden absolute top-[-9%] left-[75%] ">
