@@ -1,6 +1,6 @@
 import { IoChevronBack } from 'react-icons/io5';
 
-import { Cell, CellWord, IResultProps } from './OCR.types';
+import { Cell, CellWord, IResultProps, Table } from './OCR.types';
 import ResultData1 from './ResultData1.presenter';
 import ResultData2 from './ResultData2.presenter';
 import ResultData3 from './ResultData3.presenter';
@@ -38,24 +38,21 @@ export default function OCRResultUI({
         <div className="w-[28px] h-[28px]" />
       </header>
       <h1 className="text-[20px] font-bold mt-10 my-7">계약서 내용</h1>
-      {selected === 0 && analyzeResult.length > 0 && (
-        <div className="text-[12px]">
-          {analyzeResult.length > 0 && analyzeResult[0] && (
-            <div key={analyzeResult[0].cells} className="mb-5">
+      {analyzeResult.map(
+        (result: Table, index) =>
+          selected === index && (
+            <div key={result.cells[0].columnSpan} className="text-[12px] mb-5">
               <table className="table-auto">
                 <tbody>
                   {Array.from(
                     {
                       length:
-                        Math.max(
-                          ...analyzeResult[0].cells.map(
-                            (cell: Cell) => cell.rowIndex,
-                          ),
-                        ) + 1,
+                        Math.max(...result.cells.map((cell) => cell.rowIndex)) +
+                        1,
                     },
                     (_, rowIndex) => (
                       <tr key={rowIndex} className="border">
-                        {analyzeResult[0].cells
+                        {result.cells
                           .filter((cell) => cell.rowIndex === rowIndex)
                           .sort((a, b) => a.columnIndex - b.columnIndex)
                           .map((cell: Cell) => (
@@ -77,92 +74,7 @@ export default function OCRResultUI({
                 </tbody>
               </table>
             </div>
-          )}
-        </div>
-      )}
-      {selected === 1 && analyzeResult.length > 1 && (
-        <div className="text-[12px]">
-          {analyzeResult.length > 1 && analyzeResult[1] && (
-            <div key={analyzeResult[1].cells} className="mb-5">
-              <table className="table-auto">
-                <tbody>
-                  {Array.from(
-                    {
-                      length:
-                        Math.max(
-                          ...analyzeResult[1].cells.map(
-                            (cell: Cell) => cell.rowIndex,
-                          ),
-                        ) + 1,
-                    },
-                    (_, rowIndex) => (
-                      <tr key={rowIndex} className="border">
-                        {analyzeResult[1].cells
-                          .filter((cell) => cell.rowIndex === rowIndex)
-                          .sort((a, b) => a.columnIndex - b.columnIndex)
-                          .map((cell: Cell) => (
-                            <td
-                              key={cell.columnIndex}
-                              className="border p-2 text-left whitespace-normal overflow-auto"
-                              colSpan={cell.columnSpan}>
-                              {cell.cellTextLines.length > 0 &&
-                                cell.cellTextLines[0].cellWords
-                                  .map(
-                                    (cellWord: CellWord) => cellWord.inferText,
-                                  )
-                                  .join(' ')}
-                            </td>
-                          ))}
-                      </tr>
-                    ),
-                  )}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-      )}
-      {selected === 2 && analyzeResult.length > 2 && (
-        <div className="text-[12px]">
-          {analyzeResult.length > 2 && analyzeResult[2] && (
-            <div key={analyzeResult[2].cells} className="mb-5">
-              <table className="table-auto">
-                <tbody>
-                  {Array.from(
-                    {
-                      length:
-                        Math.max(
-                          ...analyzeResult[2].cells.map(
-                            (cell: Cell) => cell.rowIndex,
-                          ),
-                        ) + 1,
-                    },
-                    (_, rowIndex) => (
-                      <tr key={rowIndex} className="border">
-                        {analyzeResult[2].cells
-                          .filter((cell) => cell.rowIndex === rowIndex)
-                          .sort((a, b) => a.columnIndex - b.columnIndex)
-                          .map((cell: Cell) => (
-                            <td
-                              key={cell.columnIndex}
-                              className="border p-2 text-left whitespace-normal overflow-auto"
-                              colSpan={cell.columnSpan}>
-                              {cell.cellTextLines.length > 0 &&
-                                cell.cellTextLines[0].cellWords
-                                  .map(
-                                    (cellWord: CellWord) => cellWord.inferText,
-                                  )
-                                  .join(' ')}
-                            </td>
-                          ))}
-                      </tr>
-                    ),
-                  )}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
+          ),
       )}
       <div className="h-[37px] bg-white-0 border-y-2 -mx-4 p-4 flex items-center justify-between text-[15px] font-extrabold text-[#A6B3CD]">
         <button
