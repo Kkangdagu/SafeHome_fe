@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent } from 'react';
 export interface IOCRProps {
   img?: string | null;
   setImg?: (value: string | null) => void;
-  analyzeResult: unknown[];
+  analyzeResult: any;
   setAnalyzeResult?: (value: []) => void;
   isProcessing?: boolean;
   onImageUpload?: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;

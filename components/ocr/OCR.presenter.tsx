@@ -19,7 +19,7 @@ export default function OCRUI({
   onImageAnalyzing,
   onRestImg,
 }: IOCRProps) {
-  if (analyzeResult.length > 0) {
+  if (analyzeResult.length > 0 && setAnalyzeResult) {
     return (
       <ResultContainer
         setImg={setImg}
@@ -28,6 +28,7 @@ export default function OCRUI({
       />
     );
   }
+
   return (
     <div className="w-[390px] h-screen bg-layout-primary p-4 relative">
       <header className="h-[106px] flex items-end px-3 pb-7 justify-between bg-white border-b-2 border-b-slate-300 -mx-4 -mt-4">
