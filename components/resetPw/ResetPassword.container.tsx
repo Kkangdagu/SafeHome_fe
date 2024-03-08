@@ -1,8 +1,7 @@
 'use client';
 
 import axios from 'axios';
-import { useState } from 'react';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import ResetPasswordUI from './ResetPassword.presenter';
 import ResetPasswordSuccessUI from './ResetPasswordSuccess.presenter';
@@ -47,7 +46,7 @@ export default function ResetPasswordContainer() {
     };
     axios({
       method: 'post',
-      url: 'http://43.200.250.18:8000/findPassword',
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/findPassword`,
       data: body,
     })
       .then((res) => {

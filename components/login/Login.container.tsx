@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { redirect, useRouter } from 'next/navigation';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import { isLogin } from '@/utils/isLogin';
 
@@ -12,9 +12,12 @@ export default function LoginDetail() {
   const router = useRouter();
 
   // 로그인 확인
-  if (isLogin()) {
-    redirect('/');
-  }
+  useEffect(() => {
+    if (isLogin()) {
+      redirect('/');
+    }
+  }, []);
+
   // 초기값
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
