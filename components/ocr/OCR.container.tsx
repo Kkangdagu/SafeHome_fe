@@ -12,12 +12,15 @@ import OCRUI from './OCR.presenter';
 
 export default function OCRContainer() {
   const [img, setImg] = useState<string | null>(null);
-  const [fileName, setFileName] = useState('');
+  // const [fileName, setFileName] = useState('');
   const [analyzeResult, setAnalyzeResult] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [base64Image, setBase64Image] = useState<string | null>(null);
   const [fileExtension, setFileExtension] = useState<string | null>(null);
   const isModal = useSelector((state: RootState) => state.modal.isOpen);
+  // const [key, setKey] = useState('');
+  // const [uploadId, setUploadId] = useState('');
+  // const [presigned, setPresigned] = useState('');
 
   const dispatch = useDispatch();
 
@@ -44,7 +47,7 @@ export default function OCRContainer() {
   const onImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setFileName(file.name);
+      // setFileName(file.name);
       const imgUrl = URL.createObjectURL(file);
       setImg(imgUrl);
 
@@ -68,8 +71,11 @@ export default function OCRContainer() {
 
         const data = await requestWithBase64(base64Image, fileExtension);
         setAnalyzeResult(data);
-        // const res = await initiateUpload(fileName, fileExtension);
-        // console.log('데이터', res);
+        // const initUpload = await initiateUpload(fileName);
+        // setKey(initUpload.key);
+        // setUploadId(initUpload.uploadId);
+        // const presignUrl = await presignedUrl(key, uploadId);
+        // setPresigned(presignUrl);
       } catch (error) {
         return error;
       } finally {
@@ -86,7 +92,6 @@ export default function OCRContainer() {
   const onRestImg = () => {
     setImg(null);
   };
-
   return (
     <OCRUI
       img={img}
