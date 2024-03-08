@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { redirect, useRouter } from 'next/navigation';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import { isLogin } from '@/utils/isLogin';
 
@@ -13,9 +13,11 @@ export default function RegisterDetail() {
   const router = useRouter();
 
   // 로그인 확인
-  if (isLogin()) {
-    redirect('/');
-  }
+  useEffect(() => {
+    if (isLogin()) {
+      redirect('/');
+    }
+  }, []);
 
   const [activeOne, setActiveOne] = useState(false);
   const [activeTwo, setActiveTwo] = useState(false);
@@ -143,9 +145,12 @@ export default function RegisterDetail() {
   // 이메일 인증번호 보내기
   const onValidMail = () => {
     axios
-      .post('http://43.200.250.18:8000/emails/verification-requests', {
-        params: { email },
-      })
+      .post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/emails/verification-requests`,
+        {
+          params: { email },
+        },
+      )
       .then((res) => {
         return res;
       })
@@ -156,7 +161,7 @@ export default function RegisterDetail() {
 
   const nextRegister = () => {
     axios
-      .get('http://43.200.250.18:8000/emails/verifications', {
+      .get(`${process.env.NEXT_PUBLIC_BASE_URL}/emails/verifications`, {
         params: { email, code: veriCode },
       })
       .then((res) => {
@@ -182,7 +187,7 @@ export default function RegisterDetail() {
       telNo: phone,
     };
     axios
-      .post('http://43.200.250.18:8000/signup', body)
+      .post(`${process.env.NEXT_PUBLIC_BASE_URL}/signup`, body)
       .then((res) => {
         router.push('/');
         return res;
