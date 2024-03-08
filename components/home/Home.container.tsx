@@ -33,7 +33,7 @@ export default function HomeContainer() {
     const start = parseInt(res.body.startPage, 10);
     const end = parseInt(res.body.endPage, 10);
     setLatestPolicy(res);
-    setStartPage(start + 1);
+    setStartPage(start);
     setEndPage(end);
   }, [currentPage]);
 
