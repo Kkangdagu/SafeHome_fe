@@ -4,8 +4,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import Footer from '../Common/Footer';
+import { IMyPageUIProps } from './MyPage.types';
 
-export default function MyPageUI() {
+export default function MyPageUI({ email }: IMyPageUIProps) {
   const router = useRouter();
   return (
     <div className="w-[390px] p-4 h-screen bg-[#F2F3F6] flex flex-col min-h-screen">
@@ -41,9 +42,7 @@ export default function MyPageUI() {
               />
             </button>
           </div>
-          <div className="mt-[20px] text-[15px] text-[#696E83]">
-            {localStorage.getItem('userId')}
-          </div>
+          <div className="mt-[20px] text-[15px] text-[#696E83]">{email}</div>
         </div>
         <div className="w-[75px] h-[75px] rounded-[70%] overflow-hidden absolute top-[-9%] left-[75%] ">
           <Image

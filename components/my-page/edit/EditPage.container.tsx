@@ -9,22 +9,22 @@ import { isLogin } from '@/utils/isLogin';
 import EditPagePresenter from './EditPage.presenter';
 
 export default function EditPageContainer() {
-  // 로그인 확인
-  useEffect(() => {
-    if (!isLogin()) {
-      redirect('/');
-    }
-  }, []);
-
   const router = useRouter();
 
   // 초기값
-  const [email, setEmail] = useState(localStorage.getItem('userId')!);
+  const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
+  // 로그인 확인
+  useEffect(() => {
+    if (!isLogin()) {
+      redirect('/');
+    }
+    setEmail(localStorage.getItem('userId')!);
+  }, []);
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const currentEmail = e.target.value;
     setEmail(currentEmail);
