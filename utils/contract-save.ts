@@ -9,7 +9,7 @@ export default async function SaveOne(
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/member/contract/saveOne`,
       {
-        id: userId,
+        email: userId,
         imageUrl: image,
         json: data,
       },
