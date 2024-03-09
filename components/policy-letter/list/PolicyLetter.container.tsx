@@ -5,8 +5,9 @@
 import { useEffect, useState } from 'react';
 
 import { getPolicyLetter } from '@/utils/home';
-import { IPolicyLetter } from './PolicyLetter.types';
+
 import PolicyLetterListUI from './PolicyLetter.presenter';
+import { IPolicyLetter } from './PolicyLetter.types';
 
 export default function PolicyLetterListContainer() {
   const [letterList, setLetterList] = useState<IPolicyLetter>({
