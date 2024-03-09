@@ -75,11 +75,12 @@ export default function LoginDetail() {
       data: body,
     })
       .then((res) => {
-        localStorage.setItem('refresh-token', res.data.body.token.refreshToken);
-        localStorage.setItem('access-token', res.data.body.token.accessToken);
-        localStorage.setItem('userId', res.data.body.email);
-        router.push('/');
-        return res;
+        if (res.status === 200) {
+          localStorage.setItem('refresh-token', res.data.body.refreshToken);
+          localStorage.setItem('access-token', res.data.body.accessToken);
+          localStorage.setItem('userId', res.data.body.email);
+          router.push('/');
+        }
       })
       .catch((err) => {
         return err;
