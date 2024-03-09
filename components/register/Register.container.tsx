@@ -186,8 +186,9 @@ export default function RegisterDetail() {
     axios
       .post(`${process.env.NEXT_PUBLIC_BASE_URL}/signup`, body)
       .then((res) => {
-        router.push('/');
-        return res;
+        if (res.status === 200) {
+          router.push('/');
+        }
       })
       .catch((err) => {
         return err;
