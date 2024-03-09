@@ -7,16 +7,19 @@ import useClickAway from '@/hooks/useClickAway';
 import { RootState } from '@/store';
 import { close, open } from '@/store/modules/modalSlice';
 import { next, prev, setCurrentPage } from '@/store/modules/paginationSlice';
-import { getLatestPolicy } from '@/utils/home';
+import { getLatestPolicy, getPolicyLetter } from '@/utils/home';
 
 import HomeUI from './Home.presenter';
-import { ILatestPolicy } from './Home.types';
+import { ILatestPolicy, IPolicyLetter } from './Home.types';
 
 export default function HomeContainer() {
   const [startPage, setStartPage] = useState(1);
   const [endPage, setEndPage] = useState(0);
   const [latestPolicy, setLatestPolicy] = useState<ILatestPolicy>({
     body: { list: [] },
+  });
+  const [policyLetter, setPolicyLetter] = useState<IPolicyLetter>({
+    body: [],
   });
   const dispatch = useDispatch();
   const currentPage = useSelector(
@@ -64,9 +67,18 @@ export default function HomeContainer() {
     onLatestPolicy();
   }, [onLatestPolicy]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getPolicyLetter();
+      setPolicyLetter(res);
+    };
+    fetchData();
+  }, []);
+
   return (
     <HomeUI
       latestPolicy={latestPolicy}
+      policyLetter={policyLetter}
       currentPage={currentPage}
       startPage={startPage}
       endPage={endPage}

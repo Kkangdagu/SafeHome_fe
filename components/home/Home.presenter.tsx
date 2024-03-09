@@ -7,6 +7,7 @@ import Modal from '../Common/Modal';
 import { IHomePresenter } from './Home.types';
 
 export default function HomeUI({
+  policyLetter,
   latestPolicy,
   currentPage,
   startPage,
@@ -117,11 +118,23 @@ export default function HomeUI({
           전체보기
         </Link>
       </div>
-      <p className="text-sm font-bold m-[15px_0px_20px_0px]">
+      <p className="text-sm font-bold m-[15px_0px_20px_0px] text-[#696E83]">
         유용한 부동산 정책을 알기 쉽게 전달해 드려요!
       </p>
-      <div className="h-[140px] border">데이터</div>
-      <div className="flex justify-between m-[50px_0px_20px_0px]">
+      <div className="h-[140px] mt-[30px] whitespace-nowrap overflow-x-auto flex">
+        {policyLetter?.body.map((v: any) => (
+          <div key={v.id} className="text-center">
+            <div
+              className="w-[85px] h-[78px] mr-[35px] bg-cover rounded-[20px]"
+              style={{ backgroundImage: `url(${v.thumbnailImgUrl})` }}
+            />
+            <div className="w-[90px] font-extrabold text-[15px] text-[#0E298D] mt-[11px]">
+              {v.title}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-between m-[10px_0px_20px_0px]">
         <p className="text-2xl font-extrabold">최신 부동산 정책</p>
       </div>
       <div className="h-full border-t-2 border-b-2 border-slate-400">

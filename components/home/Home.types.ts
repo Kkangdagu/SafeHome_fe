@@ -3,6 +3,7 @@ import { RefObject } from 'react';
 export interface IHomePresenter {
   onBoarding?: () => Promise<void>;
   latestPolicy?: ILatestPolicy;
+  policyLetter?: IPolicyLetter;
   currentPage?: number;
   startPage?: number;
   endPage?: number;
@@ -40,13 +41,14 @@ interface ILatestPolicyItem {
 }
 
 export interface IPolicyLetter {
-  body: {
-    list: IPolicyLetterItem[];
-  };
+  body: IPolicyLetterItem[];
 }
 
-interface IPolicyLetterItem {
-  enterTitle: string;
-  enterUrl: string;
-  regDate: string;
+export interface IPolicyLetterItem {
+  id: number;
+  title: string;
+  thumbnailImgUrl: string;
+  contentImgUrl: string;
+  author: string;
+  lastChngRegDttm: string;
 }
