@@ -123,15 +123,17 @@ export default function HomeUI({
       </p>
       <div className="h-[140px] mt-[30px] whitespace-nowrap overflow-x-auto flex">
         {policyLetter?.body.map((v: any) => (
-          <div key={v.id} className="text-center">
-            <div
-              className="w-[85px] h-[78px] mr-[35px] bg-cover rounded-[20px]"
-              style={{ backgroundImage: `url(${v.thumbnailImgUrl})` }}
-            />
-            <div className="w-[90px] font-extrabold text-[15px] text-[#0E298D] mt-[11px]">
-              {v.title}
+          <Link key={v.id} href={`/policy-letter/${v.id}`}>
+            <div className="text-center">
+              <div
+                className="w-[85px] h-[78px] mr-[35px] bg-cover rounded-[20px]"
+                style={{ backgroundImage: `url(${v.thumbnailImgUrl})` }}
+              />
+              <div className="w-[90px] font-extrabold text-[15px] text-[#0E298D] mt-[11px]">
+                {v.title}
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="flex justify-between m-[10px_0px_20px_0px]">
