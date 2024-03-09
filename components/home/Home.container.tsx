@@ -65,7 +65,7 @@ export default function HomeContainer() {
 
   useEffect(() => {
     onLatestPolicy();
-  }, [onLatestPolicy]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,6 +73,7 @@ export default function HomeContainer() {
       setPolicyLetter(res);
     };
     fetchData();
+    console.log(policyLetter);
   }, []);
 
   return (

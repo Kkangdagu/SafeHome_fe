@@ -1,4 +1,4 @@
-import axios from 'axios';
+import instance from './intercepter';
 
 export default async function SaveOne(
   userId: string,
@@ -6,14 +6,11 @@ export default async function SaveOne(
   data: string,
 ) {
   try {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/member/contract/saveOne`,
-      {
-        email: userId,
-        imageUrl: image,
-        json: data,
-      },
-    );
+    const response = await instance.post('/member/contract/saveOne', {
+      email: userId,
+      imageUrl: image,
+      json: data,
+    });
     return response.data;
   } catch (err) {
     return err;

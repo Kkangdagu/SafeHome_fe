@@ -6,14 +6,11 @@ export default async function presignedUrl(
   partNum: string,
 ) {
   try {
-    const response = await instance.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/presigned-url`,
-      {
-        key,
-        uploadId,
-        partNumber: partNum,
-      },
-    );
+    const response = await instance.post('/presigned-url', {
+      key,
+      uploadId,
+      partNumber: partNum,
+    });
     return response.data.body;
   } catch (err) {
     return err;

@@ -1,4 +1,4 @@
-import instance from './intercepter';
+import axios from 'axios';
 
 type Parts = {
   partNumber: number;
@@ -11,12 +11,17 @@ export default async function CompleteUpload(
   parts: Parts[],
 ) {
   try {
-    const response = await instance.post(
+    const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/complete-upload`,
       {
         key,
         uploadId,
         parts,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        },
       },
     );
     return response.data.body.location;
