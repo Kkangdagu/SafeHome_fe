@@ -1,9 +1,9 @@
 'use client';
 
-import axios from 'axios';
 import { redirect, useRouter } from 'next/navigation';
 import { ChangeEvent, useEffect, useState } from 'react';
 
+import instance from '@/utils/intercepter';
 import { isLogin } from '@/utils/isLogin';
 
 import EditPagePresenter from './EditPage.presenter';
@@ -54,8 +54,8 @@ export default function EditPageContainer() {
       dateOfBirth: birthDate,
       telNo: phone,
     };
-    axios
-      .post(`${process.env.NEXT_PUBLIC_BASE_URL}/member/modify`, body)
+    instance
+      .post('/member/modify', body)
       .then((res) => {
         router.push('/myPage');
         return res;
@@ -66,12 +66,11 @@ export default function EditPageContainer() {
   };
 
   const deleteMember = () => {
-    axios
-      .post(`${process.env.NEXT_PUBLIC_BASE_URL}/member/delete`, {
-        params: { email },
-      })
+    instance
+      .post(`/member/delete?email=${email}`)
       .then((res) => {
         if (res.status === 200) {
+          localStorage.clear();
           router.push('/');
         }
       })
