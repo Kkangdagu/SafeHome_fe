@@ -19,7 +19,7 @@ export default async function CompleteUpload(
         parts,
       },
     );
-    return response;
+    return response.data.body.location;
   } catch (err) {
     return err;
   }

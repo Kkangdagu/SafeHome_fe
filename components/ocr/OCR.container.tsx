@@ -8,6 +8,7 @@ import { RootState } from '@/store';
 import { close, open } from '@/store/modules/modalSlice';
 import { requestWithBase64 } from '@/utils/base64';
 import CompleteUpload from '@/utils/complete-upload';
+import SaveOne from '@/utils/contract-save';
 import initiateUpload from '@/utils/initiate-upload';
 import presignedUrl from '@/utils/presigned-url';
 import presignedUrlPart from '@/utils/presigned-url-part';
@@ -28,6 +29,8 @@ export default function OCRContainer() {
   const [presigned, setPresigned] = useState<string[]>([]);
   const partNum = ['6', '5', '4'];
   const [etag, setEtag] = useState<string[]>([]);
+  const [userId, setUserId] = useState('');
+  const [completeData, setCompleteData] = useState('');
   const dispatch = useDispatch();
 
   const resizerFile = (file: File): Promise<string> =>
@@ -106,7 +109,7 @@ export default function OCRContainer() {
               initUpload.uploadId,
               parts,
             );
-            return complete;
+            setCompleteData(complete);
           }
         }
       } catch (error) {
@@ -206,7 +209,20 @@ export default function OCRContainer() {
     setImg(null);
   };
 
-  useEffect(() => {}, [presigned, uploadId, etag]);
+  useEffect(() => {
+    const SaveDoc = async () => {
+      const jsonString = JSON.stringify(analyzeResult);
+      await SaveOne(userId, completeData, jsonString);
+    };
+    SaveDoc();
+  }, [completeData]);
+
+  useEffect(() => {
+    const id = localStorage.getItem('userId');
+    if (id) {
+      setUserId(id);
+    }
+  }, [userId]);
   return (
     <OCRUI
       img={img}
