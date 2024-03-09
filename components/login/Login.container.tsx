@@ -76,9 +76,11 @@ export default function LoginDetail() {
     })
       .then((res) => {
         if (res.status === 200) {
+          console.log(res.data.body);
           localStorage.setItem('refresh-token', res.data.body.refreshToken);
           localStorage.setItem('access-token', res.data.body.accessToken);
           localStorage.setItem('userId', res.data.body.email);
+          localStorage.setItem('name', res.data.body.name);
           router.push('/');
         }
       })

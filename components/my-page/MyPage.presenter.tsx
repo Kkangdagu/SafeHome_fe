@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Footer from '../Common/Footer';
 import { IMyPageUIProps } from './MyPage.types';
 
-export default function MyPageUI({ email }: IMyPageUIProps) {
+export default function MyPageUI({ email, name }: IMyPageUIProps) {
   const router = useRouter();
   return (
     <div className="w-[390px] p-4 h-screen bg-[#F2F3F6] flex flex-col min-h-screen">
@@ -28,7 +28,7 @@ export default function MyPageUI({ email }: IMyPageUIProps) {
       <div className="w-[340px] h-[100px] mx-auto mt-[83px] relative">
         <div className="inline-block">
           <div className="mx-auto">
-            <div className="inline-block text-[28px] font-semibold">홍길동</div>
+            <div className="inline-block text-[28px] font-semibold">{name}</div>
             <button
               className="ml-[10px]"
               onClick={() => {
