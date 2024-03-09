@@ -145,7 +145,9 @@ export default function RegisterDetail() {
   // 이메일 인증번호 보내기
   const onValidMail = () => {
     axios
-      .post(`${process.env.NEXT_PUBLIC_BASE_URL}?email=${email}`)
+      .post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/emails/verification-requests?email=${email}`,
+      )
       .then((res) => {
         return res;
       })
