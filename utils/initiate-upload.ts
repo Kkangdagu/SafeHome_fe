@@ -1,5 +1,3 @@
-'use server';
-
 import axios from 'axios';
 
 export default async function initiateUpload(fileName: string) {
