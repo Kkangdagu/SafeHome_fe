@@ -54,8 +54,7 @@ export default function CommissionUI({
   }
 
   return (
-    <div
-      className={`w-[390px] bg-layout-primary p-4 ${selectedProperty === '월세' || moreInfo ? 'h-full' : 'h-screen'}`}>
+    <div className="h-full w-[390px] bg-layout-primary p-4">
       <header className="h-[106px] flex items-end px-3 pb-5 justify-between border-b-2 bg-white-0 border-b-slate-300 -mx-4 -mt-4 mb-5">
         <Link
           href="/"
@@ -77,15 +76,27 @@ export default function CommissionUI({
                   selectedTransaction === type
                     ? 'selected bg-[#B6C3F3]'
                     : ' bg-white-0'
-                } ${idx === 0 ? 'w-[158px] h-[54px]' : 'w-[99px] h-[54px]'} ${idx === 1 ? 'border-x-[1px]' : ''}`}
+                } ${idx === 1 ? 'w-[158px] h-[54px]' : 'w-[99px] h-[54px]'} ${idx === 1 ? 'border-x-[1px]' : ''}`}
                 onClick={() => setSelectedTransaction(type)}>
                 {type}
               </button>
             ))}
           </div>
-          <span className="text-[13px] text-[#9CA0B2]">
-            주택의 부속토지, 주택분양권 포함
-          </span>
+          {selectedTransaction === '주택' && (
+            <span className="text-[13px] text-[#9CA0B2]">
+              주택의 부속토지, 주택분양권 포함
+            </span>
+          )}
+          {selectedTransaction === '오피스텔' && (
+            <span className="text-[13px] text-[#9CA0B2]">
+              부엌, 화장실 등의 시설을 갖춘 전용면적 85m² 이하 오피스텔
+            </span>
+          )}
+          {selectedTransaction === '기타' && (
+            <span className="text-[13px] text-[#9CA0B2]">
+              오피스텔(주거용 제외), 상가, 토지 등
+            </span>
+          )}
         </section>
         <section>
           <span className="text-[18px]">거래 종류</span>
