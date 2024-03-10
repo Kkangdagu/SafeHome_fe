@@ -124,7 +124,7 @@ export default function MyPageUI({
                   <div>내용</div>
                 </div>
                 <div
-                  className="w-auto h-auto bg-cover absolute top-[10%] left-[70%]"
+                  className="w-[85px] h-[100px] border-solid border-2 bg-cover absolute top-[10%] left-[67%] "
                   style={{ backgroundImage: `url(${v.imageUrl})` }}
                 />
                 <button
