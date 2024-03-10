@@ -40,11 +40,7 @@ export default function MyPageContainer() {
       setUploadItem(res.data.body);
     };
     fetchData();
-    if (uploadItem.data.length === 0) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
+    return uploadItem ? setVisible(false) : setVisible(true);
   }, []);
 
   return (
