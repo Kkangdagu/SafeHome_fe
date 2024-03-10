@@ -2,6 +2,7 @@ import { ChangeEvent } from 'react';
 
 export interface IEditPageUIProps {
   email: string | number | readonly string[] | undefined;
+  logOut: () => void;
   onChangeEmail: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangePhone: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeName: (e: ChangeEvent<HTMLInputElement>) => void;

@@ -6,6 +6,7 @@ import { IEditPageUIProps } from './EditPage.types';
 export default function EditPagePresenter({
   deleteMember,
   editMember,
+  logOut,
   onChangeBirthDate,
   onChangeEmail,
   onChangeName,
@@ -135,7 +136,7 @@ export default function EditPagePresenter({
           </div>
         </div>
         <div className="w-[120px] h-[30px] mx-auto">
-          <button className="relative">
+          <button className="relative" onClick={logOut}>
             <div className="text-[20px] text-[#2551F4] inline-block">
               로그아웃
             </div>

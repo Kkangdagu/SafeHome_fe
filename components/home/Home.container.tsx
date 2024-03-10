@@ -73,7 +73,6 @@ export default function HomeContainer() {
       setPolicyLetter(res);
     };
     fetchData();
-    console.log(policyLetter);
   }, []);
 
   return (

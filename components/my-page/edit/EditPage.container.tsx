@@ -79,9 +79,15 @@ export default function EditPageContainer() {
       });
   };
 
+  const logOut = () => {
+    localStorage.clear();
+    router.push('/');
+  };
+
   return (
     <EditPagePresenter
       email={email}
+      logOut={logOut}
       deleteMember={deleteMember}
       editMember={editMember}
       onChangeBirthDate={onChangeBirthDate}
