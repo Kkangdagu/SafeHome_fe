@@ -4,7 +4,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full bg-[#FFFFFF] h-screen grid place-items-center">
+    <div className="w-full bg-[#FFFFFF] h-full grid place-items-center">
       {children}
     </div>
   );
