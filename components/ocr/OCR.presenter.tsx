@@ -45,7 +45,7 @@ export default function OCRUI({
         <Modal
           type="analysis"
           className="z-[999] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div>
+          <div className="animate-rotate">
             <CgSpinner />
           </div>
           <div className="text-[20px] font-bold text-white-0">
