@@ -5,21 +5,27 @@ import { useRouter } from 'next/navigation';
 
 import { IMyPageUIProps } from './MyPage.types';
 
-export default function MyPageUI({ email, name }: IMyPageUIProps) {
+export default function MyPageUI({
+  email,
+  name,
+  visible,
+  uploadItem,
+}: IMyPageUIProps) {
   const router = useRouter();
+
   return (
-    <div className="w-[390px] h-screen bg-[#F2F3F6] flex flex-col min-h-screen">
-      <div className="relative w-[390px] h-[106px] bg-white-0">
+    <div className="w-[390px] h-auto bg-[#F2F3F6] flex flex-col min-h-screen">
+      <div className="relative w-[390px] h-[206px] bg-white-0">
         <button onClick={() => router.push('/')}>
           <Image
             src="/images/left_arrow.svg"
             width={14}
             height={26}
             alt=""
-            className="absolute top-[60%] left-[5%]"
+            className="absolute top-[76%] left-[5%]"
           />
         </button>
-        <div className="text-black text-[24px] font-semibold absolute top-[58%] left-[35%]">
+        <div className="text-black text-[24px] font-semibold absolute top-[75%] left-[35%]">
           마이페이지
         </div>
       </div>
@@ -77,20 +83,42 @@ export default function MyPageUI({ email, name }: IMyPageUIProps) {
           고객문의
         </div>
       </div>
-      <div className=" mx-auto w-[348px] h-[auto] rounded-[10px] bg-[#E9EBF8] relative">
+      <div className=" mx-auto w-[348px] h-[auto] rounded-[10px] bg-[#E9EBF8] mb-[30px] relative">
         <div className="text-[23px] pl-[16px] pt-[22px]">
           계약서 업로드 내역
         </div>
-        <Image
-          src="images/contract_icon.svg"
-          width={76}
-          height={106}
-          alt=""
-          className="mx-auto mt-[44px]"
-        />
-        <div className="w-[220px] mx-auto mt-[24px] pb-[42px] text-[#696E83] text-[16px]">
-          계약서 업로드 내역이 없습니다.
-        </div>
+        {visible ? (
+          <div>
+            <Image
+              src="images/contract_icon.svg"
+              width={76}
+              height={106}
+              alt=""
+              className="mx-auto mt-[44px]"
+            />
+            <div className="w-[220px] mx-auto mt-[24px] pb-[42px] text-[#696E83] text-[16px]">
+              계약서 업로드 내역이 없습니다.
+            </div>
+          </div>
+        ) : (
+          <div className="mt-[20px] mb-[28px]">
+            {uploadItem?.data.map((v) => (
+              <div
+                key={v.id}
+                className="bg-white-0 w-[315px] h-[135px] rounded-[6px] mx-auto relative mb-[30px]">
+                <div className="absolute top-[17%] left-[5%] text-[#696E83] text-[13px]">
+                  <div className="text-[18px] mb-[20px]">영등포구/전세</div>
+                  <div className="mb-[20px]">{v.frstRegDttm.substr(0, 10)}</div>
+                  <div>내용</div>
+                </div>
+                <div
+                  className="w-[85px] h-[78px] bg-cover absolute top-[10%] left-[70%]"
+                  style={{ backgroundImage: `url(${v.imageUrl})` }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
