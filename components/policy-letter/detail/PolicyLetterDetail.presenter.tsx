@@ -31,7 +31,7 @@ export default function PolicyLetterDetailPresenter({
           {letterDetail?.lastChngRegDttm.substr(0, 10)}
         </div>
       </div>
-      <div>내용ㅇ내용내용ㅇ아아아아ㅏㅏㅏㅏㅏㅏ</div>
+      <div>.</div>
     </div>
   );
 }

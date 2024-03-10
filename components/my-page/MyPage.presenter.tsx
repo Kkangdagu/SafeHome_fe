@@ -2,6 +2,9 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+import instance from '@/utils/intercepter';
 
 import { IMyPageUIProps } from './MyPage.types';
 
@@ -12,20 +15,21 @@ export default function MyPageUI({
   uploadItem,
 }: IMyPageUIProps) {
   const router = useRouter();
+  const [deleteBtn, setDeleteBtn] = useState(false);
 
   return (
-    <div className="w-[390px] h-auto bg-[#F2F3F6] flex flex-col min-h-screen">
-      <div className="relative w-[390px] h-[206px] bg-white-0">
+    <div className="w-[390px] h-full bg-[#F2F3F6] flex flex-col min-h-screen">
+      <div className="relative w-[390px] h-[106px] bg-white-0">
         <button onClick={() => router.push('/')}>
           <Image
             src="/images/left_arrow.svg"
             width={14}
             height={26}
             alt=""
-            className="absolute top-[76%] left-[5%]"
+            className="absolute top-[55%] left-[5%]"
           />
         </button>
-        <div className="text-black text-[24px] font-semibold absolute top-[75%] left-[35%]">
+        <div className="text-black text-[24px] font-semibold absolute top-[52%] left-[35%]">
           마이페이지
         </div>
       </div>
@@ -59,7 +63,7 @@ export default function MyPageUI({
           />
         </div>
       </div>
-      <div className=" mx-auto w-[348px] h-[113px] rounded-[10px] bg-[#E9EBF8] relative mb-[42px]">
+      <div className="mx-auto w-[348px] h-[113px] rounded-[10px] bg-[#E9EBF8] relative mb-[42px]">
         <button className="absolute top-[20%] left-[15%]">
           <Image
             src="images/bookmark_icon.svg"
@@ -84,9 +88,17 @@ export default function MyPageUI({
         </div>
       </div>
       <div className=" mx-auto w-[348px] h-[auto] rounded-[10px] bg-[#E9EBF8] mb-[30px] relative">
-        <div className="text-[23px] pl-[16px] pt-[22px]">
+        <div className="text-[23px] pl-[16px] pt-[22px] relative">
           계약서 업로드 내역
+          <button
+            onClick={() => {
+              setDeleteBtn(!deleteBtn);
+            }}
+            className={`text-[#2551F4] text-[13px] absolute underline left-[85%] top-[55%] ${visible ? 'invisible' : 'block'}`}>
+            삭제
+          </button>
         </div>
+
         {visible ? (
           <div>
             <Image
@@ -112,9 +124,23 @@ export default function MyPageUI({
                   <div>내용</div>
                 </div>
                 <div
-                  className="w-[85px] h-[78px] bg-cover absolute top-[10%] left-[70%]"
+                  className="w-auto h-auto bg-cover absolute top-[10%] left-[70%]"
                   style={{ backgroundImage: `url(${v.imageUrl})` }}
                 />
+                <button
+                  className={`${deleteBtn ? 'block' : 'invisible'}`}
+                  onClick={() => {
+                    instance.delete(`/member/contract/delectOne/${v.id}`);
+                    setDeleteBtn(false);
+                  }}>
+                  <Image
+                    src="images/upload_delete.svg"
+                    alt=""
+                    width={26}
+                    height={26}
+                    className="absolute left-[95%] top-[-5%]"
+                  />
+                </button>
               </div>
             ))}
           </div>
