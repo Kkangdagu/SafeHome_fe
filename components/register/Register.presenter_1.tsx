@@ -92,7 +92,7 @@ export default function RegisterOneUI({
           </div>
           <div className="float-left">
             <input
-              type="password"
+              type="text"
               id="veriCode"
               name="veriCode"
               className="w-[247px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"

@@ -48,7 +48,7 @@ export default function RegisterDetail() {
     const currentEmail = e.target.value;
     setEmail(currentEmail);
     const emailRegExp =
-      /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+      /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{3,10}$/;
 
     if (!emailRegExp.test(currentEmail)) {
       setIsEmail(false);
