@@ -132,6 +132,7 @@ export default function MyPageUI({
                   onClick={() => {
                     instance.delete(`/member/contract/delectOne/${v.id}`);
                     setDeleteBtn(false);
+                    window.location.reload();
                   }}>
                   <Image
                     src="images/upload_delete.svg"
