@@ -12,6 +12,7 @@ export default function EditPagePresenter({
   onChangeName,
   onChangePhone,
   onChangePassword,
+  name,
   email,
 }: IEditPageUIProps) {
   const router = useRouter();
@@ -70,6 +71,7 @@ export default function EditPagePresenter({
               className="w-[349px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
               placeholder="이름"
               onChange={onChangeName}
+              value={name}
             />
           </div>
         </div>

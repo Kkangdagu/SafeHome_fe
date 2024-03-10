@@ -24,6 +24,7 @@ export default function EditPageContainer() {
       redirect('/');
     }
     setEmail(localStorage.getItem('userId')!);
+    setName(localStorage.getItem('name')!);
   }, []);
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const currentEmail = e.target.value;
@@ -86,6 +87,7 @@ export default function EditPageContainer() {
 
   return (
     <EditPagePresenter
+      name={name}
       email={email}
       logOut={logOut}
       deleteMember={deleteMember}
