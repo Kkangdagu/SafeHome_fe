@@ -24,6 +24,7 @@ export default function GoogleLogin() {
           );
           localStorage.setItem('access-token', res.data.body.token.accessToken);
           localStorage.setItem('userId', res.data.body.email);
+          localStorage.setItem('name', res.data.body.name);
           router.push('/');
         }
       });

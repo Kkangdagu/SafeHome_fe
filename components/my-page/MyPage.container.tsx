@@ -16,7 +16,8 @@ export default function MyPageContainer() {
     data: [],
   });
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+
   // 로그인 확인
 
   useEffect(() => {
