@@ -3,13 +3,12 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import Footer from '../Common/Footer';
 import { IMyPageUIProps } from './MyPage.types';
 
 export default function MyPageUI({ email, name }: IMyPageUIProps) {
   const router = useRouter();
   return (
-    <div className="w-[390px] p-4 h-screen bg-[#F2F3F6] flex flex-col min-h-screen">
+    <div className="w-[390px] h-screen bg-[#F2F3F6] flex flex-col min-h-screen">
       <div className="relative w-[390px] h-[106px] bg-white-0">
         <button onClick={() => router.push('/')}>
           <Image
@@ -93,7 +92,6 @@ export default function MyPageUI({ email, name }: IMyPageUIProps) {
           계약서 업로드 내역이 없습니다.
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
