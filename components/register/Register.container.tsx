@@ -149,6 +149,8 @@ export default function RegisterDetail() {
         `${process.env.NEXT_PUBLIC_BASE_URL}/emails/verification-requests?email=${email}`,
       )
       .then((res) => {
+        // eslint-disable-next-line no-alert
+        alert('인증번호를 전송했습니다');
         return res;
       })
       .catch((err) => {

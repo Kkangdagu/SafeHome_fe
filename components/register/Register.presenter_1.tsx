@@ -107,7 +107,8 @@ export default function RegisterOneUI({
             variant="veri"
             id="login_btn"
             className="float-left pt-[2px]"
-            disabled={isVeriCode}>
+            disabled={isVeriCode}
+            onClick={onValidMail}>
             재전송
           </Button>
           <div
