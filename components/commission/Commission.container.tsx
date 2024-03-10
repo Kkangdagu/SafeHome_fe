@@ -49,6 +49,7 @@ export default function CommissionContainer() {
   const onResetButton = () => {
     setDisplayAmount('');
     setAmount(0);
+    setMonthPrice(0);
     setPersent(null);
   };
 
