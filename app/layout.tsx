@@ -3,6 +3,8 @@ import '@/styles/global.css';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 
+import ReactQueryProviders from '@/utils/ReactQueryProvider';
+
 import Providers from './StoreProvider';
 
 export const metadata: Metadata = {
@@ -19,11 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Providers>
-      <html lang="en">
-        <body className="w-full h-full flex justify-center">{children}</body>
-        <Script src="https://cdn.swygbro.com/public/widget/swyg-widget.js" />
-      </html>
-    </Providers>
+    <ReactQueryProviders>
+      <Providers>
+        <html lang="en">
+          <body className="w-full h-full flex justify-center">{children}</body>
+          <Script src="https://cdn.swygbro.com/public/widget/swyg-widget.js" />
+        </html>
+      </Providers>
+    </ReactQueryProviders>
   );
 }
