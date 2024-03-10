@@ -23,6 +23,8 @@ export interface ICommission {
   showResult2: boolean;
   setShowResult2: (value: boolean) => void;
   onCalculatorMonth: (e: FormEvent<HTMLFormElement>) => void;
+  moreInfo: boolean;
+  setMoreInfo: (value: boolean) => void;
 }
 
 export interface ICommissionResult1 {

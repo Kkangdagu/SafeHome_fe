@@ -15,6 +15,7 @@ export default function CommissionContainer() {
   const [result, setResult] = useState(0);
   const [showResult1, setShowResult1] = useState(false);
   const [showResult2, setShowResult2] = useState(false);
+  const [moreInfo, setMoreInfo] = useState(false);
 
   const salesOfferTypes = ['매매/교환', '전세', '월세'];
   const transactionTypes = ['주택', '오피스텔', '기타'];
@@ -123,6 +124,8 @@ export default function CommissionContainer() {
       showResult2={showResult2}
       setShowResult2={setShowResult2}
       onCalculatorMonth={onCalculatorMonth}
+      moreInfo={moreInfo}
+      setMoreInfo={setMoreInfo}
     />
   );
 }

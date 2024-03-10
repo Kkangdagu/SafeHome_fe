@@ -3,6 +3,7 @@ import { IoChevronBack } from 'react-icons/io5';
 
 import Button from '../Common/Button';
 import { ICommission } from './Commission.types';
+import PolicyBanner from './Policy.presenter';
 import CommissionResult1 from './Result1.presenter';
 import CommissionResult2 from './Result2.presenter';
 
@@ -29,6 +30,8 @@ export default function CommissionUI({
   showResult2,
   setShowResult2,
   onCalculatorMonth,
+  moreInfo,
+  setMoreInfo,
 }: ICommission) {
   if (showResult1) {
     return (
@@ -52,7 +55,7 @@ export default function CommissionUI({
 
   return (
     <div
-      className={`w-[390px] bg-layout-primary p-4 ${selectedProperty === '월세' ? 'h-full' : 'h-screen'}`}>
+      className={`w-[390px] bg-layout-primary p-4 ${selectedProperty === '월세' || moreInfo ? 'h-full' : 'h-screen'}`}>
       <header className="h-[106px] flex items-end px-3 pb-5 justify-between border-b-2 bg-white-0 border-b-slate-300 -mx-4 -mt-4 mb-5">
         <Link
           href="/"
@@ -62,7 +65,7 @@ export default function CommissionUI({
         <p className="text-[28px] font-bold">중개수수료 계산기</p>
         <div className="w-[28px] h-[28px]" />
       </header>
-      <div className="h-[172px] rounded-md bg-[#E9EBF8]" />
+      <PolicyBanner moreInfo={moreInfo} setMoreInfo={setMoreInfo} />
       <div className="w-full flex flex-col gap-5 mt-10">
         <section>
           <span className="text-[18px]">매물 종류</span>

@@ -211,11 +211,13 @@ export default function OCRContainer() {
 
   useEffect(() => {
     const SaveDoc = async () => {
-      const jsonString = JSON.stringify(analyzeResult);
-      await SaveOne(userId, completeData, jsonString);
+      if (completeData && userId) {
+        const jsonString = JSON.stringify(analyzeResult);
+        await SaveOne(userId, completeData, jsonString);
+      }
     };
     SaveDoc();
-  }, [completeData]);
+  }, [completeData, userId]);
 
   useEffect(() => {
     const id = localStorage.getItem('userId');
