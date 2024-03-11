@@ -81,7 +81,7 @@ export default function OCRContainer() {
         const data = await requestWithBase64(base64Image, fileExtension);
         setAnalyzeResult(data);
 
-        const initUpload = await initiateUpload(fileName);
+        const initUpload = await initiateUpload(fileName, fileExtension);
         setKey(initUpload.key);
         setUploadId(initUpload.uploadId);
 
