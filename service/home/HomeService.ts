@@ -5,3 +5,9 @@ export async function getLatestPolicy(page: number) {
 
   return response.json();
 }
+
+export async function getOnboarding() {
+  const response = await fetch(url.onboarding);
+
+  return response.json();
+}
