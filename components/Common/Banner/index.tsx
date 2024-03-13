@@ -5,24 +5,18 @@ import './banner.styles.css';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { IOnBoarding } from '@/components/home/Home.types';
-import { getOnBoarding } from '@/utils/home';
+import { onGetOnboarding } from '@/service/home/useHomeService';
+
+interface IOnboarding {
+  lastChngRegDttm: string;
+  thumbnailImgUrl: string;
+}
 
 export default function Banner() {
-  const [onBoarding, setOnBoarding] = useState<IOnBoarding | null>(null);
-
-  const GetOnBoarding = async () => {
-    const res = await getOnBoarding();
-    setOnBoarding(res);
-  };
-
-  useEffect(() => {
-    GetOnBoarding();
-  }, []);
+  const { data } = onGetOnboarding();
 
   return (
     <Swiper
@@ -30,7 +24,7 @@ export default function Banner() {
       modules={[Pagination]}
       loop
       className="h-[160px] rounded-md my-12">
-      {onBoarding?.body.map((v) => (
+      {data?.body.map((v: IOnboarding) => (
         <SwiperSlide key={v.lastChngRegDttm}>
           <Link href="/onboarding">
             <Image

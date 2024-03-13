@@ -4,14 +4,14 @@ import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 import Banner from '../Common/Banner';
 import Modal from '../Common/Modal';
+import LatestPolicySkeleton from '../Common/Skeleton/LatestPolicy';
+import OnboardingSkeleton from '../Common/Skeleton/Onboarding';
+import PaginationSkeleton from '../Common/Skeleton/Pagination';
 import { IHomePresenter } from './Home.types';
 
 export default function HomeUI({
   policyLetter,
-  latestPolicy,
   currentPage,
-  startPage,
-  endPage,
   prevBtn,
   nextBtn,
   isModal,
@@ -20,6 +20,7 @@ export default function HomeUI({
   modalRef,
   date,
   onPageClick,
+  data,
 }: IHomePresenter) {
   return (
     <div className="w-[390px] h-full bg-layout-primary p-4 relative">
@@ -100,7 +101,7 @@ export default function HomeUI({
         />
         <p className="text-sm ml-1 mt-8">세이프하게 집 구하는 방법, 세집!</p>
       </div>
-      <Banner />
+      {!data ? <OnboardingSkeleton /> : <Banner />}
       <div className="flex justify-between mt-5">
         <section className="flex gap-2">
           <p className="text-2xl font-semibold">부동산 정책 레터</p>
@@ -140,7 +141,8 @@ export default function HomeUI({
         <p className="text-2xl font-extrabold">최신 부동산 정책</p>
       </div>
       <div className="h-full border-t-2 border-b-2 border-slate-400">
-        {latestPolicy?.body.list.map((v, idx) => (
+        {!data && <LatestPolicySkeleton />}
+        {data?.body.list.map((v, idx) => (
           <Link
             href={v.enterUrl}
             target="_blank"
@@ -172,35 +174,52 @@ export default function HomeUI({
           </Link>
         ))}
       </div>
-      <div className="mt-2 flex justify-between items-center text-[16px]">
-        <button
-          onClick={prevBtn}
-          disabled={currentPage === 1}
-          className="flex justify-center items-center">
-          <IoChevronBack />
-        </button>
-        {startPage &&
-          endPage &&
-          currentPage &&
-          Array.from(
-            { length: Math.min(5, endPage - startPage + 1) },
-            (_, i) =>
-              Math.max(startPage, Math.min(endPage - 4, currentPage - 2)) + i,
-          ).map((pageNumber) => (
-            <button
-              key={pageNumber}
-              className={`${currentPage === pageNumber ? 'font-bold text-blue-500' : null}`}
-              onClick={() => onPageClick && onPageClick(pageNumber)}>
-              {pageNumber}
-            </button>
-          ))}
-        <button
-          onClick={nextBtn}
-          disabled={currentPage === endPage}
-          className="flex justify-center items-center">
-          <IoChevronForward />
-        </button>
-      </div>
+      {!data ? (
+        <PaginationSkeleton />
+      ) : (
+        <div className="mt-2 flex justify-between items-center text-[16px]">
+          <button
+            onClick={prevBtn}
+            disabled={currentPage === 1}
+            className="flex justify-center items-center">
+            <IoChevronBack />
+          </button>
+          {data?.body.startPage &&
+            data?.body.endPage &&
+            currentPage &&
+            Array.from(
+              {
+                length: Math.min(
+                  5,
+                  parseInt(data.body.endPage, 10) -
+                    parseInt(data.body.startPage, 10) +
+                    1,
+                ),
+              },
+              (_, i) =>
+                Math.max(
+                  parseInt(data.body.startPage, 10),
+                  Math.min(
+                    parseInt(data.body.endPage, 10) - 4,
+                    currentPage - 2,
+                  ),
+                ) + i,
+            ).map((pageNumber) => (
+              <button
+                key={pageNumber}
+                className={`${currentPage === pageNumber ? 'font-bold text-blue-500' : null}`}
+                onClick={() => onPageClick && onPageClick(pageNumber)}>
+                {pageNumber}
+              </button>
+            ))}
+          <button
+            onClick={nextBtn}
+            disabled={currentPage === parseInt(data?.body.endPage, 10)}
+            className="flex justify-center items-center">
+            <IoChevronForward />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

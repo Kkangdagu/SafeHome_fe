@@ -1,23 +1,19 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useClickAway from '@/hooks/useClickAway';
+import { onGetLatestPolicy } from '@/service/home/useHomeService';
 import { RootState } from '@/store';
 import { close, open } from '@/store/modules/modalSlice';
 import { next, prev, setCurrentPage } from '@/store/modules/paginationSlice';
-import { getLatestPolicy, getPolicyLetter } from '@/utils/home';
+import { getPolicyLetter } from '@/utils/home';
 
 import HomeUI from './Home.presenter';
-import { ILatestPolicy, IPolicyLetter } from './Home.types';
+import { IPolicyLetter } from './Home.types';
 
 export default function HomeContainer() {
-  const [startPage, setStartPage] = useState(1);
-  const [endPage, setEndPage] = useState(0);
-  const [latestPolicy, setLatestPolicy] = useState<ILatestPolicy>({
-    body: { list: [] },
-  });
   const [policyLetter, setPolicyLetter] = useState<IPolicyLetter>({
     body: [],
   });
@@ -31,18 +27,10 @@ export default function HomeContainer() {
   const today = new Date();
   const date = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
-  const onLatestPolicy = useCallback(async () => {
-    const res = await getLatestPolicy(currentPage);
-    const start = parseInt(res.body.startPage, 10);
-    const end = parseInt(res.body.endPage, 10);
-    setLatestPolicy(res);
-    setStartPage(start);
-    setEndPage(end);
-  }, [currentPage]);
+  const { data } = onGetLatestPolicy(currentPage);
 
   const onPageClick = (pageNunber: number) => {
     dispatch(setCurrentPage(pageNunber));
-    onLatestPolicy();
   };
 
   const openModal = () => {
@@ -64,10 +52,6 @@ export default function HomeContainer() {
   useClickAway(modalRef, closeModal);
 
   useEffect(() => {
-    onLatestPolicy();
-  }, []);
-
-  useEffect(() => {
     const fetchData = async () => {
       const res = await getPolicyLetter();
       setPolicyLetter(res);
@@ -77,11 +61,8 @@ export default function HomeContainer() {
 
   return (
     <HomeUI
-      latestPolicy={latestPolicy}
       policyLetter={policyLetter}
       currentPage={currentPage}
-      startPage={startPage}
-      endPage={endPage}
       prevBtn={prevBtn}
       nextBtn={nextBtn}
       isModal={isModal}
@@ -90,6 +71,7 @@ export default function HomeContainer() {
       modalRef={modalRef}
       date={date}
       onPageClick={onPageClick}
+      data={data}
     />
   );
 }
