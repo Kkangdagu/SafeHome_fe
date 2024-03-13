@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 import Banner from '../Common/Banner';
+import Footer from '../Common/Footer';
 import Modal from '../Common/Modal';
 import LatestPolicySkeleton from '../Common/Skeleton/LatestPolicy';
 import OnboardingSkeleton from '../Common/Skeleton/Onboarding';
@@ -147,9 +148,9 @@ export default function HomeUI({
             href={v.enterUrl}
             target="_blank"
             key={v.enterTitle}
-            className={`w-full bg-[#EEF2FF] h-[120px] p-[8px_3px] flex ${idx !== 4 ? 'border-b-[1px] border-slate-300' : ''}`}>
-            <div className="w-[90%] text-base font-bold pr-5">
-              <p>
+            className={`w-full bg-[#EEF2FF] h-[120px] p-[8px_15px] flex ${idx !== 4 ? 'border-b-[1px] border-slate-300' : ''}`}>
+            <div className="w-[90%] pr-5 pt-5">
+              <p className="text-[15px] text-[#343434] font-bold">
                 {v.enterTitle}
                 {date === v.regDate && (
                   <Image
@@ -161,14 +162,14 @@ export default function HomeUI({
                   />
                 )}
               </p>
-              <p className="mt-2">{v.regDate}</p>
+              <p className="mt-3 text-[14px] text-[#696E83]">{v.regDate}</p>
             </div>
-            <div className="mt-2">
+            <div className="mt-5">
               <Image
                 src="/images/right_arrow_icon.svg"
                 alt="화살표"
-                width={10}
-                height={20}
+                width={18}
+                height={18}
               />
             </div>
           </Link>
@@ -177,7 +178,7 @@ export default function HomeUI({
       {!data ? (
         <PaginationSkeleton />
       ) : (
-        <div className="mt-2 flex justify-between items-center text-[16px]">
+        <div className="mt-3 mb-[120px] flex justify-between items-center text-[16px]">
           <button
             onClick={prevBtn}
             disabled={currentPage === 1}
@@ -220,6 +221,7 @@ export default function HomeUI({
           </button>
         </div>
       )}
+      <Footer />
     </div>
   );
 }
