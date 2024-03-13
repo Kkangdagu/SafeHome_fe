@@ -18,7 +18,6 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
     "@tanstack/react-query": "^5.22.2",
-    "@tanstack/react-query-devtools": "^5.25.0",
     "@types/next-redux-wrapper": "^3.0.0",
     "@types/react-redux": "^7.1.33",
     "axios": "^1.6.7",
