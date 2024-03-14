@@ -2,7 +2,6 @@ import { RefObject } from 'react';
 
 export interface IHomePresenter {
   onBoarding?: () => Promise<void>;
-  latestPolicy?: ILatestPolicy;
   policyLetter?: IPolicyLetter;
   currentPage?: number;
   startPage?: number;
@@ -15,6 +14,7 @@ export interface IHomePresenter {
   prevBtn?: () => void;
   nextBtn?: () => void;
   onPageClick?: (pageNumber: number) => void;
+  data: ILatestPolicy;
 }
 
 export interface IOnBoarding {
@@ -29,12 +29,16 @@ interface IOnBoardingItem {
 }
 
 export interface ILatestPolicy {
-  body: {
-    list: ILatestPolicyItem[];
-  };
+  body: ILatestPolicyBody;
 }
 
-interface ILatestPolicyItem {
+interface ILatestPolicyBody {
+  startPage: string;
+  endPage: string;
+  list: ILatestPolicyList[];
+}
+
+interface ILatestPolicyList {
   enterTitle: string;
   enterUrl: string;
   regDate: string;

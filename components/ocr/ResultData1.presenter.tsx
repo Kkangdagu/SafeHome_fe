@@ -47,7 +47,7 @@ export default function ResultData1() {
         target="_blank"
         className="flex justify-center mt-1">
         <Image
-          src="images/seoul_estate_info.svg"
+          src="/images/seoul_estate_info.svg"
           alt=""
           width={308}
           height={133}

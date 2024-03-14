@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        skeleton: 'rgba(255,255,255,0.2)',
         layout: {
           primary: '#F2F3F6',
         },
@@ -17,10 +18,31 @@ const config: Config = {
         'gray-1': '#686868',
         'white-0': '#FFFFFF',
       },
+      skew: {
+        '-20': '-20deg',
+      },
+      boxShadow: {
+        skeleton: '0 0 30px 30px rgba(255,255,255,0.05)',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      keyframes: {
+        rotate: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        skeleton: {
+          '0%': { transform: 'translateX(-160%)' },
+          '50%': { transform: 'translateX(-60%)' },
+          '100%': { transform: 'translateX(160%)' },
+        },
+      },
+      animation: {
+        rotate: 'rotate 1.5s linear infinite',
+        skeleton: 'skeleton 1s infinite',
       },
     },
   },

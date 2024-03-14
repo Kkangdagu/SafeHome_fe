@@ -50,6 +50,7 @@ export default function CommissionContainer() {
     setDisplayAmount('');
     setAmount(0);
     setMonthPrice(0);
+    setDisplayMonthPrice('');
     setPersent(null);
   };
 
