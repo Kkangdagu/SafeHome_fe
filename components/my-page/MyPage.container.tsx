@@ -38,9 +38,13 @@ export default function MyPageContainer() {
     const fetchData = async () => {
       const res = await getUpload();
       setUploadItem(res.data.body);
+      if (res.data.body.data.length === 0) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
     };
     fetchData();
-    return uploadItem ? setVisible(false) : setVisible(true);
   }, []);
 
   return (
