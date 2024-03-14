@@ -14,7 +14,7 @@ export default function ResultData2() {
         target="_blank"
         className="flex justify-center p-3">
         <Image
-          src="images/gov24_img.svg"
+          src="/images/gov24_img.svg"
           alt="정부24"
           width={308}
           height={133}
