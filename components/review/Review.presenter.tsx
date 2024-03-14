@@ -2,49 +2,41 @@
 
 import 'swiper/css';
 
+import Link from 'next/link';
 import { IoChevronBack } from 'react-icons/io5';
 import { PiWarningCircle } from 'react-icons/pi';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Cell, CellWord, IResultProps, Table } from './OCR.types';
-import ResultData1 from './ResultData1.presenter';
-import ResultData2 from './ResultData2.presenter';
-import ResultData3 from './ResultData3.presenter';
-import ResultData4 from './ResultData4.presenter';
-import ResultData5 from './ResultData5.presenter';
-import ResultData6 from './ResultData6.presenter';
+import ResultData1 from '../ocr/ResultData1.presenter';
+import ResultData2 from '../ocr/ResultData2.presenter';
+import ResultData3 from '../ocr/ResultData3.presenter';
+import ResultData4 from '../ocr/ResultData4.presenter';
+import ResultData5 from '../ocr/ResultData5.presenter';
+import ResultData6 from '../ocr/ResultData6.presenter';
+import { Cell, CellWord, IReviewProps, Table } from './Review.types';
 
-export default function OCRResultUI({
+export default function ReviewPresenter({
+  reviewData,
   selected,
   setSelected,
   category1,
   setCategory1,
   category2,
   setCategory2,
-  setImg,
-  setAnalyzeResult,
-  analyzeResult,
-}: IResultProps) {
+}: IReviewProps) {
   return (
     <div className="w-[390px] h-full bg-layout-primary p-4">
       <header className="h-[106px] flex items-end px-3 pb-7 justify-between bg-white border-b-2 border-b-slate-300 -mx-4 -mt-4">
-        <button
-          className="w-[28px] h-[28px] flex justify-center items-center"
-          onClick={() => {
-            if (setImg) {
-              setImg(null);
-            }
-            if (setAnalyzeResult) {
-              setAnalyzeResult([]);
-            }
-          }}>
+        <Link
+          href="/myPage"
+          className="w-[28px] h-[28px] flex justify-center items-center">
           <IoChevronBack />
-        </button>
+        </Link>
         <p className="text-[24px] font-bold">분석 결과</p>
         <div className="w-[28px] h-[28px]" />
       </header>
       <h1 className="text-[20px] font-bold mt-10 my-7">계약서 내용</h1>
-      {analyzeResult.map((result: Table, index) =>
+      {reviewData.map((result: Table, index) =>
         selected === index ? (
           <div key={result.cells[0].columnSpan} className="text-[12px] mb-5">
             <table className="table-auto">
@@ -141,12 +133,12 @@ export default function OCRResultUI({
       {selected === 2 && (
         <div className="h-[62px] bg-[#eef2ff] flex items-center gap-5 border-y-[1px] border -mx-4 p-[2px_20px] text-[#2551F4]">
           <button
-            className={`w-[90px] h-[38px] rounded-3xl border border-[#2551F4] text-[14px] font-extrabold bg-white ${category2 === 0 ? 'bg-[#e6ebfd]' : ''}`}
+            className={`w-[90px] h-[38px] rounded-3xl border border-[#2551F4] text-[14px] font-extrabold ${category2 === 0 ? 'bg-[#e6ebfd]' : 'bg-white'}`}
             onClick={() => setCategory2(0)}>
             임대인
           </button>
           <button
-            className={`w-[90px] h-[38px] rounded-3xl border border-[#2551F4] text-[14px] font-extrabold bg-white ${category2 === 1 ? 'bg-[#e6ebfd]' : ''}`}
+            className={`w-[90px] h-[38px] rounded-3xl border border-[#2551F4] text-[14px] font-extrabold ${category2 === 1 ? 'bg-[#e6ebfd]' : 'bg-white'}`}
             onClick={() => setCategory2(1)}>
             대리인
           </button>

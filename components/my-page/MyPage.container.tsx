@@ -15,11 +15,8 @@ export default function MyPageContainer() {
   const [uploadItem, setUploadItem] = useState<IUpload>({
     data: [],
   });
-
-  const [visible, setVisible] = useState(true);
-
   // 로그인 확인
-
+  const [visible, setVisible] = useState(true);
   useEffect(() => {
     if (!isLogin()) {
       redirect('/login');
@@ -34,6 +31,7 @@ export default function MyPageContainer() {
     });
     return res;
   };
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await getUpload();

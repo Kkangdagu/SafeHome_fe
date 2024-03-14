@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -114,36 +115,141 @@ export default function MyPageUI({
           </div>
         ) : (
           <div className="mt-[20px] mb-[28px]">
-            {uploadItem?.data.map((v) => (
-              <div
-                key={v.id}
-                className="bg-white-0 w-[315px] h-[135px] rounded-[6px] mx-auto relative mb-[30px]">
-                <div className="absolute top-[17%] left-[5%] text-[#696E83] text-[13px]">
-                  <div className="text-[18px] mb-[20px]">영등포구/전세</div>
-                  <div className="mb-[20px]">{v.frstRegDttm.substr(0, 10)}</div>
-                  <div>내용</div>
-                </div>
-                <div
-                  className="w-[85px] h-[100px] border-solid border-2 bg-cover absolute top-[10%] left-[67%] "
-                  style={{ backgroundImage: `url(${v.imageUrl})` }}
-                />
-                <button
-                  className={`${deleteBtn ? 'block' : 'invisible'}`}
-                  onClick={() => {
-                    instance.delete(`/member/contract/delectOne/${v.id}`);
-                    setDeleteBtn(false);
-                    window.location.reload();
-                  }}>
-                  <Image
-                    src="images/upload_delete.svg"
-                    alt=""
-                    width={26}
-                    height={26}
-                    className="absolute left-[95%] top-[-5%]"
-                  />
-                </button>
-              </div>
-            ))}
+            {uploadItem?.data.map((v) => {
+              const parsing = JSON.parse(v.json);
+
+              return (
+                <Link
+                  href={`/review/${v.id}`}
+                  key={v.id}
+                  className="w-[315px] h-[135px]">
+                  <div className="bg-white-0 w-[315px] h-[135px] rounded-[6px] mx-auto relative mb-[30px]">
+                    <div className="absolute top-[17%] left-[5%] text-[#696E83] text-[13px]">
+                      <div className="text-[18px] mb-[20px]">
+                        {parsing[0]?.cells?.map((a: any) => (
+                          <span key={a}>
+                            {a.cellTextLines.map((b: any) => (
+                              <span key={b}>
+                                {b.cellWords.map((c: any) => (
+                                  <span key={c}>
+                                    {c.inferText.includes('강남구')
+                                      ? '강남구'
+                                      : c.inferText.includes('강서구')
+                                        ? '강서구'
+                                        : c.inferText.includes('강동구')
+                                          ? '강동구'
+                                          : c.inferText.includes('강북구')
+                                            ? '강북구'
+                                            : c.inferText.includes('관악구')
+                                              ? '관악구'
+                                              : c.inferText.includes('광진구')
+                                                ? '광진구'
+                                                : c.inferText.includes('구로구')
+                                                  ? '구로구'
+                                                  : c.inferText.includes(
+                                                        '금천구',
+                                                      )
+                                                    ? '금천구'
+                                                    : c.inferText.includes(
+                                                          '노원구',
+                                                        )
+                                                      ? '도봉구'
+                                                      : c.inferText.includes(
+                                                            '동대문구',
+                                                          )
+                                                        ? '동대문구'
+                                                        : c.inferText.includes(
+                                                              '동작구',
+                                                            )
+                                                          ? '동작구'
+                                                          : c.inferText.includes(
+                                                                '마포구',
+                                                              )
+                                                            ? '마포구'
+                                                            : c.inferText.includes(
+                                                                  '서대문구',
+                                                                )
+                                                              ? '서대문구'
+                                                              : c.inferText.includes(
+                                                                    '서초구',
+                                                                  )
+                                                                ? '서초구'
+                                                                : c.inferText.includes(
+                                                                      '성동구',
+                                                                    )
+                                                                  ? '성동구'
+                                                                  : c.inferText.includes(
+                                                                        '성북구',
+                                                                      )
+                                                                    ? '성북구'
+                                                                    : c.inferText.includes(
+                                                                          '송파구',
+                                                                        )
+                                                                      ? '송파구'
+                                                                      : c.inferText.includes(
+                                                                            '양천구',
+                                                                          )
+                                                                        ? '양천구'
+                                                                        : c.inferText.includes(
+                                                                              '영등포구',
+                                                                            )
+                                                                          ? '영등포구'
+                                                                          : c.inferText.includes(
+                                                                                '용산구',
+                                                                              )
+                                                                            ? '용산구'
+                                                                            : c.inferText.includes(
+                                                                                  '은평구',
+                                                                                )
+                                                                              ? '은평구'
+                                                                              : c.inferText.includes(
+                                                                                    '종로구',
+                                                                                  )
+                                                                                ? '종로구'
+                                                                                : c.inferText.includes(
+                                                                                      '중구',
+                                                                                    )
+                                                                                  ? '중구'
+                                                                                  : c.inferText.includes(
+                                                                                        '중랑구',
+                                                                                      )
+                                                                                    ? '중랑구'
+                                                                                    : null}
+                                  </span>
+                                ))}
+                              </span>
+                            ))}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="mb-[20px]">
+                        {v.frstRegDttm.substr(0, 10)}
+                      </div>
+                      <div>내용</div>
+                    </div>
+                    <div
+                      className="w-[85px] h-[100px] border-solid border-2 bg-cover absolute top-[10%] left-[67%] "
+                      style={{ backgroundImage: `url(${v.imageUrl})` }}
+                    />
+                    <button
+                      className={`${deleteBtn ? 'block' : 'invisible'}`}
+                      onClick={() => {
+                        instance.delete(`/member/contract/delectOne/${v.id}`);
+                        setDeleteBtn(false);
+                        window.location.reload();
+                      }}>
+                      <Image
+                        src="images/upload_delete.svg"
+                        alt=""
+                        width={26}
+                        height={26}
+                        className="absolute left-[95%] top-[-5%]"
+                      />
+                    </button>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
