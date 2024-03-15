@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+
 'use client';
 
 import axios from 'axios';
@@ -76,7 +78,6 @@ export default function LoginDetail() {
     })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data.body);
           localStorage.setItem('refresh-token', res.data.body.refreshToken);
           localStorage.setItem('access-token', res.data.body.accessToken);
           localStorage.setItem('userId', res.data.body.email);
@@ -84,8 +85,8 @@ export default function LoginDetail() {
           router.push('/');
         }
       })
-      .catch((err) => {
-        return err;
+      .catch((res) => {
+        alert(res.response.data.head.resultMsg);
       });
   };
   return (

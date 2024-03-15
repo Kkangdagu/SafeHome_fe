@@ -9,6 +9,7 @@ export interface IRegisterOneUIProps {
   activePassedRegisterOne: () => void;
   onValidMail: () => void;
   nextRegister: () => void;
+  onValidCode: () => void;
   email: string;
   passwordConfirm: string;
   isEmail: boolean;
@@ -17,5 +18,8 @@ export interface IRegisterOneUIProps {
   errorEmail: boolean;
   errorPassword: boolean;
   errorPasswordConfirm: boolean;
+  errorVeriCode: boolean;
   activeOne: boolean;
+  btnName: string;
+  codeMsg: string;
 }

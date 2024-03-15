@@ -91,6 +91,14 @@ export default function HomeUI({
               <div className="absolute left-[15%]">마이페이지</div>
             </Link>
           </div>
+          <Link
+            href="/login"
+            className="text-[#B7B7B7] text-[13px] underline"
+            onClick={() => {
+              localStorage.clear();
+            }}>
+            로그아웃
+          </Link>
         </Modal>
       )}
       <div className="flex mt-4">

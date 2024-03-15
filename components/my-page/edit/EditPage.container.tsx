@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+
 'use client';
 
 import { redirect, useRouter } from 'next/navigation';
@@ -17,7 +19,7 @@ export default function EditPageContainer() {
   const [birthDate, setBirthDate] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   // 로그인 확인
   useEffect(() => {
     if (!isLogin()) {
@@ -46,6 +48,10 @@ export default function EditPageContainer() {
     const currentPassword = e.target.value;
     setPassword(currentPassword);
   };
+  const onChangePasswordConfirm = (e: ChangeEvent<HTMLInputElement>) => {
+    const currentPasswordConfirm = e.target.value;
+    setPasswordConfirm(currentPasswordConfirm);
+  };
 
   const editMember = () => {
     const body = {
@@ -55,15 +61,19 @@ export default function EditPageContainer() {
       dateOfBirth: birthDate,
       telNo: phone,
     };
-    instance
-      .post('/member/modify', body)
-      .then((res) => {
-        router.push('/myPage');
-        return res;
-      })
-      .catch((err) => {
-        return err;
-      });
+    if (password === passwordConfirm) {
+      instance
+        .post('/member/modify', body)
+        .then((res) => {
+          router.push('/myPage');
+          return res;
+        })
+        .catch((err) => {
+          return err;
+        });
+    } else {
+      alert('비밀번호가 일치하지 않습니다.');
+    }
   };
 
   const deleteMember = () => {
@@ -72,6 +82,7 @@ export default function EditPageContainer() {
       .then((res) => {
         if (res.status === 200) {
           localStorage.clear();
+          alert('탈퇴가 완료되었습니다.');
           router.push('/');
         }
       })
@@ -80,16 +91,10 @@ export default function EditPageContainer() {
       });
   };
 
-  const logOut = () => {
-    localStorage.clear();
-    router.push('/');
-  };
-
   return (
     <EditPagePresenter
       name={name}
       email={email}
-      logOut={logOut}
       deleteMember={deleteMember}
       editMember={editMember}
       onChangeBirthDate={onChangeBirthDate}
@@ -97,6 +102,7 @@ export default function EditPageContainer() {
       onChangeName={onChangeName}
       onChangePhone={onChangePhone}
       onChangePassword={onChangePassword}
+      onChangePasswordConfirm={onChangePasswordConfirm}
     />
   );
 }
