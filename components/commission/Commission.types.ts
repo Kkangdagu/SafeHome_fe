@@ -7,8 +7,8 @@ export interface ICommission {
   setSelectedTransaction: (value: string) => void;
   salesOfferTypes: string[];
   transactionTypes: string[];
-  amount: string | number;
-  persent: number | null;
+  amount: number;
+  persent: number;
   monthPrice: number;
   onAmountInput: (e: ChangeEvent<HTMLInputElement>) => void;
   onPersentInput: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -25,16 +25,20 @@ export interface ICommission {
   onCalculatorMonth: (e: FormEvent<HTMLFormElement>) => void;
   moreInfo: boolean;
   setMoreInfo: (value: boolean) => void;
+  displayPersent: string;
 }
 
 export interface ICommissionResult1 {
-  amount: string | number;
+  amount: number;
   result: number;
+  persent: number;
   setShowResult1: (value: boolean) => void;
 }
 
 export interface ICommissionResult2 {
-  amount: string | number;
+  amount: number;
+  result: number;
   monthPrice: number;
+  persent: number;
   setShowResult2: (value: boolean) => void;
 }

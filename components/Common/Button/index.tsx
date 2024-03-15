@@ -33,9 +33,9 @@ const variants = {
     'w-[355px] h-[58px] bg-[#696E83] flex justify-center items-center rounded-md text-base text-white-0 disabled:bg-[#A6B3CD]',
   pagination: 'w-[26px] h-[26px] border border-slate-100',
   reset:
-    'w-[150px] h-[44px] text-[20px] flex justify-center items-center bg-[#CAD1E1] text-white',
+    'w-[150px] h-[44px] text-[20px] flex justify-center items-center bg-[#CAD1E1] text-white active:bg-[#8B99BB]',
   result:
-    'w-[150px] h-[44px] text-[20px] flex justify-center items-center text-white bg-[#A6B3CD]',
+    'w-[150px] h-[44px] text-[20px] flex justify-center items-center text-white bg-[#A6B3CD] active:bg-[#8B99BB]',
 };
 
 export default function Button({
