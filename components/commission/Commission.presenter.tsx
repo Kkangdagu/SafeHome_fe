@@ -32,12 +32,14 @@ export default function CommissionUI({
   onCalculatorMonth,
   moreInfo,
   setMoreInfo,
+  displayPersent,
 }: ICommission) {
   if (showResult1) {
     return (
       <CommissionResult1
         amount={amount}
         result={result}
+        persent={persent}
         setShowResult1={setShowResult1}
       />
     );
@@ -48,6 +50,8 @@ export default function CommissionUI({
       <CommissionResult2
         amount={amount}
         monthPrice={monthPrice}
+        persent={persent}
+        result={result}
         setShowResult2={setShowResult2}
       />
     );
@@ -67,14 +71,14 @@ export default function CommissionUI({
       <PolicyBanner moreInfo={moreInfo} setMoreInfo={setMoreInfo} />
       <div className="w-full flex flex-col gap-5 mt-10">
         <section>
-          <span className="text-[18px]">매물 종류</span>
+          <span className="text-[18px] font-bold">매물 종류</span>
           <div className="w-full text-[18px] mt-3">
             {transactionTypes.map((type, idx) => (
               <button
                 key={type}
-                className={`${
+                className={`text-[18px] font-bold ${
                   selectedTransaction === type
-                    ? 'selected bg-[#B6C3F3]'
+                    ? 'selected bg-[#B6C3F3] text-white-0'
                     : ' bg-white-0'
                 } ${idx === 1 ? 'w-[158px] h-[54px]' : 'w-[99px] h-[54px]'} ${idx === 1 ? 'border-x-[1px]' : ''}`}
                 onClick={() => setSelectedTransaction(type)}>
@@ -99,16 +103,16 @@ export default function CommissionUI({
           )}
         </section>
         <section>
-          <span className="text-[18px]">거래 종류</span>
+          <span className="text-[18px] font-bold">거래 종류</span>
           <div className="w-full text-[18px] mt-3">
             {salesOfferTypes.map((type, idx) => (
               <button
                 key={type}
-                className={`
+                className={`text-[18px] font-bold
 									${
                     selectedProperty === type
-                      ? 'selected bg-[#B6C3F3]'
-                      : ' bg-white-0'
+                      ? 'selected bg-[#B6C3F3] text-white-0'
+                      : 'bg-white-0'
                   } ${idx === 0 ? 'w-[158px] h-[54px]' : 'w-[99px] h-[54px]'} ${idx === 1 ? 'border-x-[1px]' : ''}`}
                 onClick={() => setSelectedProperty(type)}>
                 {type}
@@ -121,7 +125,7 @@ export default function CommissionUI({
         <form
           className="w-full mt-5 text-[18px]"
           onSubmit={onCalculatorCommission}>
-          <span>거래 금액</span>
+          <span className="text-[18px] font-bold">거래 금액</span>
           <div className="w-full flex items-center relative mt-3 mb-5">
             <input
               value={displayAmount}
@@ -131,12 +135,12 @@ export default function CommissionUI({
             />
             <span className="absolute right-2 text-slate-400">원</span>
           </div>
-          <span>협의보수율</span>
+          <span className="text-[18px] font-bold">협의보수율</span>
           <div className="w-full flex items-center relative mt-3">
             <input
-              value={persent !== null ? persent : ''}
+              value={displayPersent}
               onChange={onPersentInput}
-              maxLength={3}
+              maxLength={10}
               className="w-full h-[54px] p-[3px_35px_3px_4px] text-right"
             />
             <span className="absolute right-2 text-slate-400">%</span>
@@ -145,7 +149,7 @@ export default function CommissionUI({
             협의보수율을 입력하지 않거나, 상한요율보다 높으면 상한요율이
             적용됩니다.
           </span>
-          <div className="w-full flex justify-around mt-6">
+          <div className="w-full flex justify-around mt-16 mb-5">
             <Button variant="reset" type="button" onClick={onResetButton}>
               초기화
             </Button>
@@ -156,7 +160,7 @@ export default function CommissionUI({
         </form>
       ) : (
         <form className="w-full mt-5 text-[18px]" onSubmit={onCalculatorMonth}>
-          <span>보증금</span>
+          <span className="text-[18px] font-bold">보증금</span>
           <div className="w-full flex items-center relative mt-3 mb-5">
             <input
               value={displayAmount}
@@ -166,22 +170,22 @@ export default function CommissionUI({
             />
             <span className="absolute right-2 text-slate-400">원</span>
           </div>
-          <span>월세</span>
+          <span className="text-[18px] font-bold">월세</span>
           <div className="w-full flex items-center relative mt-3 mb-5">
             <input
               value={displayMonthPrice}
               onChange={onMonthPrice}
-              maxLength={15}
+              maxLength={10}
               className="w-full h-[54px] p-[3px_35px_3px_4px] text-right"
             />
             <span className="absolute right-2 text-slate-400">원</span>
           </div>
-          <span>협의보수율</span>
+          <span className="text-[18px] font-bold">협의보수율</span>
           <div className="w-full flex items-center relative mt-3">
             <input
-              value={persent !== null ? persent : ''}
+              value={displayPersent}
               onChange={onPersentInput}
-              maxLength={3}
+              maxLength={10}
               className="w-full h-[54px] p-[3px_35px_3px_4px] text-right"
             />
             <span className="absolute right-2 text-slate-400">%</span>
@@ -190,7 +194,7 @@ export default function CommissionUI({
             협의보수율을 입력하지 않거나, 상한요율보다 높으면 상한요율이
             적용됩니다.
           </span>
-          <div className="w-full flex justify-around mt-6">
+          <div className="w-full flex justify-around mt-16 mb-5">
             <Button variant="reset" type="button" onClick={onResetButton}>
               초기화
             </Button>

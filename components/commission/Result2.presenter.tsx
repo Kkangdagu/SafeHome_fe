@@ -6,6 +6,8 @@ import { ICommissionResult2 } from './Commission.types';
 export default function CommissionResult2({
   amount,
   monthPrice,
+  result,
+  persent,
   setShowResult2,
 }: ICommissionResult2) {
   return (
@@ -51,22 +53,7 @@ export default function CommissionResult2({
               <span className="text-[10px] text-[#696E83] ml-1">(VAT별도)</span>
             </span>
             <span className="text-[18px] font-bold">
-              {Number(amount) + monthPrice * 100 < 50000000 &&
-                ((Number(amount) + monthPrice * 70) * 0.005).toLocaleString()}
-              {Number(amount) + monthPrice * 100 >= 50000000 &&
-                Number(amount) + monthPrice * 100 < 100000000 &&
-                ((Number(amount) + monthPrice * 100) * 0.004).toLocaleString()}
-              {Number(amount) + monthPrice * 100 >= 100000000 &&
-                Number(amount) + monthPrice * 100 < 600000000 &&
-                ((Number(amount) + monthPrice * 100) * 0.003).toLocaleString()}
-              {Number(amount) + monthPrice * 100 >= 600000000 &&
-                Number(amount) + monthPrice * 100 < 1200000000 &&
-                ((Number(amount) + monthPrice * 100) * 0.004).toLocaleString()}
-              {Number(amount) + monthPrice * 100 >= 1200000000 &&
-                Number(amount) + monthPrice * 100 < 1500000000 &&
-                ((Number(amount) + monthPrice * 100) * 0.005).toLocaleString()}
-              {Number(amount) + monthPrice * 100 >= 1500000000 &&
-                ((Number(amount) + monthPrice * 100) * 0.006).toLocaleString()}
+              {result.toLocaleString()}
               <span className="text-[#696E83] ml-1">원</span>
             </span>
           </article>
@@ -75,20 +62,59 @@ export default function CommissionResult2({
               협의/상한요율
             </span>
             <span className="text-[18px] font-bold">
-              {Number(amount) + monthPrice * 100 < 50000000 && '0.5'}
-              {Number(amount) + monthPrice * 100 >= 50000000 &&
-                Number(amount) + monthPrice * 100 < 100000000 &&
-                '0.4'}
-              {Number(amount) + monthPrice * 100 >= 100000000 &&
-                Number(amount) + monthPrice * 100 < 600000000 &&
-                '0.3'}
-              {Number(amount) + monthPrice * 100 >= 600000000 &&
-                Number(amount) + monthPrice * 100 < 1200000000 &&
-                '0.4'}
-              {Number(amount) + monthPrice * 100 >= 1200000000 &&
-                Number(amount) + monthPrice * 100 < 1500000000 &&
-                '0.5'}
-              {Number(amount) + monthPrice * 100 >= 1500000000 && '0.6'}
+              {amount + monthPrice * 70 < 50000000 &&
+              persent > 0 &&
+              persent <= 0.5
+                ? persent
+                : (amount + monthPrice * 70 < 50000000 && persent === 0) ||
+                    (amount + monthPrice * 70 < 50000000 && persent > 0.5)
+                  ? '0.5'
+                  : null}
+              {amount + monthPrice * 100 >= 50000000 &&
+              amount + monthPrice * 100 < 100000000 &&
+              persent > 0 &&
+              persent <= 0.4
+                ? persent
+                : (amount + monthPrice * 100 >= 50000000 && persent === 0) ||
+                    (amount + monthPrice * 100 < 100000000 && persent > 0.4)
+                  ? '0.4'
+                  : null}
+
+              {amount + monthPrice * 100 >= 100000000 &&
+              amount + monthPrice * 100 < 600000000 &&
+              persent > 0 &&
+              persent <= 0.3
+                ? persent
+                : (amount + monthPrice * 100 >= 50000000 && persent === 0) ||
+                    (amount + monthPrice * 100 < 600000000 && persent > 0.3)
+                  ? '0.3'
+                  : null}
+              {amount + monthPrice * 100 >= 600000000 &&
+              amount + monthPrice * 100 < 1200000000 &&
+              persent > 0 &&
+              persent <= 0.4
+                ? persent
+                : (amount + monthPrice * 100 >= 600000000 && persent === 0) ||
+                    (amount + monthPrice * 100 < 1200000000 && persent > 0.4)
+                  ? '0.4'
+                  : null}
+              {amount + monthPrice * 100 >= 1200000000 &&
+              amount + monthPrice * 100 < 1500000000 &&
+              persent > 0 &&
+              persent <= 0.5
+                ? persent
+                : (amount + monthPrice * 100 >= 1200000000 && persent === 0) ||
+                    (amount + monthPrice * 100 < 1500000000 && persent > 0.5)
+                  ? '0.5'
+                  : null}
+              {amount + monthPrice * 100 >= 1500000000 &&
+              persent > 0 &&
+              persent <= 0.6
+                ? persent
+                : (amount + monthPrice * 100 >= 1500000000 && persent === 0) ||
+                    (amount + monthPrice * 100 >= 1500000000 && persent > 0.6)
+                  ? '0.6'
+                  : null}
               <span className="text-[#696E83] ml-1">%</span>
             </span>
           </article>
@@ -104,7 +130,9 @@ export default function CommissionResult2({
               )}
             </span>
             <span className="text-[18px] font-bold">
-              {(Number(amount) + monthPrice * 100).toLocaleString()}
+              {amount + monthPrice * 70 < 50000000
+                ? (amount + monthPrice * 70).toLocaleString()
+                : (amount + monthPrice * 100).toLocaleString()}
               <span className="text-[#696E83] ml-1">원</span>
             </span>
           </article>

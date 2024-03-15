@@ -7,6 +7,7 @@ export default function CommissionResult1({
   amount,
   result,
   setShowResult1,
+  persent,
 }: ICommissionResult1) {
   return (
     <div className="w-[390px] bg-layout-primary p-4 h-full">
@@ -53,24 +54,62 @@ export default function CommissionResult1({
               협의/상한요율
             </span>
             <span className="text-[18px] font-bold">
-              {amount && Number(amount) < 50000000 && '0.6'}
-              {amount &&
-                Number(amount) >= 50000000 &&
-                Number(amount) < 200000000 &&
-                '0.5'}
-              {amount &&
-                Number(amount) >= 200000000 &&
-                Number(amount) < 900000000 &&
-                '0.4'}
-              {amount &&
-                Number(amount) >= 900000000 &&
-                Number(amount) < 1200000000 &&
-                '0.5'}
-              {amount &&
-                Number(amount) >= 1200000000 &&
-                Number(amount) < 1500000000 &&
-                '0.6'}
-              {amount && Number(amount) >= 1500000000 && '0.7'}
+              {amount < 50000000 && persent > 0 && persent <= 0.6
+                ? persent
+                : (amount < 50000000 && persent > 0.6) ||
+                    (amount < 50000000 && persent === 0)
+                  ? 0.6
+                  : null}
+              {amount >= 50000000 &&
+              amount < 200000000 &&
+              persent > 0 &&
+              persent <= 0.5
+                ? persent
+                : (amount >= 50000000 && amount < 200000000 && persent > 0.5) ||
+                    (amount >= 50000000 && amount < 200000000 && persent === 0)
+                  ? 0.5
+                  : null}
+              {amount >= 200000000 &&
+              amount < 900000000 &&
+              persent > 0 &&
+              persent <= 0.4
+                ? persent
+                : (amount >= 50000000 && amount < 200000000 && persent > 0.4) ||
+                    (amount >= 50000000 && amount < 200000000 && persent === 0)
+                  ? 0.4
+                  : null}
+              {amount >= 900000000 &&
+              amount < 1200000000 &&
+              persent > 0 &&
+              persent <= 0.5
+                ? persent
+                : (amount >= 900000000 &&
+                      amount < 1200000000 &&
+                      persent > 0.5) ||
+                    (amount >= 900000000 &&
+                      amount < 1200000000 &&
+                      persent === 0)
+                  ? 0.5
+                  : null}
+              {amount >= 1200000000 &&
+              amount < 1500000000 &&
+              persent > 0 &&
+              persent <= 0.6
+                ? persent
+                : (amount >= 1200000000 &&
+                      amount < 1500000000 &&
+                      persent > 0.6) ||
+                    (amount >= 1200000000 &&
+                      amount < 1500000000 &&
+                      persent === 0)
+                  ? 0.6
+                  : null}
+              {amount >= 1500000000 && persent > 0 && persent <= 0.7
+                ? persent
+                : (amount >= 1500000000 && persent > 0.7) ||
+                    (amount >= 1500000000 && persent === 0)
+                  ? 0.7
+                  : null}
               <span className="text-[#696E83] ml-1">%</span>
             </span>
           </article>
