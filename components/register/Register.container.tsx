@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+
 'use client';
 
 import axios from 'axios';
@@ -33,16 +35,20 @@ export default function RegisterDetail() {
   const [birth, setBirth] = useState('');
   const [phone, setPhone] = useState('');
   const [allAgreed, setAllAgreed] = useState(false);
+  const [btnName, setBtnName] = useState('인증받기');
 
   // 유효성 검사
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-  const [isVeriCode, setIsVeriCode] = useState(true);
+  const [isVeriCode, setIsVeriCode] = useState(false);
 
+  // 에러
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorPasswordConfirm, setErrorPasswordConfirm] = useState(false);
+  const [errorVeriCode, setErrorVeriCode] = useState(false);
+  const [codeMsg, setCodeMsg] = useState('');
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const currentEmail = e.target.value;
@@ -125,7 +131,7 @@ export default function RegisterDetail() {
   };
   // 다음 버튼 활성화 함수
   const activePassedRegisterOne = () => {
-    return isEmail && isPassword && isPasswordConfirm && veriCode.length === 6
+    return isEmail && isPassword && isPasswordConfirm && !errorVeriCode
       ? setActiveOne(true)
       : setActiveOne(false);
   };
@@ -149,30 +155,35 @@ export default function RegisterDetail() {
         `${process.env.NEXT_PUBLIC_BASE_URL}/emails/verification-requests?email=${email}`,
       )
       .then((res) => {
-        // eslint-disable-next-line no-alert
         alert('인증번호를 전송했습니다');
+        setIsVeriCode(true);
+        setBtnName('재전송');
         return res;
       })
-      .catch((err) => {
-        return err;
+      .catch((res) => {
+        alert(res.response.data.head.resultMsg);
       });
   };
 
-  const nextRegister = () => {
+  // 인증번호 확인
+  const onValidCode = () => {
     axios
       .get(`${process.env.NEXT_PUBLIC_BASE_URL}/emails/verifications`, {
         params: { email, code: veriCode },
       })
       .then((res) => {
-        if (res.status === 200) {
-          setIsVeriCode(true);
-          setVisible(false);
-        }
+        setCodeMsg('* 인증번호가 일치합니다.');
+        setErrorVeriCode(false);
       })
       .catch((err) => {
-        setIsVeriCode(false);
+        setCodeMsg('* 인증번호가 일치하지 않습니다.');
+        setErrorVeriCode(true);
         return err;
       });
+  };
+
+  const nextRegister = () => {
+    setVisible(false);
   };
 
   // 회원가입 정보 보내기 및 완료
@@ -189,7 +200,7 @@ export default function RegisterDetail() {
       .post(`${process.env.NEXT_PUBLIC_BASE_URL}/signup`, body)
       .then((res) => {
         if (res.status === 200) {
-          router.push('/');
+          router.push('/login');
         }
       })
       .catch((err) => {
@@ -210,15 +221,19 @@ export default function RegisterDetail() {
           onChangePasswordConfirm={onChangePasswordConfirm}
           onChangeVeriCode={onChangeVeriCode}
           onValidMail={onValidMail}
+          onValidCode={onValidCode}
           onReset={onReset}
           nextRegister={nextRegister}
           isEmail={isEmail}
           isPassword={isPassword}
           errorEmail={errorEmail}
           errorPassword={errorPassword}
+          errorVeriCode={errorVeriCode}
           errorPasswordConfirm={errorPasswordConfirm}
           activeOne={activeOne}
           isVeriCode={isVeriCode}
+          codeMsg={codeMsg}
+          btnName={btnName}
         />
       ) : (
         <RegisterTwoUI

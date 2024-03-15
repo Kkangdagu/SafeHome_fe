@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import Timer from '@/utils/timer';
+
 import Button from '../Common/Button';
 import { IRegisterOneUIProps } from './RegisterOne.types';
 
@@ -14,12 +16,16 @@ export default function RegisterOneUI({
   onReset,
   activePassedRegisterOne,
   onValidMail,
+  onValidCode,
   nextRegister,
+  btnName,
+  codeMsg,
   activeOne,
   email,
   passwordConfirm,
   isEmail,
   isVeriCode,
+  errorVeriCode,
   errorEmail,
   errorPassword,
   errorPasswordConfirm,
@@ -77,7 +83,7 @@ export default function RegisterOneUI({
             className="float-left pt-[2px]"
             onClick={onValidMail}
             disabled={!isEmail}>
-            인증받기
+            {btnName}
           </Button>
           <div
             className={`relative h-[10px] mb-[40px] text-left ${errorEmail ? 'block' : 'invisible'}`}>
@@ -90,7 +96,7 @@ export default function RegisterOneUI({
           <div className="text-left text-[18px] text-[#696E83] mb-[10px]">
             인증번호
           </div>
-          <div className="float-left">
+          <div className="float-left relative">
             <input
               type="text"
               id="veriCode"
@@ -101,20 +107,23 @@ export default function RegisterOneUI({
               maxLength={6}
               placeholder="인증번호"
             />
+            <div className="absolute text-[#007AFF] text-[11px] top-[35%] left-[82%]">
+              {isVeriCode && <Timer />}
+            </div>
           </div>
           <Button
             type="button"
             variant="veri"
             id="login_btn"
             className="float-left pt-[2px]"
-            disabled={isVeriCode}
-            onClick={onValidMail}>
-            재전송
+            disabled={!isVeriCode}
+            onClick={onValidCode}>
+            확인
           </Button>
-          <div
-            className={`relative h-[10px] mb-[40px] text-left ${isVeriCode ? 'invisible' : 'block'}`}>
-            <div className="text-[11px] text-[#940000] inline-block">
-              * 인증번호가 일치하지 않습니다.
+          <div className="relative h-[10px] mb-[40px] text-left">
+            <div
+              className={`text-[11px]  inline-block ${errorVeriCode ? 'text-[#940000]' : 'text-[#007AFF]'}`}>
+              {codeMsg}
             </div>
           </div>
         </div>
