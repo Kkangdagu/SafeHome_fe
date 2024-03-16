@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -26,27 +27,93 @@ export default function PolicyLetterListUI({
           부동산 정책 레터
         </div>
       </div>
-      <div className="border-b-[2px] border-[#A6B3CD] mb-[56px]" />
-      {letterList?.body.map((board: any) => (
-        <Link key={board.id} href={`/policy-letter/${board.id}`}>
-          <div
-            className="w-[341px] h-[223px] mb-[35px] bg-cover rounded-[16px] mx-auto relative"
-            style={{ backgroundImage: `url(${board.thumbnailImgUrl})` }}>
-            <div className="w-[341px] h-[72px] rounded-b-[16px] bg-white-0 bg-opacity-90 absolute bottom-0 ">
-              <div className="ml-[13px] mt-[13px]">
-                <div className="text-[#0E298D] font-semibold  text-[20px] mb-[11px]">
-                  {board.title}
+      <div className="border-b-[2px] border-[#A6B3CD] mb-[20px]" />
+      <button className=" w-[25px] mb-[25px] ml-auto mr-[15px]">
+        <Image src="/images/filter.svg" alt="" width={24} height={19} />
+      </button>
+
+      {letterList[0]?.map((board: any) => (
+        <div key={board.id} className="relative">
+          <button
+            onClick={() => {
+              const body = {
+                email: localStorage.getItem('userId'),
+                realEstatePolicyLetterId: board.id,
+              };
+              if (board.memberId) {
+                axios
+                  .post(
+                    `${process.env.NEXT_PUBLIC_BASE_URL}/re/bookmark/deleteOne`,
+                    body,
+                  )
+                  .then((res) => {
+                    if (res.status === 200) {
+                      window.location.reload();
+                    }
+                  })
+                  .catch((err) => {
+                    return err;
+                  });
+              } else {
+                axios
+                  .post(
+                    `${process.env.NEXT_PUBLIC_BASE_URL}/re/bookmark/saveOne`,
+                    body,
+                  )
+                  .then((res) => {
+                    if (res.status === 200) {
+                      window.location.reload();
+                    }
+                  })
+                  .catch((err) => {
+                    return err;
+                  });
+              }
+            }}
+            className="absolute top-[5%] right-[10%] z-50">
+            <Image
+              src={
+                board.memberId
+                  ? '/images/bookmark.svg'
+                  : '/images/bookmark_none.svg'
+              }
+              width={25}
+              height={25}
+              alt=""
+            />
+          </button>
+          <Link href={`/policy-letter/${board.id}`}>
+            <div
+              className="w-[341px] h-[223px] mb-[35px] bg-cover rounded-[16px] mx-auto relative"
+              style={{ backgroundImage: `url(${board.thumbnailImgUrl})` }}>
+              <div className="w-[341px] h-[72px] rounded-b-[16px] bg-white-0 bg-opacity-90 absolute bottom-0 ">
+                <div className="ml-[13px] mt-[13px]">
+                  <div className="text-[#0E298D] font-semibold  text-[20px] mb-[11px]">
+                    {board.title}
+                  </div>
+                  <div className="text-[12px] text-[#686868]">
+                    {board.lastChngRegDttm.substr(0, 10)}
+                  </div>
                 </div>
-                <div className="text-[12px] text-[#686868]">
-                  {board.lastChngRegDttm.substr(0, 10)}
+              </div>
+              <div className="absolute text-[11px] top-[78%] left-[89%]">
+                {board.author}
+              </div>
+              <div>
+                <Image
+                  src="/images/view_count.svg"
+                  alt=""
+                  width={10}
+                  height={7}
+                  className="absolute top-[90%] left-[89%]"
+                />
+                <div className="text-[8px] text-[#9AA0B7] absolute top-[90%] right-[6%]">
+                  {board.viewCount}
                 </div>
               </div>
             </div>
-            <div className="absolute text-[11px] top-[78%] left-[89%]">
-              {board.author}
-            </div>
-          </div>
-        </Link>
+          </Link>
+        </div>
       ))}
     </div>
   );
