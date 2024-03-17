@@ -126,7 +126,7 @@ export default function CommissionUI({
           className="w-full mt-5 text-[18px]"
           onSubmit={onCalculatorCommission}>
           <span className="text-[18px] font-bold">거래 금액</span>
-          <div className="w-full flex items-center relative mt-3 mb-5">
+          <div className="w-full flex items-center relative mt-3">
             <input
               value={displayAmount}
               onChange={onAmountInput}
@@ -135,6 +135,17 @@ export default function CommissionUI({
             />
             <span className="absolute right-2 text-slate-400">원</span>
           </div>
+          <h3 className="text-end text-[14px] text-[#686868] mt-1 mb-5">
+            {amount === 0 || Number.isNaN(amount)
+              ? null
+              : Number(String(amount).length) < 5
+                ? `${amount.toLocaleString()} 원`
+                : `${
+                    String(amount).length <= 8
+                      ? `${Number(String(amount).slice(0, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4)).toLocaleString()} 원`
+                      : `${String(amount).length > 8 ? `${Number(String(amount).slice(0, -8)).toLocaleString()} 억 ${Number(String(amount).slice(-8, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4)).toLocaleString()} 원` : null}`
+                  }`}
+          </h3>
           <span className="text-[18px] font-bold">협의보수율</span>
           <div className="w-full flex items-center relative mt-3">
             <input
@@ -161,7 +172,7 @@ export default function CommissionUI({
       ) : (
         <form className="w-full mt-5 text-[18px]" onSubmit={onCalculatorMonth}>
           <span className="text-[18px] font-bold">보증금</span>
-          <div className="w-full flex items-center relative mt-3 mb-5">
+          <div className="w-full flex items-center relative mt-3">
             <input
               value={displayAmount}
               onChange={onAmountInput}
@@ -170,8 +181,19 @@ export default function CommissionUI({
             />
             <span className="absolute right-2 text-slate-400">원</span>
           </div>
+          <h3 className="text-end text-[14px] text-[#686868] mt-1 mb-5">
+            {amount === 0 || Number.isNaN(amount)
+              ? null
+              : Number(String(amount).length) < 5
+                ? `${amount.toLocaleString()} 원`
+                : `${
+                    String(amount).length <= 8
+                      ? `${Number(String(amount).slice(0, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4)).toLocaleString()} 원`
+                      : `${String(amount).length > 8 ? `${Number(String(amount).slice(0, -8)).toLocaleString()} 억 ${Number(String(amount).slice(-8, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4)).toLocaleString()} 원` : null}`
+                  }`}
+          </h3>
           <span className="text-[18px] font-bold">월세</span>
-          <div className="w-full flex items-center relative mt-3 mb-5">
+          <div className="w-full flex items-center relative mt-3">
             <input
               value={displayMonthPrice}
               onChange={onMonthPrice}
@@ -180,6 +202,17 @@ export default function CommissionUI({
             />
             <span className="absolute right-2 text-slate-400">원</span>
           </div>
+          <h3 className="text-end text-[14px] text-[#686868] mt-1 mb-5">
+            {monthPrice === 0 || Number.isNaN(monthPrice)
+              ? null
+              : Number(String(monthPrice).length) < 5
+                ? `${monthPrice.toLocaleString()} 원`
+                : `${
+                    String(monthPrice).length <= 8
+                      ? `${Number(String(monthPrice).slice(0, -4)).toLocaleString()} 만 ${Number(String(monthPrice).slice(-4)).toLocaleString()} 원`
+                      : `${String(monthPrice).length > 8 ? `${Number(String(monthPrice).slice(0, -8)).toLocaleString()} 억 ${Number(String(monthPrice).slice(-8, -4)).toLocaleString()} 만 ${Number(String(monthPrice).slice(-4)).toLocaleString()} 원` : null}`
+                  }`}
+          </h3>
           <span className="text-[18px] font-bold">협의보수율</span>
           <div className="w-full flex items-center relative mt-3">
             <input
