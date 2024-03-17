@@ -147,7 +147,7 @@ export default function CommissionContainer() {
     ) {
       if (amount + monthPrice * 70 < 50000000) {
         if (persent === 0 || persent > 0.5) {
-          setResult(Math.floor(((amount + monthPrice * 70) * 0.005) / 100));
+          setResult(Math.floor((amount + monthPrice * 70) * 0.005));
         } else if (persent > 0 && persent <= 0.5) {
           setResult(Math.floor(((amount + monthPrice * 70) * persent) / 100));
         }
@@ -158,7 +158,7 @@ export default function CommissionContainer() {
         amount + monthPrice * 100 < 100000000
       ) {
         if (persent === 0 || persent > 0.4) {
-          setResult(Math.floor(((amount + monthPrice * 100) * 0.004) / 100));
+          setResult(Math.floor((amount + monthPrice * 100) * 0.004));
         } else if (persent > 0 && persent <= 0.4) {
           setResult(Math.floor(((amount + monthPrice * 100) * persent) / 100));
         }
@@ -169,7 +169,7 @@ export default function CommissionContainer() {
         amount + monthPrice * 100 < 600000000
       ) {
         if (persent === 0 || persent > 0.3) {
-          setResult(Math.floor(((amount + monthPrice * 100) * 0.003) / 100));
+          setResult(Math.floor((amount + monthPrice * 100) * 0.003));
         } else if (persent > 0 && persent <= 0.3) {
           setResult(Math.floor(((amount + monthPrice * 100) * persent) / 100));
         }
@@ -180,7 +180,7 @@ export default function CommissionContainer() {
         amount + monthPrice * 100 < 1200000000
       ) {
         if (persent === 0 || persent > 0.4) {
-          setResult(Math.floor(((amount + monthPrice * 100) * 0.004) / 100));
+          setResult(Math.floor((amount + monthPrice * 100) * 0.004));
         } else if (persent > 0 && persent <= 0.4) {
           setResult(Math.floor(((amount + monthPrice * 100) * persent) / 100));
         }
@@ -191,7 +191,7 @@ export default function CommissionContainer() {
         amount + monthPrice * 100 < 1500000000
       ) {
         if (persent === 0 || persent > 0.5) {
-          setResult(Math.floor(((amount + monthPrice * 100) * 0.005) / 100));
+          setResult(Math.floor((amount + monthPrice * 100) * 0.005));
         } else if (persent > 0 && persent <= 0.5) {
           setResult(Math.floor(((amount + monthPrice * 100) * persent) / 100));
         }
@@ -199,7 +199,7 @@ export default function CommissionContainer() {
 
       if (amount + monthPrice * 100 >= 1500000000) {
         if (persent === 0 || persent > 0.6) {
-          setResult(Math.floor(((amount + monthPrice * 100) * 0.006) / 100));
+          setResult(Math.floor((amount + monthPrice * 100) * 0.006));
         } else if (persent > 0 && persent <= 0.6) {
           setResult(Math.floor(((amount + monthPrice * 100) * persent) / 100));
         }

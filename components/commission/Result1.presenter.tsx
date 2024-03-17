@@ -45,7 +45,7 @@ export default function CommissionResult1({
               <span className="text-[10px] text-[#696E83] ml-1">(VAT별도)</span>
             </span>
             <span className="text-[18px] font-bold">
-              {result && result.toLocaleString()}
+              {Math.floor(result).toLocaleString()}
               <span className="text-[#696E83] ml-1">원</span>
             </span>
           </article>
@@ -58,7 +58,7 @@ export default function CommissionResult1({
                 ? persent
                 : (amount < 50000000 && persent > 0.6) ||
                     (amount < 50000000 && persent === 0)
-                  ? 0.6
+                  ? '0.6'
                   : null}
               {amount >= 50000000 &&
               amount < 200000000 &&
@@ -67,16 +67,18 @@ export default function CommissionResult1({
                 ? persent
                 : (amount >= 50000000 && amount < 200000000 && persent > 0.5) ||
                     (amount >= 50000000 && amount < 200000000 && persent === 0)
-                  ? 0.5
+                  ? '0.5'
                   : null}
               {amount >= 200000000 &&
               amount < 900000000 &&
               persent > 0 &&
               persent <= 0.4
                 ? persent
-                : (amount >= 50000000 && amount < 200000000 && persent > 0.4) ||
-                    (amount >= 50000000 && amount < 200000000 && persent === 0)
-                  ? 0.4
+                : (amount >= 200000000 &&
+                      amount < 900000000 &&
+                      persent > 0.4) ||
+                    (amount >= 200000000 && amount < 900000000 && persent === 0)
+                  ? '0.4'
                   : null}
               {amount >= 900000000 &&
               amount < 1200000000 &&
@@ -89,7 +91,7 @@ export default function CommissionResult1({
                     (amount >= 900000000 &&
                       amount < 1200000000 &&
                       persent === 0)
-                  ? 0.5
+                  ? '0.5'
                   : null}
               {amount >= 1200000000 &&
               amount < 1500000000 &&
@@ -102,13 +104,13 @@ export default function CommissionResult1({
                     (amount >= 1200000000 &&
                       amount < 1500000000 &&
                       persent === 0)
-                  ? 0.6
+                  ? '0.6'
                   : null}
               {amount >= 1500000000 && persent > 0 && persent <= 0.7
                 ? persent
                 : (amount >= 1500000000 && persent > 0.7) ||
                     (amount >= 1500000000 && persent === 0)
-                  ? 0.7
+                  ? '0.7'
                   : null}
               <span className="text-[#696E83] ml-1">%</span>
             </span>

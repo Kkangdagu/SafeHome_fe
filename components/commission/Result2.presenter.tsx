@@ -75,18 +75,25 @@ export default function CommissionResult2({
               persent > 0 &&
               persent <= 0.4
                 ? persent
-                : (amount + monthPrice * 100 >= 50000000 && persent === 0) ||
-                    (amount + monthPrice * 100 < 100000000 && persent > 0.4)
+                : (amount + monthPrice * 100 >= 50000000 &&
+                      amount + monthPrice * 100 < 100000000 &&
+                      persent === 0) ||
+                    (amount + monthPrice * 100 >= 50000000 &&
+                      amount + monthPrice * 100 < 100000000 &&
+                      persent > 0.4)
                   ? '0.4'
                   : null}
-
               {amount + monthPrice * 100 >= 100000000 &&
               amount + monthPrice * 100 < 600000000 &&
               persent > 0 &&
               persent <= 0.3
                 ? persent
-                : (amount + monthPrice * 100 >= 50000000 && persent === 0) ||
-                    (amount + monthPrice * 100 < 600000000 && persent > 0.3)
+                : (amount + monthPrice * 100 >= 100000000 &&
+                      amount + monthPrice * 100 < 600000000 &&
+                      persent === 0) ||
+                    (amount + monthPrice * 100 >= 100000000 &&
+                      amount + monthPrice * 100 < 600000000 &&
+                      persent > 0.3)
                   ? '0.3'
                   : null}
               {amount + monthPrice * 100 >= 600000000 &&
@@ -94,8 +101,12 @@ export default function CommissionResult2({
               persent > 0 &&
               persent <= 0.4
                 ? persent
-                : (amount + monthPrice * 100 >= 600000000 && persent === 0) ||
-                    (amount + monthPrice * 100 < 1200000000 && persent > 0.4)
+                : (amount + monthPrice * 100 >= 600000000 &&
+                      amount + monthPrice * 100 < 1200000000 &&
+                      persent === 0) ||
+                    (amount + monthPrice * 100 >= 600000000 &&
+                      amount + monthPrice * 100 < 1200000000 &&
+                      persent > 0.4)
                   ? '0.4'
                   : null}
               {amount + monthPrice * 100 >= 1200000000 &&
@@ -103,8 +114,12 @@ export default function CommissionResult2({
               persent > 0 &&
               persent <= 0.5
                 ? persent
-                : (amount + monthPrice * 100 >= 1200000000 && persent === 0) ||
-                    (amount + monthPrice * 100 < 1500000000 && persent > 0.5)
+                : (amount + monthPrice * 100 >= 1200000000 &&
+                      amount + monthPrice * 100 < 1500000000 &&
+                      persent === 0) ||
+                    (amount + monthPrice * 100 >= 1200000000 &&
+                      amount + monthPrice * 100 < 1500000000 &&
+                      persent > 0.5)
                   ? '0.5'
                   : null}
               {amount + monthPrice * 100 >= 1500000000 &&
