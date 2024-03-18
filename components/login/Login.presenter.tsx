@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import Input from '@/components/Common/Input';
@@ -21,13 +22,16 @@ export default function LoginUI({
 
   return (
     <div className="w-[390px] h-screen bg-[#F2F3F6]">
-      <Image
-        src="/images/login_logo.svg"
-        alt=""
-        width={200}
-        height={120}
-        className="mx-auto mb-[127px] mt-[171px]"
-      />
+      <Link href="/">
+        <Image
+          src="/images/login_logo.svg"
+          alt=""
+          width={200}
+          height={120}
+          className="mx-auto mb-[127px] mt-[171px]"
+        />
+      </Link>
+
       <Input
         type="email"
         placeholder="이메일"

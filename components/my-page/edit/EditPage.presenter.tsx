@@ -14,6 +14,8 @@ export default function EditPagePresenter({
   onChangePasswordConfirm,
   name,
   email,
+  phone,
+  birthDate,
 }: IEditPageUIProps) {
   const router = useRouter();
   return (
@@ -28,14 +30,14 @@ export default function EditPagePresenter({
             width={14}
             height={26}
             alt=""
-            className="absolute top-[60%] left-[5%]"
+            className="absolute top-[52%] left-[5%]"
           />
         </button>
-        <div className="text-black text-[24px] font-semibold absolute top-[58%] left-[35%]">
+        <div className="text-black text-[24px] font-semibold absolute top-[52%] left-[35%]">
           프로필 수정
         </div>
         <button
-          className="text-[#2551F4] text-[15px] absolute top-[65%] left-[85%] "
+          className="text-[#2551F4] text-[15px] absolute top-[57%] left-[85%] "
           onClick={editMember}>
           완료
         </button>
@@ -80,6 +82,7 @@ export default function EditPagePresenter({
               className="w-[349px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
               placeholder="생년월일"
               onChange={onChangeBirthDate}
+              value={birthDate}
             />
           </div>
         </div>
@@ -95,6 +98,7 @@ export default function EditPagePresenter({
               className="w-[349px] h-[37px] text-[14px] mr-[13px] text-black bg-[#F2F3F6] outline-none border-[#A6B3CD] border-b-[1px] placeholder-gray-300 float-left focus:border-[#2551F4]"
               placeholder="010-0000-0000"
               onChange={onChangePhone}
+              value={phone}
             />
           </div>
         </div>

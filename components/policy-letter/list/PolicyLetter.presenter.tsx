@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { isLogin } from '@/utils/isLogin';
+
 import { IPolicyLetterListUIProps } from './PolicyLetter.types';
 
 export default function PolicyLetterListUI({
@@ -80,6 +82,7 @@ export default function PolicyLetterListUI({
               width={25}
               height={25}
               alt=""
+              className={`${isLogin() ? 'block' : 'invisible'}`}
             />
           </button>
           <Link href={`/policy-letter/${board.id}`}>
@@ -105,9 +108,9 @@ export default function PolicyLetterListUI({
                   alt=""
                   width={10}
                   height={7}
-                  className="absolute top-[90%] left-[89%]"
+                  className="absolute top-[90%] left-[88%]"
                 />
-                <div className="text-[8px] text-[#9AA0B7] absolute top-[90%] right-[6%]">
+                <div className="text-[8px] text-left text-[#9AA0B7] absolute top-[90%] right-[5%]">
                   {board.viewCount}
                 </div>
               </div>

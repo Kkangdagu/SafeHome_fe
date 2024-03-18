@@ -4,7 +4,8 @@
 
 import { useEffect, useState } from 'react';
 
-import { getPolicyLetterUser } from '@/utils/home';
+import { getPolicyLetterNone, getPolicyLetterUser } from '@/utils/home';
+import { isLogin } from '@/utils/isLogin';
 
 import PolicyLetterListUI from './PolicyLetter.presenter';
 import { IPolicyLetter } from './PolicyLetter.types';
@@ -15,12 +16,19 @@ export default function PolicyLetterListContainer() {
   });
 
   useEffect(() => {
-    const email = localStorage.getItem('userId');
-    const fetchData = async () => {
-      const res = await getPolicyLetterUser(email!);
+    const fetchDataUser = async () => {
+      const res = await getPolicyLetterUser(localStorage.getItem('userId')!);
       setLetterList(res.body.list);
     };
-    fetchData();
+    const fetchDataNone = async () => {
+      const res = await getPolicyLetterNone();
+      setLetterList(res.body.list);
+    };
+    if (isLogin()) {
+      fetchDataUser();
+    } else {
+      fetchDataNone();
+    }
   }, []);
 
   return <PolicyLetterListUI letterList={letterList} />;

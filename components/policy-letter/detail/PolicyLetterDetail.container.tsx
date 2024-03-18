@@ -3,7 +3,11 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { getPolicyLetter } from '@/utils/home';
+import {
+  getPolicyLetterDetailNone,
+  getPolicyLetterDetailUser,
+} from '@/utils/home';
+import { isLogin } from '@/utils/isLogin';
 
 import PolicyLetterDetailPresenter from './PolicyLetterDetail.presenter';
 import { IPolicyLetterItem } from './PolicyLetterDetail.types';
@@ -11,14 +15,25 @@ import { IPolicyLetterItem } from './PolicyLetterDetail.types';
 export default function PolicyLetterDetailContainer() {
   const [letterDetail, setLetterDetail] = useState<IPolicyLetterItem>();
   const id = useParams();
-  const num = Number(id.slug) - 1;
+  const num = Number(id.slug);
   useEffect(() => {
-    const fetchData = async () => {
-      const letterData = await getPolicyLetter();
-      setLetterDetail(letterData.body[num]);
+    const fetchDataUser = async () => {
+      const letterData = await getPolicyLetterDetailUser(
+        num,
+        localStorage.getItem('userId'),
+      );
+      setLetterDetail(letterData.body);
     };
-    fetchData();
-  }, [num]);
+    const fetchDataNone = async () => {
+      const letterData = await getPolicyLetterDetailNone(num);
+      setLetterDetail(letterData.body);
+    };
+    if (isLogin()) {
+      fetchDataUser();
+    } else {
+      fetchDataNone();
+    }
+  }, []);
 
   return <PolicyLetterDetailPresenter letterDetail={letterDetail} />;
 }
