@@ -1,5 +1,5 @@
-export interface IPolicyLetterListUIProps {
-  letterList?: IPolicyLetter | any;
+export interface IBookmarkListUIProps {
+  bookmarkList?: IPolicyLetter | any;
 }
 
 export interface IPolicyLetter {

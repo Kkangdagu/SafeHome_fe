@@ -18,7 +18,6 @@ export default function MyPageUI({
   const router = useRouter();
   const [deleteBtn, setDeleteBtn] = useState(false);
 
-  console.log(uploadItem?.data.length);
   return (
     <div className="w-[390px] h-full bg-[#F2F3F6] flex flex-col min-h-screen">
       <div className="relative w-[390px] h-[106px] bg-white-0">
@@ -66,7 +65,11 @@ export default function MyPageUI({
         </div>
       </div>
       <div className="mx-auto w-[348px] h-[113px] rounded-[10px] bg-[#E9EBF8] relative mb-[42px]">
-        <button className="absolute top-[20%] left-[15%]">
+        <button
+          className="absolute top-[20%] left-[15%]"
+          onClick={() => {
+            router.push('/myPage/bookmark');
+          }}>
           <Image
             src="images/bookmark_icon.svg"
             width={28.33}

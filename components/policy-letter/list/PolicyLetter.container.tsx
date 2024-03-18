@@ -4,7 +4,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { getPolicyLetter } from '@/utils/home';
+import { getPolicyLetterUser } from '@/utils/home';
 
 import PolicyLetterListUI from './PolicyLetter.presenter';
 import { IPolicyLetter } from './PolicyLetter.types';
@@ -15,9 +15,10 @@ export default function PolicyLetterListContainer() {
   });
 
   useEffect(() => {
+    const email = localStorage.getItem('userId');
     const fetchData = async () => {
-      const res = await getPolicyLetter();
-      setLetterList(res);
+      const res = await getPolicyLetterUser(email!);
+      setLetterList(res.body.list);
     };
     fetchData();
   }, []);
