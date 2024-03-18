@@ -150,12 +150,12 @@ export default function RegisterDetail() {
 
   // 이메일 인증번호 보내기
   const onValidMail = () => {
+    alert('인증번호를 전송했습니다');
     axios
       .post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/emails/verification-requests?email=${email}`,
       )
       .then((res) => {
-        alert('인증번호를 전송했습니다');
         setIsVeriCode(true);
         setBtnName('재전송');
         return res;

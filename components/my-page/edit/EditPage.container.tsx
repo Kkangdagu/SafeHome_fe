@@ -28,6 +28,22 @@ export default function EditPageContainer() {
     setEmail(localStorage.getItem('userId')!);
     setName(localStorage.getItem('name')!);
   }, []);
+
+  const getUserData = () => {
+    const res = instance.post(
+      `/member/select/dateOfBirthAndTelNo?email=${localStorage.getItem('userId')}`,
+    );
+    return res;
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getUserData();
+      setBirthDate(res.data.body.dateOfBirth);
+      setPhone(res.data.body.telNo);
+    };
+    fetchData();
+  }, []);
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const currentEmail = e.target.value;
     setEmail(currentEmail);
@@ -95,6 +111,8 @@ export default function EditPageContainer() {
     <EditPagePresenter
       name={name}
       email={email}
+      phone={phone}
+      birthDate={birthDate}
       deleteMember={deleteMember}
       editMember={editMember}
       onChangeBirthDate={onChangeBirthDate}

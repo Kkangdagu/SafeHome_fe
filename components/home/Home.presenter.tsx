@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
+import { isLogin } from '@/utils/isLogin';
+
 import Banner from '../Common/Banner';
 import Footer from '../Common/Footer';
 import Modal from '../Common/Modal';
@@ -91,14 +93,22 @@ export default function HomeUI({
               <div className="absolute left-[15%]">마이페이지</div>
             </Link>
           </div>
-          <Link
-            href="/login"
-            className="text-[#B7B7B7] text-[13px] underline"
-            onClick={() => {
-              localStorage.clear();
-            }}>
-            로그아웃
-          </Link>
+          {isLogin() ? (
+            <Link
+              href="/login"
+              className="text-[#B7B7B7] text-[13px] underline"
+              onClick={() => {
+                localStorage.clear();
+              }}>
+              로그아웃
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="text-[#B7B7B7] text-[13px] underline">
+              로그인
+            </Link>
+          )}
         </Modal>
       )}
       <div className="flex mt-4">
@@ -176,8 +186,8 @@ export default function HomeUI({
               <Image
                 src="/images/right_arrow_icon.svg"
                 alt="화살표"
-                width={18}
-                height={18}
+                width={10}
+                height={20}
               />
             </div>
           </Link>
