@@ -18,7 +18,6 @@ export default function MyPageUI({
   const router = useRouter();
   const [deleteBtn, setDeleteBtn] = useState(false);
 
-  console.log(uploadItem?.data.length);
   return (
     <div className="w-[390px] h-full bg-[#F2F3F6] flex flex-col min-h-screen">
       <div className="relative w-[390px] h-[106px] bg-white-0">

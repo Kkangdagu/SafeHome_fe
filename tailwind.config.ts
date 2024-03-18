@@ -40,6 +40,9 @@ const config: Config = {
           '100%': { transform: 'translateX(160%)' },
         },
       },
+      fontFamily: {
+        square: ['NanumSquareRound'],
+      },
       animation: {
         rotate: 'rotate 1.5s linear infinite',
         skeleton: 'skeleton 1s infinite',
