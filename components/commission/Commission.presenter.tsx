@@ -142,9 +142,11 @@ export default function CommissionUI({
                 ? `${amount.toLocaleString()} 원`
                 : `${
                     String(amount).length <= 8
-                      ? `${Number(String(amount).slice(0, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4)).toLocaleString()} 원`
-                      : `${String(amount).length > 8 ? `${Number(String(amount).slice(0, -8)).toLocaleString()} 억 ${Number(String(amount).slice(-8, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4)).toLocaleString()} 원` : null}`
-                  }`}
+                      ? `${Number(String(amount).slice(0, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4) || 0).toLocaleString()} 원`
+                      : `${String(amount).length > 8 ? `${Number(String(amount).slice(0, -8)).toLocaleString()} 억 ${Number(String(amount).slice(-8, -4) || 0).toLocaleString()} 만 ${Number(String(amount).slice(-4) || 0).toLocaleString()} 원` : null}`
+                  }`
+                    .replace(/ 0 만/g, '')
+                    .replace(/ 0 원/g, ' 원')}
           </h3>
           <span className="text-[18px] font-bold">협의보수율</span>
           <div className="w-full flex items-center relative mt-3">
@@ -188,9 +190,11 @@ export default function CommissionUI({
                 ? `${amount.toLocaleString()} 원`
                 : `${
                     String(amount).length <= 8
-                      ? `${Number(String(amount).slice(0, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4)).toLocaleString()} 원`
-                      : `${String(amount).length > 8 ? `${Number(String(amount).slice(0, -8)).toLocaleString()} 억 ${Number(String(amount).slice(-8, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4)).toLocaleString()} 원` : null}`
-                  }`}
+                      ? `${Number(String(amount).slice(0, -4)).toLocaleString()} 만 ${Number(String(amount).slice(-4) || 0).toLocaleString()} 원`
+                      : `${String(amount).length > 8 ? `${Number(String(amount).slice(0, -8)).toLocaleString()} 억 ${Number(String(amount).slice(-8, -4) || 0).toLocaleString()} 만 ${Number(String(amount).slice(-4) || 0).toLocaleString()} 원` : null}`
+                  }`
+                    .replace(/ 0 만/g, '')
+                    .replace(/ 0 원/g, ' 원')}
           </h3>
           <span className="text-[18px] font-bold">월세</span>
           <div className="w-full flex items-center relative mt-3">
@@ -209,9 +213,11 @@ export default function CommissionUI({
                 ? `${monthPrice.toLocaleString()} 원`
                 : `${
                     String(monthPrice).length <= 8
-                      ? `${Number(String(monthPrice).slice(0, -4)).toLocaleString()} 만 ${Number(String(monthPrice).slice(-4)).toLocaleString()} 원`
-                      : `${String(monthPrice).length > 8 ? `${Number(String(monthPrice).slice(0, -8)).toLocaleString()} 억 ${Number(String(monthPrice).slice(-8, -4)).toLocaleString()} 만 ${Number(String(monthPrice).slice(-4)).toLocaleString()} 원` : null}`
-                  }`}
+                      ? `${Number(String(monthPrice).slice(0, -4)).toLocaleString()} 만 ${Number(String(monthPrice).slice(-4) || 0).toLocaleString()} 원`
+                      : `${String(monthPrice).length > 8 ? `${Number(String(monthPrice).slice(0, -8)).toLocaleString()} 억 ${Number(String(monthPrice).slice(-8, -4) || 0).toLocaleString()} 만 ${Number(String(monthPrice).slice(-4) || 0).toLocaleString()} 원` : null}`
+                  }`
+                    .replace(/ 0 만/g, '')
+                    .replace(/ 0 원/g, ' 원')}
           </h3>
           <span className="text-[18px] font-bold">협의보수율</span>
           <div className="w-full flex items-center relative mt-3">

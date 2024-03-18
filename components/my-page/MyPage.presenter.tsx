@@ -131,9 +131,9 @@ export default function MyPageUI({
                     <div className="absolute top-[17%] left-[5%] text-[#696E83] text-[13px]">
                       <div className="text-[18px] mb-[20px]">
                         {parsing[0]?.cells?.map((a: any) => (
-                          <span key={a.columSpan}>
+                          <span key={a.columIndex}>
                             {a.cellTextLines.map((b: any) => (
-                              <span key={b.columSpan}>
+                              <span key={b.rowIndex}>
                                 {b.cellWords.map((c: any) => (
                                   <span key={c.inferText}>
                                     {c.inferText.includes('강남구')

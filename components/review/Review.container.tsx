@@ -1,29 +1,38 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { onGetReview } from '@/service/review/useReviewService';
+import instance from '@/utils/intercepter';
 
 import ReviewPresenter from './Review.presenter';
 
 export default function ReviewContainer() {
+  const [reviewData, setReviewData] = useState([]);
   const [selected, setSelected] = useState(0);
   const [category1, setCategory1] = useState(0);
   const [category2, setCategory2] = useState(0);
   const param = useParams();
   const id = Number(param.id);
 
-  const { data, isError } = onGetReview(id);
+  const getTableData = async () => {
+    const response = await instance.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/member/contract/selectOne/${id}`,
+    );
+    return response;
+  };
 
-  if (isError) {
-    // eslint-disable-next-line no-alert
-    alert(data?.data.head.resultMsg);
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getTableData();
+      setReviewData(JSON.parse(res.data.body.data.json));
+    };
+    fetchData();
+  }, [id]);
 
   return (
     <ReviewPresenter
-      reviewData={JSON.parse(data?.data.body.data.json)}
+      reviewData={reviewData}
       selected={selected}
       setSelected={setSelected}
       category1={category1}
