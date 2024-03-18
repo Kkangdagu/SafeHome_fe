@@ -28,6 +28,7 @@ export default function EditPageContainer() {
     setEmail(localStorage.getItem('userId')!);
     setName(localStorage.getItem('name')!);
   }, []);
+
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const currentEmail = e.target.value;
     setEmail(currentEmail);
