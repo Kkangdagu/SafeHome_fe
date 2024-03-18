@@ -44,7 +44,7 @@ export default function OnboardingUI({ show, onFooterShow }: IFooterShow) {
             </button>
             <div className="w-full flex flex-col items-center gap-10 px-1 mt-10">
               <Link
-                href="/"
+                href="/commission"
                 className="w-[320px] h-[110px] flex items-center justify-between px-3 bg-[#E9EBF8]">
                 <div className="flex flex-col gap-2">
                   <h1 className="text-[#1B35BB] font-semibold text-[20px]">
@@ -84,7 +84,7 @@ export default function OnboardingUI({ show, onFooterShow }: IFooterShow) {
                 />
               </Link>
               <Link
-                href="/"
+                href="/analysis"
                 className="w-[320px] h-[110px] flex items-center justify-between px-3 bg-[#E9EBF8]">
                 <div className="flex flex-col gap-2">
                   <h1 className="text-[#1B35BB] font-semibold text-[20px]">

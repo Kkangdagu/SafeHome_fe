@@ -108,9 +108,9 @@ export default function PolicyLetterListUI({
                   alt=""
                   width={10}
                   height={7}
-                  className="absolute top-[90%] left-[89%]"
+                  className="absolute top-[90%] left-[88%]"
                 />
-                <div className="text-[8px] text-[#9AA0B7] absolute top-[90%] right-[6%]">
+                <div className="text-[8px] text-left text-[#9AA0B7] absolute top-[90%] right-[5%]">
                   {board.viewCount}
                 </div>
               </div>
