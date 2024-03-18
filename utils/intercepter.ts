@@ -8,6 +8,10 @@ instance.interceptors.request.use(function axiosIntercepter(config) {
   const token = localStorage.getItem('access-token');
   const copyConfig = { ...config };
 
+  if (!token) {
+    throw new Error('토큰이 존재하지 않습니다.');
+  }
+
   if (token) {
     copyConfig.headers.Authorization = `Bearer ${token}`;
   }
@@ -36,8 +40,9 @@ instance.interceptors.response.use(
           // eslint-disable-next-line consistent-return
           .then((res) => {
             if (res.status === 200) {
-              localStorage.setItem('access-token', res.data.accessToken);
-              requestRetry.headers.Authorization = `Bearer ${res.data.accessToken}`;
+              localStorage.setItem('access-token', res.data.body.accessToken);
+              localStorage.setItem('refresh-token', res.data.body.refreshToken);
+              requestRetry.headers.Authorization = `Bearer ${res.data.body.accessToken}`;
               return instance(requestRetry);
             }
           })
