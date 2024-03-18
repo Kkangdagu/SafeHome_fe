@@ -27,7 +27,7 @@ export default function MyPageUI({
             width={14}
             height={26}
             alt=""
-            className="absolute top-[55%] left-[5%]"
+            className="absolute top-[52%] left-[5%]"
           />
         </button>
         <div className="text-black text-[24px] font-semibold absolute top-[52%] left-[35%]">
@@ -113,7 +113,7 @@ export default function MyPageUI({
               alt=""
               className="mx-auto mt-[44px]"
             />
-            <div className="w-[220px] mx-auto mt-[24px] pb-[42px] text-[#696E83] text-[16px]">
+            <div className="w-[220px] ml-[80px] mt-[24px] pb-[42px] text-[#696E83] text-[16px]">
               계약서 업로드 내역이 없습니다.
             </div>
           </div>

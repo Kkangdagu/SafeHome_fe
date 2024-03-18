@@ -5,8 +5,9 @@ export interface IPolicyLetterDetailUIProps {
 export interface IPolicyLetterItem {
   id: number;
   title: string;
-  thumbnailImgUrl: string;
+  viewCount: number;
   contentImgUrl: string;
   author: string;
   lastChngRegDttm: string;
+  bookMarkYn: string | undefined;
 }
