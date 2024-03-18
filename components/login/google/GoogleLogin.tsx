@@ -27,6 +27,10 @@ export default function GoogleLogin() {
           localStorage.setItem('name', res.data.body.name);
           router.push('/');
         }
+      })
+      .catch((res) => {
+        // eslint-disable-next-line no-alert
+        alert(res.response.data.head.resultMsg);
       });
   }, [router]);
   return <div>구글 로그인</div>;

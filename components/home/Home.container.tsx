@@ -27,7 +27,7 @@ export default function HomeContainer() {
   const today = new Date();
   const date = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
-  const { data } = onGetLatestPolicy(currentPage);
+  const { data, isError } = onGetLatestPolicy(currentPage);
 
   const onPageClick = (pageNunber: number) => {
     dispatch(setCurrentPage(pageNunber));
@@ -58,6 +58,11 @@ export default function HomeContainer() {
     };
     fetchData();
   }, []);
+
+  if (isError) {
+    // eslint-disable-next-line no-alert
+    alert(data.head.resultMsg);
+  }
 
   return (
     <HomeUI

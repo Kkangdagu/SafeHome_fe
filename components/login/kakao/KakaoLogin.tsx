@@ -28,6 +28,10 @@ export default function KakaoLogin() {
           localStorage.setItem('name', res.data.body.name);
           router.push('/');
         }
+      })
+      .catch((res) => {
+        // eslint-disable-next-line no-alert
+        alert(res.response.data.head.resultMsg);
       });
   }, [router]);
 

@@ -131,11 +131,11 @@ export default function MyPageUI({
                     <div className="absolute top-[17%] left-[5%] text-[#696E83] text-[13px]">
                       <div className="text-[18px] mb-[20px]">
                         {parsing[0]?.cells?.map((a: any) => (
-                          <span key={a}>
+                          <span key={a.columSpan}>
                             {a.cellTextLines.map((b: any) => (
-                              <span key={b}>
+                              <span key={b.columSpan}>
                                 {b.cellWords.map((c: any) => (
-                                  <span key={c}>
+                                  <span key={c.inferText}>
                                     {c.inferText.includes('강남구')
                                       ? '강남구'
                                       : c.inferText.includes('강서구')

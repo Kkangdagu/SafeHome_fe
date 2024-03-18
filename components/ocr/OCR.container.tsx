@@ -113,7 +113,8 @@ export default function OCRContainer() {
           }
         }
       } catch (error) {
-        return error;
+        // eslint-disable-next-line no-alert
+        alert('에러가 발생하였습니다.');
       } finally {
         setIsProcessing(false);
         setImg(null);

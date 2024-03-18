@@ -16,7 +16,12 @@ interface IOnboarding {
 }
 
 export default function Banner() {
-  const { data } = onGetOnboarding();
+  const { data, isError } = onGetOnboarding();
+
+  if (isError) {
+    // eslint-disable-next-line no-alert
+    alert(data.head.resultMsg);
+  }
 
   return (
     <Swiper
