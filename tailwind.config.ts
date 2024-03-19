@@ -39,14 +39,24 @@ const config: Config = {
           '50%': { transform: 'translateX(-60%)' },
           '100%': { transform: 'translateX(160%)' },
         },
+        underline: {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
       },
       fontFamily: {
-        square: ['NanumSquareRound'],
+        pretendard: ['PretendardVariable'],
       },
       animation: {
         rotate: 'rotate 1.5s linear infinite',
         skeleton: 'skeleton 1s infinite',
+        underline: 'underline 0.3s forwards',
       },
+    },
+  },
+  variants: {
+    extend: {
+      animation: ['hover'],
     },
   },
   plugins: [],

@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { CgSpinner } from 'react-icons/cg';
-import { IoChevronBack } from 'react-icons/io5';
 
 import Button from '../Common/Button';
+import Header from '../Common/Header';
 import Modal from '../Common/Modal';
 import { IOCRProps } from './OCR.types';
 import ResultContainer from './Result.container';
@@ -30,16 +29,8 @@ export default function OCRUI({
   }
 
   return (
-    <div className="w-[390px] h-screen bg-layout-primary p-4 relative">
-      <header className="h-[106px] flex items-end px-3 pb-7 justify-between bg-white border-b-2 border-b-slate-300 -mx-4 -mt-4">
-        <Link
-          href="/"
-          className="w-[28px] h-[28px] flex justify-center items-center">
-          <IoChevronBack />
-        </Link>
-        <p className="text-[24px] font-bold">계약서 업로드</p>
-        <div className="w-[28px] h-[28px]" />
-      </header>
+    <div className="w-[390px] h-screen bg-white-0 p-4 relative">
+      <Header text="계약서 업로드" href="/" />
       <div id="modal" />
       {isModal && isProcessing && (
         <Modal
@@ -61,7 +52,7 @@ export default function OCRUI({
             width={321}
             height={486}
             alt="미리보기"
-            className="mb-20"
+            className="mb-20 border"
           />
         )}
         {img && !isProcessing && (
@@ -69,7 +60,13 @@ export default function OCRUI({
             className="w-full h-full flex flex-col justify-center items-center"
             onSubmit={onImageAnalyzing}>
             <div className="flex flex-col gap-10">
-              <Image src={img} width={321} height={486} alt="미리보기" />
+              <Image
+                src={img}
+                width={321}
+                height={486}
+                alt="미리보기"
+                className="border"
+              />
               <div className="w-full flex justify-around">
                 <Button variant="reset" onClick={onRestImg}>
                   초기화
@@ -83,19 +80,16 @@ export default function OCRUI({
         )}
         {!img && (
           <form className="w-full h-full flex flex-col justify-center items-center">
-            <p className="text-[24px] mb-10">이곳에 이미지를 업로드 하세요</p>
+            <p className="text-[24px] mb-16">이곳에 이미지를 업로드 하세요</p>
             <label
               htmlFor="upload"
-              className="w-full h-[223px] flex flex-col justify-center items-center gap-5 rounded-md border border-black border-dashed cursor-pointer">
+              className="w-full h-[223px] flex justify-center items-center cursor-pointer">
               <Image
-                src="/images/upload_img_icon.svg"
+                src="/images/upload_photo.svg"
                 alt="사진"
-                width={86}
-                height={108}
+                width={342}
+                height={250}
               />
-              <span className="text-[15px]">
-                이미지를 jpg/png/pdf 형식으로 올려주세요
-              </span>
               <input
                 type="file"
                 accept="image/*, .pdf"

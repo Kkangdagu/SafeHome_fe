@@ -24,8 +24,8 @@ export default function RootLayout({
   return (
     <ReactQueryProviders>
       <Providers>
-        <html lang="en">
-          <body className="w-full h-full flex justify-center font-square">
+        <html lang="en" className="bg-[#f2f3f6]">
+          <body className="w-full h-full flex justify-center font-pretendard">
             <ToastContainer />
             {children}
           </body>

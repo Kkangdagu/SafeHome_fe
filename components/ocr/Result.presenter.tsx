@@ -2,6 +2,7 @@
 
 import 'swiper/css';
 
+import Link from 'next/link';
 import { IoChevronBack } from 'react-icons/io5';
 import { PiWarningCircle } from 'react-icons/pi';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -26,26 +27,19 @@ export default function OCRResultUI({
   analyzeResult,
 }: IResultProps) {
   return (
-    <div className="w-[390px] h-full bg-layout-primary p-4">
-      <header className="h-[106px] flex items-end px-3 pb-7 justify-between bg-white border-b-2 border-b-slate-300 -mx-4 -mt-4">
-        <button
-          className="w-[28px] h-[28px] flex justify-center items-center"
-          onClick={() => {
-            if (setImg) {
-              setImg(null);
-            }
-            if (setAnalyzeResult) {
-              setAnalyzeResult([]);
-            }
-          }}>
+    <div className="w-[390px] h-full bg-white-0 p-4">
+      <header className="h-[106px] flex items-end px-3 pb-7 justify-between border-b-2 border-b-slate-300 -mx-4 -mt-4">
+        <Link
+          href="/"
+          className="w-[28px] h-[28px] flex justify-center items-center">
           <IoChevronBack />
-        </button>
+        </Link>
         <p className="text-[24px] font-bold">분석 결과</p>
         <div className="w-[28px] h-[28px]" />
       </header>
       <h1 className="text-[20px] font-bold mt-10 my-7">계약서 내용</h1>
       {analyzeResult.map((result: Table, index) =>
-        selected === index ? (
+        selected === index && index !== undefined ? (
           <div key={result.cells[0].columnSpan} className="text-[12px] mb-5">
             <table className="table-auto">
               <tbody>
