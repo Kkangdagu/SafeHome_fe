@@ -28,17 +28,28 @@ export default function Banner() {
       pagination={{ type: 'fraction' }}
       modules={[Pagination]}
       loop
-      className="h-[160px] rounded-md my-12">
-      {data?.body.map((v: IOnboarding) => (
+      slidesPerView={1}
+      autoplay={{ delay: 3000, disableOnInteraction: false }}
+      className="rounded-md mt-9 mb-5">
+      {data?.body.map((v: IOnboarding, idx: number) => (
         <SwiperSlide key={v.lastChngRegDttm}>
-          <Link href="/onboarding">
+          {idx === 0 ? (
+            <Link href="/onboarding">
+              <Image
+                src={v.thumbnailImgUrl}
+                alt="정책 이미지"
+                width={362}
+                height={189}
+              />
+            </Link>
+          ) : (
             <Image
               src={v.thumbnailImgUrl}
               alt="정책 이미지"
-              width={358}
-              height={160}
+              width={362}
+              height={189}
             />
-          </Link>
+          )}
         </SwiperSlide>
       ))}
     </Swiper>

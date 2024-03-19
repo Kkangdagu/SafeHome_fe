@@ -10,8 +10,8 @@ export default function CommissionResult1({
   persent,
 }: ICommissionResult1) {
   return (
-    <div className="w-[390px] bg-layout-primary p-4 h-full">
-      <header className="h-[106px] flex items-end px-3 pb-5 justify-between border-b-2 bg-white-0 border-b-slate-300 -mx-4 -mt-4 mb-5">
+    <div className="w-[390px] bg-white-0 p-4 h-full">
+      <header className="h-[106px] flex items-end px-3 pb-5 justify-between border-b-2 border-b-slate-300 -mx-4 -mt-4 mb-5">
         <button
           className="w-[28px] h-[28px] flex justify-center items-center"
           onClick={() => setShowResult1(false)}>

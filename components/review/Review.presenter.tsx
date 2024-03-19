@@ -25,8 +25,8 @@ export default function ReviewPresenter({
   setCategory2,
 }: IReviewProps) {
   return (
-    <div className="w-[390px] h-full bg-layout-primary p-4">
-      <header className="h-[106px] flex items-end px-3 pb-7 justify-between bg-white border-b-2 border-b-slate-300 -mx-4 -mt-4">
+    <div className="w-[390px] h-full bg-white-0 p-4">
+      <header className="h-[106px] flex items-end px-3 pb-7 justify-between border-b-2 border-b-slate-300 -mx-4 -mt-4">
         <Link
           href="/myPage"
           className="w-[28px] h-[28px] flex justify-center items-center">

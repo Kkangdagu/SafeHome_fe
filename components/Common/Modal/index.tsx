@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
+
 'use client';
 
 import { forwardRef, HTMLAttributes, ReactNode } from 'react';
