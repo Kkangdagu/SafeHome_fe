@@ -4,15 +4,31 @@ import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 import { isLogin } from '@/utils/isLogin';
 
 import { IPolicyLetterListUIProps } from './PolicyLetter.types';
 
 export default function PolicyLetterListUI({
+  bookmarkList,
+  setBookmarkList,
   letterList,
 }: IPolicyLetterListUIProps) {
   const router = useRouter();
+  useEffect(() => {
+    const newBookmark = [...bookmarkList];
+    // eslint-disable-next-line array-callback-return
+    letterList[0]?.map((board: any) => {
+      if (board.memberId) {
+        newBookmark[board.id - 1] = true;
+      } else {
+        newBookmark[board.id - 1] = false;
+      }
+    });
+    setBookmarkList(newBookmark);
+  }, [letterList]);
+
   return (
     <div className="w-[390px] h-full bg-[#F2F3F6] flex flex-col min-h-screen">
       <div className="relative w-[390px] h-[106px] bg-white-0">
@@ -42,7 +58,8 @@ export default function PolicyLetterListUI({
                 email: localStorage.getItem('userId'),
                 realEstatePolicyLetterId: board.id,
               };
-              if (board.memberId) {
+              const newBookmark = [...bookmarkList];
+              if (newBookmark[board.id - 1]) {
                 axios
                   .post(
                     `${process.env.NEXT_PUBLIC_BASE_URL}/re/bookmark/deleteOne`,
@@ -50,7 +67,8 @@ export default function PolicyLetterListUI({
                   )
                   .then((res) => {
                     if (res.status === 200) {
-                      window.location.reload();
+                      newBookmark[board.id - 1] = false;
+                      setBookmarkList(newBookmark);
                     }
                   })
                   .catch((err) => {
@@ -64,7 +82,8 @@ export default function PolicyLetterListUI({
                   )
                   .then((res) => {
                     if (res.status === 200) {
-                      window.location.reload();
+                      newBookmark[board.id - 1] = true;
+                      setBookmarkList(newBookmark);
                     }
                   })
                   .catch((err) => {
@@ -75,7 +94,7 @@ export default function PolicyLetterListUI({
             className="absolute top-[5%] right-[10%] z-50">
             <Image
               src={
-                board.memberId
+                bookmarkList[board.id - 1]
                   ? '/images/bookmark.svg'
                   : '/images/bookmark_none.svg'
               }
@@ -108,7 +127,7 @@ export default function PolicyLetterListUI({
                   alt=""
                   width={10}
                   height={7}
-                  className="absolute top-[90%] left-[88%]"
+                  className="absolute top-[90%] left-[87%]"
                 />
                 <div className="text-[8px] text-left text-[#9AA0B7] absolute top-[90%] right-[5%]">
                   {board.viewCount}
