@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -38,7 +39,7 @@ export default function PolicyLetterDetailPresenter({
         />
       </Link>
 
-      <div className="font-extrabold text-white-0 absolute top-[6%] left-[6%] text-[40px] text-center">
+      <div className="w-[330px] font-extrabold text-white-0 absolute left-[10%] top-[6%]  text-[40px] text-center">
         {letterDetail?.title}
       </div>
       <div className="text-[16px] text-white-0 absolute top-[9.5%] left-[5%]">

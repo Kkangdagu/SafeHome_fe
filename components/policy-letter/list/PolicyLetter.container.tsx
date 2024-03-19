@@ -34,18 +34,6 @@ export default function PolicyLetterListContainer() {
       fetchDataNone();
     }
   }, []);
-  // useEffect(() => {
-  //   const newBookmark = [...bookmarkList];
-  //   // eslint-disable-next-line array-callback-return
-  //   letterList[0]?.map((board: any) => {
-  //     if (board.memberId) {
-  //       newBookmark[board.id - 1] = true;
-  //     } else {
-  //       newBookmark[board.id - 1] = false;
-  //     }
-  //   });
-  //   setBookmarkList(newBookmark);
-  // }, [letterList]);
 
   return (
     <PolicyLetterListUI
