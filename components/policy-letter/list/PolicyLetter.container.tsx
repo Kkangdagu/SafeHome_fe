@@ -14,10 +14,14 @@ export default function PolicyLetterListContainer() {
   const [letterList, setLetterList] = useState<IPolicyLetter>({
     body: [],
   });
+  const [bookmarkList, setBookmarkList] = useState<boolean[]>([]);
 
   useEffect(() => {
     const fetchDataUser = async () => {
       const res = await getPolicyLetterUser(localStorage.getItem('userId')!);
+      const length = res.body.totalElements;
+      const bookmarkBooleanArray = Array.from({ length }, () => false);
+      setBookmarkList(bookmarkBooleanArray);
       setLetterList(res.body.list);
     };
     const fetchDataNone = async () => {
@@ -30,6 +34,24 @@ export default function PolicyLetterListContainer() {
       fetchDataNone();
     }
   }, []);
+  // useEffect(() => {
+  //   const newBookmark = [...bookmarkList];
+  //   // eslint-disable-next-line array-callback-return
+  //   letterList[0]?.map((board: any) => {
+  //     if (board.memberId) {
+  //       newBookmark[board.id - 1] = true;
+  //     } else {
+  //       newBookmark[board.id - 1] = false;
+  //     }
+  //   });
+  //   setBookmarkList(newBookmark);
+  // }, [letterList]);
 
-  return <PolicyLetterListUI letterList={letterList} />;
+  return (
+    <PolicyLetterListUI
+      bookmarkList={bookmarkList}
+      setBookmarkList={setBookmarkList}
+      letterList={letterList}
+    />
+  );
 }

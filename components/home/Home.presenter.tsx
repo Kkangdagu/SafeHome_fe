@@ -149,7 +149,7 @@ export default function HomeUI({
                 className="w-[85px] h-[78px] mr-[35px] bg-cover rounded-[20px]"
                 style={{ backgroundImage: `url(${v.thumbnailImgUrl})` }}
               />
-              <div className="w-[90px] font-extrabold text-[15px] text-[#0E298D] mt-[11px]">
+              <div className="w-[85px] truncate font-extrabold text-[15px] text-[#0E298D] mt-[11px]">
                 {v.title}
               </div>
             </div>
