@@ -126,7 +126,7 @@ export default function HomeUI({
           </Link>
         </section>
       </div>
-      <div className="h-[140px] mt-[30px]">
+      <div className="h-[140px] mt-[30px] mb-5">
         <Swiper slidesPerView={3.5}>
           {policyLetter?.body.map((v: any) => (
             <SwiperSlide key={v.thumbnailImgUrl}>
@@ -140,7 +140,7 @@ export default function HomeUI({
                     className="w-[85px] h-[85px] rounded-[50%]"
                   />
                 </div>
-                <div className="w-[90px] font-extrabold text-[15px] text-[#0E298D] mt-[11px]">
+                <div className="w-[90px] font-extrabold text-[15px] text-[#0E298D] mt-4">
                   {v.title}
                 </div>
               </Link>
