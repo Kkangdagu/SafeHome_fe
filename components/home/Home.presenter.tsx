@@ -91,14 +91,13 @@ export default function HomeUI({
           )}
         </Modal>
       )}
-      <div className="flex mt-4">
+      <div className="flex ml-[16px]">
         <Image
-          src="/images/logo_slogan.svg"
+          src="/images/main_logo.svg"
           alt="메인화면 로고 및 슬로건"
-          width={136}
-          height={47}
+          width={328}
+          height={63}
         />
-        <p className="text-sm ml-1 mt-8">세이프하게 집 구하는 방법, 세집!</p>
       </div>
       {!data ? <OnboardingSkeleton /> : <Banner />}
       <div className="-mx-4 h-[12px] bg-[#f7f7f7]" />
