@@ -79,8 +79,10 @@ export default function OCRUI({
           </form>
         )}
         {!img && (
-          <form className="w-full h-full flex flex-col justify-center items-center">
-            <p className="text-[24px] mb-16">이곳에 이미지를 업로드 하세요</p>
+          <form className="w-full h-full justify-center items-center">
+            <p className="text-[24px] text-center mb-16 mt-[170px]">
+              이곳에 이미지를 업로드 하세요
+            </p>
             <label
               htmlFor="upload"
               className="w-full h-[223px] flex justify-center items-center cursor-pointer">
