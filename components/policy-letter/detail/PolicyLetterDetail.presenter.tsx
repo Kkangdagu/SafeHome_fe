@@ -38,10 +38,6 @@ export default function PolicyLetterDetailPresenter({
           className="absolute top-[1%] left-[5%]"
         />
       </Link>
-
-      <div className="w-[330px] font-extrabold text-white-0 absolute left-[10%] top-[6%]  text-[40px] text-center">
-        {letterDetail?.title}
-      </div>
       <div className="text-[16px] text-white-0 absolute top-[9.5%] left-[5%]">
         작성자 : {letterDetail?.author}
       </div>
