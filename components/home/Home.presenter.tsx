@@ -11,9 +11,9 @@ import { isLogin } from '@/utils/isLogin';
 import Banner from '../Common/Banner';
 import Footer from '../Common/Footer';
 import Modal from '../Common/Modal';
-import LatestPolicySkeleton from '../Common/Skeleton/LatestPolicy';
+
 import OnboardingSkeleton from '../Common/Skeleton/Onboarding';
-import PaginationSkeleton from '../Common/Skeleton/Pagination';
+
 import { IHomePresenter } from './Home.types';
 
 export default function HomeUI({
@@ -166,7 +166,7 @@ export default function HomeUI({
         />
       </div>
       <div className="h-full mt-5 border-t-2 border-b-2 border-slate-400">
-        {!data && <LatestPolicySkeleton />}
+        {!data && <div className="h-[403px]" />}
         {data?.body.list.map((v, idx) => (
           <Link
             href={v.enterUrl}
@@ -200,9 +200,16 @@ export default function HomeUI({
         ))}
       </div>
       {!data ? (
-        <PaginationSkeleton />
+        <div className="mt-3 mb-[120px] flex justify-between items-center text-base">
+          <button className="flex justify-center items-center">
+            <IoChevronBack />
+          </button>
+          <button className="flex justify-center items-center">
+            <IoChevronForward />
+          </button>
+        </div>
       ) : (
-        <div className="mt-3 mb-[120px] flex justify-between items-center text-[16px]">
+        <div className="mt-3 mb-[120px] flex justify-between items-center text-base">
           <button
             onClick={prevBtn}
             disabled={currentPage === 1}

@@ -11,3 +11,9 @@ export async function getOnboarding() {
 
   return response.json();
 }
+
+export async function getPolicyLetter() {
+  const response = await fetch(url.letter);
+
+  return response.json();
+}
