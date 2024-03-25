@@ -1,36 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 서비스 개요
+'Safe House, 안전하게 집 구하기!', 사회초년생들의 부동산 계약서 이해를 도와 중개인과 임차인 간의 정보 비대칭으로 인해 발생하는 문제를 해결하는 서비스
 
-## Getting Started
+<br />
 
-First, run the development server:
+## UI
+![캡처](https://github.com/Kkangdagu/SafeHome_fe/assets/59693688/d4eed409-1baf-4c14-adb5-f9a5ea855024)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<br />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 기능
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. 메인 화면 - 정책 레터 및 최신 부동산 정책에 관련된 정보 확인할 수 있습니다.
+2. 중개수수료 계산기 - 중개수수료를 알아볼 수 있는 기능을 제공합니다.
+3. 계약서 분석 - OCR을 활용하여 내가 업로드한 계약서의 이미지에서 표 데이터를 분석합니다.
+4. 분석 결과 - 분석이 완료된 계약서에 대해 계약내용/특약사항/인적사항 에 대한 정보를 제공합니다.
+5. 마이페이지 - 내가 분석했던 계약서 확인과 개인정보 수정이 가능합니다.
