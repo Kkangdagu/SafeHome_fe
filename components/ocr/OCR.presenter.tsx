@@ -100,6 +100,13 @@ export default function OCRUI({
                 onChange={onImageUpload}
               />
             </label>
+            <div className="mt-5 text-[13px] flex flex-col text-[#696E83]">
+              <span>* 계약서의 화질에 따라 결과가 달라질 수 있습니다.</span>
+              <span>
+                * 결과에 아무런 내용도 표시되지 않았다면, 해당 정보를 인식하지
+                못했거나 누락되었을 가능성이 있습니다.
+              </span>
+            </div>
           </form>
         )}
       </div>

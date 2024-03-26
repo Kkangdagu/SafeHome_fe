@@ -77,7 +77,7 @@ export default function MyPageUI({
           </div>
         </div>
       ) : (
-        <div className="h-full flex justify-center">
+        <div className="h-full flex flex-col gap-4 items-center">
           {uploadItem?.data.map((v) => {
             const parsing = JSON.parse(v.json);
             return (

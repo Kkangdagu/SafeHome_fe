@@ -8,6 +8,7 @@ export interface IMyPageUIProps {
 export interface IUpload {
   data: IUploadItem[];
 }
+
 export interface IUploadItem {
   frstRegDttm: string;
   id: number;

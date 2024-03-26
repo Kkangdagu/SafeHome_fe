@@ -13,6 +13,7 @@ export default function ResultContainer({
   const [selected, setSelected] = useState(0);
   const [category1, setCategory1] = useState(0);
   const [category2, setCategory2] = useState(0);
+
   return (
     <OCRResultUI
       selected={selected}

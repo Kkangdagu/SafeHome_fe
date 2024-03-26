@@ -4,20 +4,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HiOutlineXMark } from 'react-icons/hi2';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { isLogin } from '@/utils/isLogin';
 
 import Banner from '../Common/Banner';
 import Footer from '../Common/Footer';
 import Modal from '../Common/Modal';
-
 import OnboardingSkeleton from '../Common/Skeleton/Onboarding';
-
 import { IHomePresenter } from './Home.types';
+import HomeLetterContainer from './home-letter/HomeLetter.container';
 
 export default function HomeUI({
-  policyLetter,
   currentPage,
   prevBtn,
   nextBtn,
@@ -125,28 +122,7 @@ export default function HomeUI({
           </Link>
         </section>
       </div>
-      <div className="h-[140px] mt-[30px] mb-5">
-        <Swiper slidesPerView={3.5}>
-          {policyLetter?.body.map((v: any) => (
-            <SwiperSlide key={v.thumbnailImgUrl}>
-              <Link key={v.id} href={`/policy-letter/${v.id}`}>
-                <div className="w-[85px] h-[85px] rounded-[50%]">
-                  <Image
-                    src={v.thumbnailImgUrl}
-                    alt="정책 이미지"
-                    width={85}
-                    height={85}
-                    className="w-[85px] h-[85px] rounded-[50%]"
-                  />
-                </div>
-                <div className="w-[90px] font-extrabold text-[15px] text-[#0E298D] mt-4">
-                  {v.title}
-                </div>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      <HomeLetterContainer />
       <div className="-mx-4 h-[12px] bg-[#f7f7f7]" />
       <div className="flex items-center gap-2 m-[20px_0px_10px_8px]">
         <Image

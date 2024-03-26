@@ -2,7 +2,6 @@ import { RefObject } from 'react';
 
 export interface IHomePresenter {
   onBoarding?: () => Promise<void>;
-  policyLetter?: IPolicyLetter;
   currentPage?: number;
   startPage?: number;
   endPage?: number;

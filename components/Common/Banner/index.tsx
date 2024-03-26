@@ -5,7 +5,7 @@ import './banner.styles.css';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { onGetOnboarding } from '@/service/home/useHomeService';
@@ -26,7 +26,7 @@ export default function Banner() {
   return (
     <Swiper
       pagination={{ type: 'fraction' }}
-      modules={[Pagination]}
+      modules={[Pagination, Autoplay]}
       loop
       slidesPerView={1}
       autoplay={{ delay: 3000, disableOnInteraction: false }}
