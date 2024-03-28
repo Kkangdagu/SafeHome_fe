@@ -8,7 +8,8 @@
     "start": "next start",
     "prepare": "husky install",
     "lint": "eslint ./**/*.ts ./**/*.tsx --ext ts,tsx --report-unused-disable-directives --cache",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "cypress": "npx cypress open"
   },
   "lint-staged": {
     "**/*.{tsx,ts,jsx,js}": [
@@ -41,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.0.0",
     "autoprefixer": "^10.0.1",
+    "cypress": "^13.7.1",
     "eslint": "8",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.1.0",

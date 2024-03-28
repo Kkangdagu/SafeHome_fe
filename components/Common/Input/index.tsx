@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useId } from 'react';
+import { InputHTMLAttributes } from 'react';
 
 interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -8,12 +8,11 @@ export default function Input({
   placeholder,
   label,
   type,
+  id,
   className,
   onChange,
   onKeyDown,
 }: IInput) {
-  const id = useId();
-
   return (
     <div className="flex items-center">
       {label && <label htmlFor={id}>{label}</label>}

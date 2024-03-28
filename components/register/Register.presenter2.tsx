@@ -148,6 +148,7 @@ export default function RegisterTwoUI({
             </div>
             <button
               type="button"
+              id="agree_btn"
               className="inline-block absolute top-[37%] right-[2%]">
               {isOpen ? (
                 <Image
@@ -198,7 +199,7 @@ export default function RegisterTwoUI({
           <Button
             type="button"
             variant="register"
-            id="login_btn"
+            id="register_btn"
             onClick={onClickRegister}
             disabled={!activeTwo}>
             가입하기

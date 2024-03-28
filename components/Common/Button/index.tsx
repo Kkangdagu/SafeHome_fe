@@ -44,6 +44,7 @@ export default function Button({
   variant = 'primary',
   className,
   disabled,
+  id,
   onClick,
 }: IButton) {
   return (
@@ -51,6 +52,7 @@ export default function Button({
       type={type}
       className={`${variants[variant]} ${className}`}
       disabled={disabled}
+      id={id}
       onClick={onClick}>
       {children}
     </button>

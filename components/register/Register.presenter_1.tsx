@@ -178,7 +178,7 @@ export default function RegisterOneUI({
           <Button
             type="button"
             variant="register"
-            id="login_btn"
+            id="register_next"
             disabled={!activeOne}
             onClick={nextRegister}>
             다음
