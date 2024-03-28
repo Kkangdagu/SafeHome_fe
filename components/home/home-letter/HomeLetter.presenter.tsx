@@ -13,7 +13,10 @@ export default function HomeLetterPresenter({ data }: IHomeLetterProps) {
   return (
     <div className="h-[140px] mt-[30px] mb-5 flex gap-5">
       {data?.body?.map((list) => (
-        <Link key={list.id} href={`/policy-letter/${list.id}`}>
+        <Link
+          id="policy-letter"
+          key={list.id}
+          href={`/policy-letter/${list.id}`}>
           <div className="w-[85px] h-[85px] rounded-[50%]">
             <Image
               src={list.thumbnailImgUrl}

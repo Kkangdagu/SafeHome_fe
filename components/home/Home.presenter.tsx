@@ -146,6 +146,7 @@ export default function HomeUI({
         {data?.body.list.map((v, idx) => (
           <Link
             href={v.enterUrl}
+            id="latest-policy"
             target="_blank"
             key={v.enterTitle}
             className={`w-full bg-[#f7f9ff] h-[80px] p-[5px_10px] flex relative ${idx !== 4 ? 'border-b-[1px] border-slate-300' : ''}`}>
