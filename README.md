@@ -3,6 +3,17 @@
 
 <br />
 
+## Stack
+<p>
+<img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/></a> &nbsp
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/></a> &nbsp
+<img src="https://img.shields.io/badge/Tailwindcss-06B6D4?style=flat-square&logo=Tailwindcss&logoColor=white"/></a> &nbsp
+<img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=redux&logoColor=white"/></a> &nbsp
+<img src="https://img.shields.io/badge/React query-CA4245?style=flat-square&logo=reactquery&logoColor=white"/></a> &nbsp
+</p>
+
+<br />
+
 ## UI
 ![캡처](https://github.com/Kkangdagu/SafeHome_fe/assets/59693688/d4eed409-1baf-4c14-adb5-f9a5ea855024)
 
