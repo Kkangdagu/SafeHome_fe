@@ -20,15 +20,12 @@ instance.interceptors.request.use(function axiosIntercepter(config) {
 });
 
 instance.interceptors.response.use(
-  function responseFn(response) {
-    return response;
-  },
+  (response) => response,
   async function errorFn(error) {
     const requestRetry = error.config;
     // eslint-disable-next-line no-underscore-dangle
     if (error.response.status === 401) {
       // eslint-disable-next-line no-underscore-dangle
-      requestRetry._retry = true;
       const refreshToken = localStorage.getItem('refresh-token');
       const accessToken = localStorage.getItem('access-token');
       return (
@@ -47,7 +44,7 @@ instance.interceptors.response.use(
             }
           })
           .catch((err) => {
-            return err;
+            throw new Error(err);
           })
       );
     }
