@@ -1,8 +1,10 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Resizer from 'react-image-file-resizer';
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 import { RootState } from '@/store';
 import { close, open } from '@/store/modules/modalSlice';
@@ -31,6 +33,7 @@ export default function OCRContainer() {
   const [etag, setEtag] = useState<string[]>([]);
   const [userId, setUserId] = useState('');
   const [completeData, setCompleteData] = useState('');
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const resizerFile = (file: File): Promise<string> =>
@@ -219,6 +222,31 @@ export default function OCRContainer() {
     };
     SaveDoc();
   }, [completeData, userId]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('access-token');
+
+      if (!token) {
+        Swal.fire({
+          icon: 'warning',
+          title: '로그인 후 이용 가능합니다.',
+          text: '로그인 하시겠습니까?',
+          showCancelButton: true,
+          confirmButtonText: '확인',
+          confirmButtonColor: '#429f50',
+          cancelButtonColor: 'red',
+          cancelButtonText: '취소',
+        }).then((res) => {
+          if (res.isConfirmed) {
+            router.push('/login');
+          } else if (res.isDismissed) {
+            router.push('/');
+          }
+        });
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const id = localStorage.getItem('userId');

@@ -58,7 +58,8 @@ export default function OCRUI({
         {img && !isProcessing && (
           <form
             className="w-full h-full flex flex-col justify-center items-center"
-            onSubmit={onImageAnalyzing}>
+            onSubmit={onImageAnalyzing}
+            id="form">
             <div className="flex flex-col gap-10">
               <Image
                 src={img}
@@ -66,12 +67,13 @@ export default function OCRUI({
                 height={486}
                 alt="미리보기"
                 className="border"
+                id="preview"
               />
               <div className="w-full flex justify-around">
                 <Button variant="reset" onClick={onRestImg}>
                   초기화
                 </Button>
-                <Button variant="result" type="submit">
+                <Button variant="result" type="submit" id="analysis">
                   분석하기
                 </Button>
               </div>
@@ -85,6 +87,7 @@ export default function OCRUI({
             </p>
             <label
               htmlFor="upload"
+              id="upload_img"
               className="w-full h-[223px] flex justify-center items-center cursor-pointer">
               <Image
                 src="/images/upload_photo.svg"
