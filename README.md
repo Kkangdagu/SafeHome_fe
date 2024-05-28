@@ -3,14 +3,23 @@
 
 <br />
 
-## Stack
+## 협업 과정
+[노션 바로가기](https://chipped-radiator-153.notion.site/Safe-House-a490c5279f104ba1b1648994a21864ae?pvs=4)
+
+<br />
+
+## 기술스택 및 아키텍처
 <p>
 <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/></a> &nbsp
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/></a> &nbsp
 <img src="https://img.shields.io/badge/Tailwindcss-06B6D4?style=flat-square&logo=Tailwindcss&logoColor=white"/></a> &nbsp
-<img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=redux&logoColor=white"/></a> &nbsp
+<img src="https://img.shields.io/badge/Redux toolkit-764ABC?style=flat-square&logo=redux&logoColor=white"/></a> &nbsp
 <img src="https://img.shields.io/badge/React query-CA4245?style=flat-square&logo=reactquery&logoColor=white"/></a> &nbsp
 </p>
+<br />
+
+![arc](https://github.com/Kkangdagu/SafeHome_fe/assets/59693688/5d7232b0-9cbf-4f0e-9ce2-62b88582ab99)
+
 
 <br />
 
